@@ -49,7 +49,7 @@ export class DoorBellProvider {
   }
 
   async activateDoorBell(measure: any = null, silent: boolean = false) {
-    console.log('activateDoorBell', this.openedModal);
+    // console.log('activateDoorBell', this.openedModal);
     if (!this.openedModal) {
       if (measure) {
         this.activeDoorBell = {
@@ -162,8 +162,8 @@ export class DoorBellProvider {
   private sleepAgain() {
     if (this.platform.is("cordova")) {
       this.insomnia.allowSleepAgain().then(
-        () => console.log("allowSleepAgain success"),
-        () => console.log("allowSleepAgain error")
+        // () => console.log("allowSleepAgain success"),
+        // () => console.log("allowSleepAgain error")
       );
     }
   }

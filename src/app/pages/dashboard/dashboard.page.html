@@ -1,8 +1,8 @@
-<div style="position: relative; height: 100%;">
+<div class="global">
   <main-header [section]="'DASHBOARD' | translate" [icon]="'clock'" [homeVisible]="false"></main-header>
   <ion-content style="height: 100%;" >
     <ion-grid id="dashboard">
-      <ion-row class="weather-forecast" style="    padding-top: 150px; padding-left: 20px;">
+      <ion-row class="weather-forecast">
         <ion-col text-center col-3 class="center forecast-block" *ngFor="let item of forecast">
           <span class="day-week">{{item.day}}</span>
           <span class="icon {{WEATHER_ICONS[item.icon]}}"></span>

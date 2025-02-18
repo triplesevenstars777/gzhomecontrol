@@ -13,9 +13,9 @@ var folders = [
 var outputFolder = path.join(__dirname, '../../', '/platforms/android/app/src/main/res/');
 
 
-console.log('------------------------------------------------------------------------------------------');
-console.log('Copy resources for android');
-console.log('------------------------------------------------------------------------------------------');
+// console.log('------------------------------------------------------------------------------------------');
+// console.log('Copy resources for android');
+// console.log('------------------------------------------------------------------------------------------');
 
 for(let folder of folders)
 {
@@ -30,9 +30,9 @@ for(let folder of folders)
                 }
                 fs.createReadStream(folder+file)
                   .pipe(fs.createWriteStream(outputFolder + destFolder + '/'+filenameSplit[2]));
-                console.log('# ' + file + ' --> ' + destFolder+ '/'+filenameSplit[2]);
+                // console.log('# ' + file + ' --> ' + destFolder+ '/'+filenameSplit[2]);
             }
         });
-        console.log('-----------------------------------------------------------------------------------------');
+        // console.log('-----------------------------------------------------------------------------------------');
     });
 }

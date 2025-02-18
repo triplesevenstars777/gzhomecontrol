@@ -12,10 +12,10 @@ import { NativeAudio } from '@awesome-cordova-plugins/native-audio';
 import { ActuatorService } from '../api/actuator.service';
 import { DeviceService } from '../device/device.service';
 
-export const BACKGROUNDMODE_TOKEN = new InjectionToken<typeof BackgroundMode>('background.mode.token');
-export const INSOMNIA_TOKEN = new InjectionToken<typeof Insomnia>('insomnia.token');
-export const LOCALNOTIFICATIONS_TOKEN = new InjectionToken<typeof LocalNotifications>('localnotifications.token');
-export const NATIVEAUDIO_TOKEN = new InjectionToken<typeof NativeAudio>('nativeaudio.token');
+export const BACKGROUNDMODE_TOKEN = new InjectionToken<any>('background.mode.token');
+export const INSOMNIA_TOKEN = new InjectionToken<any>('insomnia.token');
+export const LOCALNOTIFICATIONS_TOKEN = new InjectionToken<any>('localnotifications.token');
+export const NATIVEAUDIO_TOKEN = new InjectionToken<NativeAudio>('nativeaudio.token');
 
 @Injectable({
   providedIn: 'root'
@@ -33,10 +33,10 @@ export class PanicProvider {
   private panicTimeText: string = "";
 
   constructor(
-    @Inject(BACKGROUNDMODE_TOKEN) private backgroundMode: typeof BackgroundMode, // Use @Inject here
-    @Inject(INSOMNIA_TOKEN) private insomnia: typeof Insomnia,
-    @Inject(LOCALNOTIFICATIONS_TOKEN)private localNotifications: typeof LocalNotifications,
-    @Inject(NATIVEAUDIO_TOKEN) private nativeAudio: typeof NativeAudio,
+    @Inject(BACKGROUNDMODE_TOKEN) private backgroundMode: any,
+    @Inject(INSOMNIA_TOKEN) private insomnia: any,
+    @Inject(LOCALNOTIFICATIONS_TOKEN)private localNotifications: any,
+    @Inject(NATIVEAUDIO_TOKEN) private nativeAudio: NativeAudio,
     private actuatorService: ActuatorService,
     private deviceService: DeviceService,
     private modalCtrl: ModalController,

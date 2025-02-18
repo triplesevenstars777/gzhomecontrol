@@ -120,8 +120,8 @@ export class SmokeProvider {
   private sleepAgain(){
     if (this.platform.is("cordova")) {
       this.insomnia.allowSleepAgain().then(
-        () => console.log('allowSleepAgain success'),
-        () => console.log('allowSleepAgain error')
+        // () => console.log('allowSleepAgain success'),
+        // () => console.log('allowSleepAgain error')
       );
     }
   }

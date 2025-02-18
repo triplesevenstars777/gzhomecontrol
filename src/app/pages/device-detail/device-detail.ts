@@ -62,7 +62,6 @@ export class DeviceDetailPage implements OnInit, OnDestroy {
   }
 
   goBack() {
-    console.log("Back button clicked, navigating to:", this.previousPage);
     this.navCtrl.navigateRoot(this.previousPage || '/devices-light', { animated: true });
   }
 

@@ -91,7 +91,6 @@ export class ScenesComponent implements OnInit {
             
             try {
               const updateRes = await this.actuatorService.create(data).toPromise();
-              console.log('Updated', updateRes);
             } catch (err) {
               console.error('Update error:::', err);
             }
@@ -111,8 +110,6 @@ export class ScenesComponent implements OnInit {
 
   loadCurrentNodes(nodes: Scene['devices']) {    
     let actualNodes: { [key: string]: NodeType } = {};
-
-    console.log(`Load current nodes ${JSON.stringify(nodes)}`);
 
     for (let i = 0; i < nodes.length; i++) {
       delete nodes[i]._id;

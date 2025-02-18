@@ -77,7 +77,7 @@ try {
     let environmentTsVersion;
     let environmentTsId;
 
-    console.log('ENV', env);
+    //console.log('ENV', env);
 
     switch(env){
         case 'prod':
@@ -252,7 +252,7 @@ try {
         to: " id=\"x.x.x\""
     });
     if (changedFiles.length > 0) {
-        console.log("Reset id on config.xml");
+        //console.log("Reset id on config.xml");
     }
 
     // Reset version on config.xml
@@ -262,31 +262,31 @@ try {
         to: "\" version=\"0.0.0\""
     });
     if (changedFiles.length > 0) {
-        console.log("Reset version on config.xml");
+        //console.log("Reset version on config.xml");
     }
 
     // Replace ID on XML
     changedFiles = replaceInFileSync(configXmlId);
     if (changedFiles.length > 0) {
-        console.log("Updated " + configXmlId.files);
+        //console.log("Updated " + configXmlId.files);
     }
 
     // Replace version on XML
     changedFiles = replaceInFileSync(configXmlVersion);
     if (changedFiles.length > 0) {
-        console.log("Updated " + configXmlVersion.files);
+        //console.log("Updated " + configXmlVersion.files);
     }
 
     // Replace name on XML
     changedFiles = replaceInFileSync(configXmlName);
     if (changedFiles.length > 0) {
-        console.log("Updated " + configXmlName.files);
+        //console.log("Updated " + configXmlName.files);
     }
 
     // Replace version ENV
     changedFiles = replaceInFileSync(environmentTs);
     if (changedFiles.length > 0) {
-        console.log("Updated " + environmentTs.files);
+        //console.log("Updated " + environmentTs.files);
     }
 
     // Replace version CURRENT ENV
@@ -297,22 +297,22 @@ try {
         allowEmptyPaths: false,
     });
     if (changedFiles.length > 0) {
-        console.log("Updated src/environments/environment.ts");
+        //console.log("Updated src/environments/environment.ts");
     }
 
     // Replace css ENV
     changedFiles = replaceInFileSync(environmentTsCss);
     if (changedFiles.length > 0) {
-        console.log("Updated " + environmentTsCss.files);
+        //console.log("Updated " + environmentTsCss.files);
     }
 
     // Replace id ENV
     changedFiles = replaceInFileSync(environmentTsId);
     if (changedFiles.length > 0) {
-        console.log("Updated " + environmentTsId.files);
+        //console.log("Updated " + environmentTsId.files);
     }
 
-    console.log('Build version: "' + environmentTsVersion + '"');
+    //console.log('Build version: "' + environmentTsVersion + '"');
 } catch (error) {
     console.error('Error:', error);
     throw error;

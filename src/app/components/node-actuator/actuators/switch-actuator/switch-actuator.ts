@@ -59,7 +59,6 @@ export class SwitchActuatorComponent implements OnInit, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log("switch actuator changes:", changes);
     
     if (changes["endpoint"] && changes["endpoint"].currentValue) {
       this.data = { ...changes["endpoint"].currentValue };
@@ -67,13 +66,11 @@ export class SwitchActuatorComponent implements OnInit, OnDestroy {
     
     if (changes["updatedName"] && changes["updatedName"].currentValue) {
       const dataEntry = changes["updatedName"].currentValue;
-      console.log("updatedName change:", dataEntry);
       
       if (this.data && this.device && 
           this.data._id === dataEntry.endpoint &&
           this.device._id === dataEntry.device) {
-        console.log("Updating display_name to:", dataEntry.currentName);
-        this.data.display_name = dataEntry.currentName;
+          this.data.display_name = dataEntry.currentName;
         // Force change detection
         this.data = { ...this.data };
       }

@@ -58,8 +58,6 @@ export class NodeActuatorComponent {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log("this is change of node-actuator");
-    console.log(changes);
     if (changes['data']) {
       if (changes['data'].currentValue) {
         this.device = changes['data'].currentValue;
@@ -140,7 +138,6 @@ export class NodeActuatorComponent {
                     data.currentName = value.endpointName;
                     this.updatedName = data;
                     
-                    console.log(data);
 
                     requestAnimationFrame(() => {
                       const editButton = document.querySelector('.edit-button');

@@ -52,7 +52,7 @@ export class ApiNew {
           observable.error("Error when load url");
         }
       }
-      console.log(this.url);
+      // console.log(this.url);
       observable.next(this.url);
     });
   }

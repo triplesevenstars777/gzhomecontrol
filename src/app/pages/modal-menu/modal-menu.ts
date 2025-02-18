@@ -165,7 +165,6 @@ export class ModalMenuPage {
               .start(
                 () => {
                   /* success */
-                  console.log("OK");
                 },
                 error => {
                   /* fail */

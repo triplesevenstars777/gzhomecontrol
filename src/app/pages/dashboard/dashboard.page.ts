@@ -111,7 +111,6 @@ export class DashboardPage implements OnInit, OnDestroy {
 
   updateForecast() {
     this.weather.getCoordinates().subscribe((res: any) => {
-      console.log("this is updateforest");
       this.weather.getForecast().subscribe((data: any) => {
         if (data && data.list) {
           const arrayTemp: ForecastItem[] = [];
@@ -126,7 +125,6 @@ export class DashboardPage implements OnInit, OnDestroy {
               });
             }
           }
-          console.log(arrayTemp);
           this.forecast = arrayTemp;
         }
       });
@@ -152,7 +150,6 @@ export class DashboardPage implements OnInit, OnDestroy {
         if (!this.userStorage.IOT_HUB) {
           this.userStorage.IOT_HUB = 'gzih.gozmart.ch';
         }
-        console.log(`connecting to ${this.userStorage.IOT_HUB}`);
         const options = {
           host: environment.production
             ? this.userStorage.IOT_HUB

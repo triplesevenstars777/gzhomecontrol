@@ -83,7 +83,7 @@ export class AuthService {
       .get("https://route.gozmart.ch/getURL?app=" + this.APP_KEY)
       .pipe(
         map((data: any) => {
-          console.log("URL Data", data);
+          // console.log("URL Data", data);
           this.userStorage.API_URL = data.url;
           this.socketService.initSocket(data.url);
           return data.url;
@@ -113,7 +113,7 @@ export class AuthService {
         try {
           credentials = JSON.parse(rememberStorage);
         } catch (e) {
-          console.log("Not remember");
+          // console.log("Not remember");
         }
       }
       if (credentials) {
@@ -241,13 +241,13 @@ export class AuthService {
     const tokenExpiresAt = parseInt(this.userStorage.EXPIRED_AT || "");
     const date = new Date().getTime();
 
-    console.log(
-      moment(tokenExpiresAt).format("YYYY-MMMM-D HH:mm:ss"),
-      tokenExpiresAt,
-      moment(date).format("YYYY-MMMM-D HH:mm:ss"),
-      date,
-      tokenExpiresAt < date
-    );
+    // console.log(
+    //   moment(tokenExpiresAt).format("YYYY-MMMM-D HH:mm:ss"),
+    //   tokenExpiresAt,
+    //   moment(date).format("YYYY-MMMM-D HH:mm:ss"),
+    //   date,
+    //   tokenExpiresAt < date
+    // );
     if (tokenExpiresAt < date) {
       return false;
     }

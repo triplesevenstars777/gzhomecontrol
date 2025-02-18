@@ -127,7 +127,7 @@ export class NodeAvailabilityProvider {
 
           this.setNodeAvailability(lights).subscribe({
             next: (nodes) => {
-              console.log(nodes);
+              //console.log(nodes);
               this.lightItems = nodes;
             },
             error: (err) => {
@@ -139,11 +139,11 @@ export class NodeAvailabilityProvider {
           this.availableNodes["blinds"] = true;
 
           this.setNodeAvailability(blinds).subscribe((nodes) => {
-            console.log(nodes);
+            //console.log(nodes);
             this.blindItems = nodes;
           });
           this.setNodeAvailability(awnings).subscribe((nodes) => {
-            console.log(nodes);
+            //console.log(nodes);
             this.awningItems = nodes;
           });
         }
@@ -151,7 +151,7 @@ export class NodeAvailabilityProvider {
           this.availableNodes["clima"] = true;
 
           this.setNodeAvailability(clima).subscribe((nodes) => {
-            console.log(nodes);
+            //console.log(nodes);
             this.climaItems = nodes;
           });
         }
@@ -162,7 +162,7 @@ export class NodeAvailabilityProvider {
           this.availableNodes["sensors"] = true;
 
           this.setNodeAvailability(sensors).subscribe((nodes) => {
-            console.log(nodes);
+            //console.log(nodes);
             this.sensorItems = nodes;
           });
         }
@@ -170,7 +170,7 @@ export class NodeAvailabilityProvider {
           this.availableNodes["heaters"] = true;
 
           this.setNodeAvailability(heaters).subscribe((nodes) => {
-            console.log(nodes);
+            //console.log(nodes);
             this.heaterItems = nodes;
           });
         }
@@ -185,7 +185,7 @@ export class NodeAvailabilityProvider {
           this.availableNodes["doorlocks"] = true;
 
           this.setNodeAvailability(doorlocks).subscribe((nodes) => {
-            console.log(nodes);
+            //console.log(nodes);
             this.doorlockItems = nodes;
           });
         }
@@ -399,7 +399,7 @@ export class NodeAvailabilityProvider {
 
       this.actuatorService.create(deviceOff).subscribe(
         (res) => {
-          //console.log("Set off ", device.name, " :::", res);
+          ////console.log("Set off ", device.name, " :::", res);
         },
         (err) => {
           console.error("Update error:::", err);

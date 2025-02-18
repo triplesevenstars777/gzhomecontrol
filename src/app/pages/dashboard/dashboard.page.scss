@@ -1,5 +1,10 @@
 @use '../../../theme/variables.scss' as *;
 
+  .global{
+    position: relative; 
+    height: 100%;
+  }
+
   #dashboard {
       background-color: black;
       height: 100%;
@@ -123,10 +128,24 @@
       background-repeat: no-repeat;
       background-size: 14px 14px;
   }*/
+  .panel{
+    width: 100%; 
+    height: 100%;
+  }
+
+  .brand_title{
+    color: #119DA4; 
+    font-size: 30px;
+  }
+
+  .background-black{
+    background-color: black;
+  }
 
   .weather-forecast .forecast-block {
       color: #119DA4;
-
+      padding-top: 150px; 
+      padding-left: 20px;
       .day-week {
         font-weight: bold;
         font-size: 1rem;

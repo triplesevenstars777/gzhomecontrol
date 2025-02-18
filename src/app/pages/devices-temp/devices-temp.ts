@@ -448,7 +448,6 @@ export class DevicesTempPage {
     });
 
     modal.onDidDismiss().then((data) => {
-      console.log(data);
     });
 
     await modal.present();

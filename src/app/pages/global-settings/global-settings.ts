@@ -245,21 +245,18 @@ export class GlobalSettingsPage {
         {
           text: this.acceptButtonString,
           handler: async (data) => {
-            console.log(data);
             if (
               data.server !== "" &&
               data.server !== this.userStorage.API_URL
             ) {
               this.serverUrlChanged = true;
               this.userStorage.API_URL = data.server;
-              console.log(`Saved: ${data.server}`);
               this.currentServerEndpoint = data.server;
             }
             if (
               data.iot_hub !== "" &&
               data.iot_hub !== this.userStorage.IOT_HUB
             ) {
-              console.log(`Saving IOT_HUB`);
               this.userStorage.IOT_HUB = data.iot_hub;
               this.currentIoTHubEndpoint = data.iot_hub;
             }

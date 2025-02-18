@@ -72,7 +72,6 @@ export class GlobalTogglesComponent {
           const data = nodes[key].endpoints[i].data;
           if(data.value === null) { continue }
           this.actuatorService.create(data).subscribe((res) => {
-            console.log('Updated', res);
           }, (err) => {
             console.error('Update error:::', err);
           });
@@ -104,7 +103,6 @@ export class GlobalTogglesComponent {
           if(data.value === null) { continue }
 
           this.actuatorService.create(data).subscribe((res) => {
-            console.log('Updated', res);
           }, (err) => {
             console.error('Update error:::', err);
           });

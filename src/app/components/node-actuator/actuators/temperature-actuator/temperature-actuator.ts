@@ -155,7 +155,6 @@ export class TemperatureActuatorComponent implements OnInit, OnDestroy {
 
   onChangeDimmer(event) {
     const value = Math.round((event.detail.value / 2) * 10) / 10;
-    console.log('Range value:', event.detail.value, 'Calculated value:', value);
     
     // Directly set the value within bounds
     if (value < this.min) {
