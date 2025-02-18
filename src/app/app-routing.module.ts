@@ -39,6 +39,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/devices-temp/devices-temp-detail/devices-temp-detail.module').then(m => m.DeviceTempDetailPageModule)
   },
   {
+    path: 'device-temp/device-temp-graphs',
+    loadChildren: () => import('./pages/devices-temp/devices-temp-detail/devices-temp-graphs/devices-temp-graphs.module').then(m => m.DeviceTempGraphsPageModule)
+  },
+  {
     path: 'devices-blind',
     loadChildren: () => import('./pages/devices-blind/devices-blind.module').then(m => m.DevicesBlindPageModule)
   },

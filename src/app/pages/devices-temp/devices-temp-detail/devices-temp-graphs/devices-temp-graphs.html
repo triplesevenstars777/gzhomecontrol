@@ -1,16 +1,27 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>{{ endpoint?.display_name || endpoint.name }}</ion-title>
-    </ion-navbar>
-</ion-header>
+    <ion-toolbar style="height: 100px; padding-top: 20px;">
+      <ion-buttons slot="start">
+        <ion-button (click)="setBackButtonAction()" style="color: white; font-size: 22px;">
+            <span class="icon icon-gz-left-1"></span>
+        </ion-button>
+      </ion-buttons>
+      <ion-title style="margin-left: 35%;"><h4>{{ endpoint?.display_name || endpoint.name }}</h4></ion-title>
+    </ion-toolbar>
+  </ion-header>
 <ion-content>
     <div class="graph-container">
         <label>
             <ul>
-                <li class="dropdown-intro">{{'SHOW' |translate}}</li>
+                <li class="dropdown-intro">{{'SHOW' | translate}}</li>
                 <li>
                     <div class="form-group pull-right endpoints-dropdown">
-                        <select class="form-control" [ngModel]="limit" (ngModelChange)="onChangeLimit($event)">
+                        <select class="form-control" 
+                            style="    
+                            width: 80px;
+                            height: 30px;
+                            border: none;
+                            border-radius: 5px;" 
+                            [ngModel]="limit" (ngModelChange)="onChangeLimit($event)">
                             <option value="50">50</option>
                             <option value="100">100</option>
                             <option value="150">150</option>
@@ -18,7 +29,7 @@
                         </select>
                     </div>
                 </li>
-                <li class="dropdown-intro">{{'ENTRIES' |translate}}</li>
+                <li class="dropdown-intro">{{'ENTRIES' | translate}}</li>
             </ul>
         </label>
         <div class="col-md-12">
@@ -26,4 +37,4 @@
         </div>
     </div>
 </ion-content>
-<main-footer [menuVisible]="false"></main-footer>
+<main-footer [menuVisible]="false"></main-footer>    

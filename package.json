@@ -41,6 +41,7 @@
         "@ionic/storage": "^4.0.0",
         "@ngx-translate/core": "^16.0.4",
         "@ngx-translate/http-loader": "^16.0.1",
+        "chart.js": "^4.4.7",
         "cordova-android": "9.1.0",
         "cordova-browser": "6.0.0",
         "cross-env": "^7.0.3",

@@ -109,8 +109,9 @@ export class DeviceTempDetailPage implements OnInit, OnDestroy {
    * Method to override the default back button action
    */
   setBackButtonAction(): void {
-    this.unsubscribers();
-    this.navCtrl.back();
+    this.router.navigate(['devices-temp'], {
+      replaceUrl: true
+    });
   }
 
   setDisplayEndpoints(): void {
@@ -247,14 +248,15 @@ export class DeviceTempDetailPage implements OnInit, OnDestroy {
     return 100 * Math.exp(-((x - u) * (x - u)) / (2 * t * t));
   }
 
-  async openItem(endpoint: DisplayEndpoint): Promise<void> {
-    await this.navCtrl.navigateForward("device-temp-graphs", {
+openItem(endpoint: DisplayEndpoint) {
+    this.router.navigate(["device-temp/device-temp-graphs"], {
       state: {
-        device: this.data,
-        endpoint: endpoint
-      }
+        device: this.data, // Ensure this.data is the correct device object
+        endpoint: endpoint // Ensure the endpoint is correctly passed
+      },
+      replaceUrl: true
     });
-  }
+}
 
   async updateName(dataUpdate: UpdateData): Promise<void> {
     const alert = await this.alertCtrl.create({
