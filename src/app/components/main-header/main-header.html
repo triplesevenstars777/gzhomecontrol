@@ -4,7 +4,8 @@
       <ion-row style="background-color: #119DA4 !important; height: 100px; margin: -4px !important;">
         <!--SECTION-->
         <ion-col size="8">
-          <ion-title style="color: white; font-size: 27px; margin-left: 30px;  margin-top: 30px;  text-align: left; font-family: -apple-system, Helvetica Neue, Roboto, Segoe UI, sans-serif;">
+        <ion-title class="header-title">
+
             <span class="icon icon-gz-{{icon}}"></span>
             {{section | translate}}
           </ion-title>
@@ -28,8 +29,8 @@
     </ion-grid>
   </ion-toolbar>
 
-  <ion-toolbar class="tool_bar show_small_bar">
-    <ion-grid>
+  <ion-toolbar class="tool_bar show_small_bar" style="text-align: center; align-items: center; height: 28px;">
+    <ion-grid >
       <ion-row style="display: flex; justify-content: space-between; margin-top: -23px;">
         <ion-col style="align-items: center;">{{dateDayName}} {{dateDay}} {{dateMonth}}</ion-col>
         <ion-col class="hour" style="align-content: center; text-align: center;">{{dateTime}}</ion-col>
@@ -45,4 +46,3 @@
 
 <door-bell></door-bell>
 <panic></panic>
-<smoke></smoke>
