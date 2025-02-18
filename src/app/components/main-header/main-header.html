@@ -1,11 +1,10 @@
-<ion-header style="position: absolute;">
+<ion-header style="position: absolute; -webkit-box-shadow: none">
   <ion-toolbar class="main_header" >
     <ion-grid>
       <ion-row style="background-color: #119DA4 !important; height: 100px; margin: -4px !important;">
         <!--SECTION-->
-        <ion-col size="8">
-        <ion-title class="header-title">
-
+        <ion-col size="8" style="display: flex; justify-content: center;">
+          <ion-title class="header-title">
             <span class="icon icon-gz-{{icon}}"></span>
             {{section | translate}}
           </ion-title>
@@ -29,7 +28,7 @@
     </ion-grid>
   </ion-toolbar>
 
-  <ion-toolbar class="tool_bar show_small_bar" style="text-align: center; align-items: center; height: 28px;">
+  <ion-toolbar class="tool_bar show_small_bar" style="text-align: center; align-items: center; height: 28px; box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);">
     <ion-grid >
       <ion-row style="display: flex; justify-content: space-between; margin-top: -23px;">
         <ion-col style="align-items: center;">{{dateDayName}} {{dateDay}} {{dateMonth}}</ion-col>

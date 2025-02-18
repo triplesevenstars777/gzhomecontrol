@@ -1,5 +1,5 @@
-<ion-header>
-  <ion-toolbar class="main_header" style="padding-top: 5%">
+<ion-header style="-webkit-box-shadow: none;">
+  <ion-toolbar class="main_header" style="padding-top: 5%;">
     <ion-buttons slot="start">
         <ion-button (click)="goBack()" style="--color: white; font-size: 22px;">
             <span class="icon icon-gz-left-1"></span>
@@ -11,7 +11,7 @@
 
 <ion-content>
   <ion-grid class="item-header">
-    <ion-row>
+    <ion-row style="-webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);">
       <ion-col size="5" class="node_type">
         <b>{{ 'NODE_TYPE' | translate }}:</b> {{data?.scheme?.name}}
       </ion-col>
