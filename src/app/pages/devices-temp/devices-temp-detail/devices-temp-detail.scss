@@ -1,0 +1,173 @@
+@use "../../../../theme/variables.scss" as *;
+
+page-devices-temp-detail {
+  //HEADER
+  ion-header {
+    ion-navbar {
+      color: white;
+
+      .button-inner {
+        color: white;
+      }
+
+      .toolbar-background {
+        background: #119DA4;
+      }
+
+      .toolbar-title {
+        color: white;
+        text-align: center;
+      }
+
+      .toolbar-content {
+        margin-right: 68px;
+      }
+    }
+  }
+
+  .header-md::after {
+    content: none;
+  }
+
+  .item-detail {
+    padding: 0px 16px;
+  }
+
+  .margin-top-reset {
+    margin-top: 0px !important;
+  }
+
+  .col-center {
+    margin: 0 auto;
+  }
+
+  ion-grid.item-header.grid {
+    padding: 0px;
+  }
+  .item-header ion-row {
+    background-color: lightgray;
+    padding: 5px 25px;
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+  }
+  .room_name {
+    text-align: right;
+  }
+
+  .sensor__card {
+    width: 180px;
+    padding-bottom: 25px;
+    float: left;
+    margin: 5px 5px;
+    text-align: center;
+    position: relative;
+
+    &.full-width {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      height: 100px;
+      align-items: center;
+      padding: 0px;
+    }
+
+    .item-icon {
+      padding-bottom: 1rem;
+      padding-top: 1rem;
+
+      .icon {
+        font-size: 3.5rem;
+        color: #707070;
+        display: block;
+      }
+
+      &.text-orange .icon {
+        color: #dda043;
+      }
+      &.text-blue .icon {
+        color: #1778e7;
+      }
+      &.text-red .icon {
+        color: red;
+      }
+      &.text-green .icon {
+        color: #68974c;
+      }
+    }
+
+    .item-text {
+      font-size: 2.2rem;
+      color: #707070;
+      overflow: hidden;
+      max-height: 40px;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+
+      &.item-bold {
+        font-weight: bold;
+      }
+
+      &.text-orange {
+        color: #dda043;
+      }
+      &.text-blue {
+        color: #1778e7;
+      }
+      &.text-red {
+        color: red;
+      }
+      &.text-green {
+        color: #68974c;
+      }
+
+      &.small {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .comfort-container {
+    // background: rgba(236, 240, 241, 0.4);
+    color: #68974c;
+
+    // padding: 5px 30px;
+    border-radius: 4px;
+    ul {
+      list-style: none;
+
+      li {
+        display: inline-block;
+        font-size: 2rem;
+      }
+    }
+    .comfort-text {
+      font-size: 1rem;
+    }
+    .comfort-percentage {
+      font-size: 1.8rem;
+
+      font-weight: bold;
+    }
+    .comfort-icon {
+      font-size: 2.9rem;
+    }
+  }
+
+  @include size-md-down-portrait {
+    .sensor__card {
+      background: rgba(236, 240, 241, 0.4);
+      width: 110px;
+      margin-left: 0;
+      margin-right: 0;
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+      &.full-width {
+        margin: 5px 10px;
+      }
+    }
+    .item-detail {
+      padding: 0;
+    }
+  }
+}

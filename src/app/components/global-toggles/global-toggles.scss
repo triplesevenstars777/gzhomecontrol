@@ -1,0 +1,61 @@
+@use "../../../theme/variables.scss" as *;
+
+:host {
+    position: fixed;
+    bottom: 30px;
+    width: 100%;
+    z-index: 1000;
+
+    .button_container {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 20px;
+        width: 100%;
+
+        button {
+            width: 45% !important;
+            background-color: #119DA4;
+            border-radius: 3px;
+            border: none;
+            align-items: center;
+            color: white;
+            padding: 15px;
+
+            .icon {
+                font-size: 20px;
+                padding-right: 10px;
+            }
+        }
+    }
+
+    @include size-md-down-portrait {
+        .button_container {
+            button {
+                width: 45% !important;
+                &.button_left,
+                &.button_right {
+                    padding: 10px;
+                }
+            }
+        }
+    }
+
+    @include size-md-down-landscape {
+        .button_container {
+            flex-direction: row;
+        }
+    }
+
+    @include size-md-up-portrait {
+        .button_container {
+            padding: 0 10%;
+        }
+    }
+
+    @include size-md-up-landscape {
+        .button_container {
+            flex-direction: row;
+            padding: 0 20%;
+        }
+    }
+}

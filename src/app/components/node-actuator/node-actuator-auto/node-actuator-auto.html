@@ -1,0 +1,123 @@
+<ng-container *ngFor="let endpoint of endpoints" [ngSwitch]="true">
+  <switch-actuator
+    *ngSwitchCase="
+      endpoint.id == TYPE_ENDPOINTS.SWITCH_1 ||
+      endpoint.id == TYPE_ENDPOINTS.SWITCH_2 ||
+      endpoint.id == TYPE_ENDPOINTS.COOLER ||
+      endpoint.id == TYPE_ENDPOINTS.RELAY_0 ||
+      endpoint.id == TYPE_ENDPOINTS.RELAY_1 ||
+      endpoint.id == TYPE_ENDPOINTS.RELAY_2 ||
+      endpoint.id == TYPE_ENDPOINTS.RELAY_3 ||
+      endpoint.id == TYPE_ENDPOINTS.RELAY_4 ||
+      endpoint.id == TYPE_ENDPOINTS.RELAY_5 ||
+      endpoint.id == TYPE_ENDPOINTS.RELAY_6 ||
+      endpoint.id == TYPE_ENDPOINTS.RELAY_7 ||
+      endpoint.id == TYPE_ENDPOINTS.STATE ||
+      endpoint.id == TYPE_ENDPOINTS.ON ||
+      endpoint.id == TYPE_ENDPOINTS.POWER_DIMMER ||
+      endpoint.id == TYPE_ENDPOINTS.STATUS_SWITCH ||
+      endpoint.id.indexOf(TYPE_ENDPOINTS.STATUS_SWITCH+'_') == 0"
+    [updatedName]="updatedName"
+    [updatedNotification]="updatedNotification"
+    (endpointUpdateName)="updateName($event)"
+    (endpointUpdateNotification)="updateNotification($event)"
+    [endpoint]="endpoint"
+    (endpointChange)="onChange($event)"
+    [device]="device"
+  ></switch-actuator>
+
+  <fan-actuator
+    *ngSwitchCase="endpoint.id == TYPE_ENDPOINTS.FAN"
+    [updatedName]="updatedName"
+    [updatedNotification]="updatedNotification"
+    (endpointUpdateName)="updateName($event)"
+    (endpointUpdateNotification)="updateNotification($event)"
+    [endpoint]="endpoint"
+    (endpointChange)="onChange($event)"
+    [device]="device"
+  ></fan-actuator>
+
+  <fan-speed-actuator
+    *ngSwitchCase="
+      endpoint.id == TYPE_ENDPOINTS.FAN_SPEED ||
+      endpoint.id.indexOf(TYPE_ENDPOINTS.FAN_SPEED+'_') == 0"
+    [updatedName]="updatedName"
+    [updatedNotification]="updatedNotification"
+    (endpointUpdateName)="updateName($event)"
+    (endpointUpdateNotification)="updateNotification($event)"
+    [endpoint]="endpoint"
+    (endpointChange)="onChange($event)"
+    [device]="device"
+  ></fan-speed-actuator>
+
+  <button-group-auto
+    *ngSwitchCase="
+      endpoint.id == TYPE_ENDPOINTS.ECO_MODE ||
+      endpoint.id == TYPE_ENDPOINTS.TEMPERATURE_MANUAL_MODE ||
+      endpoint.id == TYPE_ENDPOINTS.TEMPERATURE_SYSTEM_MODE ||
+      endpoint.id.indexOf(TYPE_ENDPOINTS.ECO_MODE+'_') == 0"
+    [updatedName]="updatedName"
+    [updatedNotification]="updatedNotification"
+    (endpointUpdateName)="updateName($event)"
+    (endpointUpdateNotification)="updateNotification($event)"
+    [endpoint]="endpoint"
+    (endpointChange)="onChange($event)"
+    [device]="device"
+  ></button-group-auto>
+
+  <temperature-mode-actuator
+    *ngSwitchCase="
+      endpoint.id == TYPE_ENDPOINTS.TEMPERATURE_MODE ||
+      endpoint.id.indexOf(TYPE_ENDPOINTS.TEMPERATURE_MODE+'_') == 0"
+    [updatedName]="updatedName"
+    [updatedNotification]="updatedNotification"
+    (endpointUpdateName)="updateName($event)"
+    (endpointUpdateNotification)="updateNotification($event)"
+    [endpoint]="endpoint"
+    (endpointChange)="onChange($event)"
+    [device]="device"
+  ></temperature-mode-actuator>
+
+  <brightness-actuator
+    *ngSwitchCase="
+      endpoint.id == TYPE_ENDPOINTS.CT_TEMPERATURE ||
+      endpoint.id == TYPE_ENDPOINTS.BRIGHTNESS ||
+      endpoint.id == TYPE_ENDPOINTS.BRIGHTNESS2 ||
+      endpoint.id.includes(TYPE_ENDPOINTS.DALI_ID) ||
+      endpoint.id == TYPE_ENDPOINTS.COLOR ||
+      endpoint.id == TYPE_ENDPOINTS.SATURATION"
+    [updatedName]="updatedName"
+    [updatedNotification]="updatedNotification"
+    (endpointUpdateName)="updateName($event)"
+    (endpointUpdateNotification)="updateNotification($event)"
+    [endpoint]="endpoint"
+    (endpointChange)="onChange($event)"
+    [device]="device"
+  ></brightness-actuator>
+
+  <dimmer-actuator
+    *ngSwitchCase="
+    endpoint.id == TYPE_ENDPOINTS.SLIDE_DIMMER ||
+    endpoint.id == TYPE_ENDPOINTS.DIMMER"
+    [updatedName]="updatedName"
+    [updatedNotification]="updatedNotification"
+    (endpointUpdateName)="updateName($event)"
+    (endpointUpdateNotification)="updateNotification($event)"
+    [endpoint]="endpoint"
+    (endpointChange)="onChange($event)"
+    [device]="device"
+  ></dimmer-actuator>
+
+  <temperature-actuator
+    *ngSwitchCase="
+      endpoint.id == TYPE_ENDPOINTS.TARGET_TEMPERATURE ||
+      endpoint.id.indexOf(TYPE_ENDPOINTS.TARGET_TEMPERATURE+'_') == 0"
+    [updatedName]="updatedName"
+    [updatedNotification]="updatedNotification"
+    (endpointUpdateName)="updateName($event)"
+    (endpointUpdateNotification)="updateNotification($event)"
+    [endpoint]="endpoint"
+    (endpointChange)="onChange($event)"
+    [device]="device"
+  ></temperature-actuator>
+</ng-container>

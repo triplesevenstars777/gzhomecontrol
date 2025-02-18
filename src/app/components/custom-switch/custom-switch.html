@@ -1,0 +1,13 @@
+<div class="custom-switch">
+  <label class="switch-control" [class.disabled]="disabled">
+    <input 
+      type="checkbox" 
+      [(ngModel)]="checked" 
+      (change)="clickHandler($event)"
+      [attr.disabled]="disabled ? '' : null"
+    />
+    <div>ΟΙ</div>
+    <span class="indicator"></span>
+    <b></b>
+  </label>
+</div>

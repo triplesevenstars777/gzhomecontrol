@@ -1,0 +1,31 @@
+page-scenes {
+  //HEADER
+  ion-header {
+    ion-navbar {
+      height: 75px;
+      color: white;
+
+      .toolbar-background {
+        background: #119DA4;
+      }
+
+      .toolbar-title {
+        color: white;
+        text-align: center;
+        margin-top: 8px;
+      }
+      .p-n {
+        padding: 0;
+      }
+      ion-icon {
+        &.add-scene {
+          float: right;
+          font-size: 48px;
+          padding-right: 5px;
+          margin-top: 20px;
+          color: white;
+        }
+      }
+    }
+  }
+}

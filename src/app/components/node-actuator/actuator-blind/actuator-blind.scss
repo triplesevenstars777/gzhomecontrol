@@ -1,0 +1,55 @@
+@use "../../../../theme/variables.scss" as *;
+
+actuator-blind {
+    $size: 100px;
+    $icon-font-size: 50px;
+
+    @include size-md-down-portrait {
+        $size: 65px;
+        $icon-font-size: 32px;
+    }
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+
+    .text-right {
+        text-align: right;
+    }
+
+    .counter {
+        margin: 0;
+        height: $size;
+        width: $size;
+        line-height: $size;
+        font-size: $icon-font-size;
+        vertical-align: top;
+        background-color: rgba(0, 0, 0, 0.1);
+        color: #444;
+        margin: 0 5px !important;
+    }
+
+    .buttons {
+        max-width: 360px;
+    }
+   .notifications-container {
+    margin-top: 25px;
+    border-top: 1px solid darkgray;
+    padding-top: 20px;
+        h3 {
+            font-weight: bold;
+        }
+        .notifications-switch {
+            position: absolute;
+            left: 0;
+            padding-left: 0;
+        }
+        .notifications-text {
+            margin-left: 95px !important;
+            font-size: 1.4rem;
+        }
+   }
+}

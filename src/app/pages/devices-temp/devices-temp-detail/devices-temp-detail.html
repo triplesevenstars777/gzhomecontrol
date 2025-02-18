@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{ data?.display_name || data?.name || '' }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="item-header">
+    <ion-row>
+      <ion-col col-5 class="node_type">
+        <b>{{ 'NODE_TYPE' | translate}}:</b> {{data?.scheme?.name}}
+      </ion-col>
+      <ion-col col-2 text-center>
+        <ion-badge item-end *ngIf="data?.active"
+          >{{ 'CONNECTED' | translate }}</ion-badge
+        >
+        <ion-badge item-end *ngIf="!data?.active" color="danger"
+          >{{ 'UNCONNECTED' | translate }}</ion-badge
+        >
+      </ion-col>
+      <ion-col col-5 class="room_name">
+        <b>{{ 'ROOM' | translate}}:</b> {{ data?.room?.name }}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="item-detail">
+    <ion-row>
+      <div class="col-center" text-center>
+        <ng-container *ngFor="let endpoint of displayEndpoints">
+          <div
+            class="sensor__card card content-item"
+            (click)="openItem(endpoint)"
+            *ngIf="endpoint.show_in_mobile"
+          >
+            <div class="click-handler">
+              <div class="item-icon center {{endpoint?.rowClass}}">
+                <span class="icon {{endpoint?.iconClass}}"></span>
+              </div>
+              <div class="item-text center item-bold {{endpoint?.rowClass}}">
+                {{(endpoint?.current|transformEndpointValues:endpoint:'section:value')
+                || '-'}} {{endpoint?.units?.[0]?.name || '-'}}
+              </div>
+              <div class="item-text center small {{endpoint?.rowClass}}">
+                {{endpoint?.display_name || endpoint.name }}
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="comfortValue">
+          <div class="sensor__card card content-item">
+            <div class="item-icon text-{{comfortLabelColor}} center">
+              <span
+                class="icon text-{{comfortLabelColor}} icon-gz-comfort"
+              ></span>
+            </div>
+            <div class="item-text text-{{comfortLabelColor}} center item-bold">
+              {{comfortValue}} %
+            </div>
+            <div class="item-text text-{{comfortLabelColor}} center small">
+              <small class="row-badge badge">{{comfortLabel}}</small>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </ion-row>
+    <node-actuator
+      *ngIf="data"
+      [data]="data"
+      [status]="data?.active ? 'active' : 'inactive'"
+    ></node-actuator>
+  </div>
+</ion-content>
+<main-footer [menuVisible]="false"></main-footer>

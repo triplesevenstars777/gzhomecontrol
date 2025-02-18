@@ -1,0 +1,9 @@
+<div
+  float-right
+  [ngClass]="{'checked': checked}"
+  (change)="clickHandler($event)"
+  class="switch demo1"
+>
+  <input [disabled]="disabled" [(ngModel)]="checked" type="checkbox" />
+  <label></label>
+</div>

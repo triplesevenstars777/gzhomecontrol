@@ -1,0 +1,119 @@
+:host {
+  min-width: 120px;
+  display: inline-block;
+  margin: 0 40px;
+
+  .switch-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .switch-title {
+    font-size: 1rem;
+    color: #102838;
+    font-weight: 500;
+  }
+
+  .switch-control {
+    border: 2px solid #102838;
+    border-radius: 7px;
+    display: inline-block;
+    width: 100px;
+    height: 55px;
+    padding-top: 1px;
+    position: relative;
+    vertical-align: middle;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 5px rgba(255, 255, 255, .4), 
+        0 2px 1px -1px rgba(255, 255, 255, .7) inset, 
+        8px 0 5px -5px #02425C inset, 
+        -8px 0 5px -5px #02425C inset;
+    user-select: none;
+    background: #119DA4;
+
+    &.disabled {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    input {
+      position: absolute;
+      visibility: hidden;
+    }
+
+    div {
+      background: linear-gradient(to right, #1fc8d1 0%, #1db9c1 53%, #1aabb2 56%, #11777c 99%, #42d1d6 100%);
+      box-shadow: -2px 0 1px 0 #A6F2FE inset;
+      border-radius: 5px;
+      line-height: 50px;
+      font-weight: bold;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+      transform-origin: 0 0;
+      transform: scaleX(0.93);
+      transition: .1s;
+      padding-left: 5px;
+
+      &:first-letter {
+        letter-spacing: 55px;
+      }
+    }
+
+    input:checked ~ div {
+      transform-origin: 100% 0;
+      box-shadow: 2px 0 1px 0 #A6F2FE inset;
+      background: linear-gradient(to right, #42d1d6 0%, #11777c 1%, #1aabb2 47%, #1db9c1 50%, #1fc8d1 100%);
+    }
+
+    b {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      border-radius: 8px;
+      transform: skewY(5deg);
+      box-shadow: 0 6px 8px -5px #000;
+    }
+
+    input:checked ~ b {
+      right: auto;
+      left: 0;
+      transform: skewY(-5deg);
+    }
+
+    .indicator {
+      position: absolute;
+      top: 14px;
+      right: -20px;
+      width: 8px;
+      height: 25px;
+      box-shadow: 0 0 8px #000 inset;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      transition: 0.2s;
+
+      &:before {
+        content: '';
+        display: inline-block;
+        margin-bottom: 5px;
+        width: 2px;
+        height: 8px;
+        border-radius: 10px;
+        transition: 0.5s;
+      }
+    }
+
+    input:checked ~ .indicator:before {
+      box-shadow: 0 0 7px 6px #BAFC58;
+      width: 6px;
+      background: #F0F9E3;
+      transition: 0.1s;
+    }
+  }
+}

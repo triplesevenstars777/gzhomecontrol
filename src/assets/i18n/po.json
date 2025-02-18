@@ -1,0 +1,1003 @@
+{
+"BACK_BUTTON_TEXT": "Powrót",
+"NAME": "Nazwa",
+"EMAIL": "E-mail",
+"USERNAME": "Nazwa Użytkownika",
+"PASSWORD": "Hasło",
+"LOGIN": "Zaloguj się",
+"LOGOUT": "Wyloguj",
+"SIGNUP": "Zapisz się",
+"TAB1_TITLE": "Wszystkie urządzenia",
+"TAB2_TITLE": "Zarządzanie urządzeniami",
+"TAB3_TITLE": "Ustawienia",
+"MAP_TITLE": "Mapa",
+"TUTORIAL_SKIP_BUTTON": "Pominąć",
+"TUTORIAL_CONTINUE_BUTTON": "Kontyntynuj",
+"TUTORIAL_SLIDE1_TITLE": "Witamy w Ionic Super Starter",
+"TUTORIAL_SLIDE1_DESCRIPTION": "<B> Ionic Super Starter </ b> to w pełni funkcjonalny rozrusznik Ionic z wielu gotowych stron i najlepszych praktyk.",
+"TUTORIAL_SLIDE2_TITLE": "Jak korzystać z Super Starter",
+"TUTORIAL_SLIDE2_DESCRIPTION": "Montaż różnych typów stron, które chcesz usunąć, a te nie. Zamieściliśmy wiele wspólnych mobilne strony App układy, jak logowania i zarejestruj stronach, zakładkach, a ten poradnik stronie.",
+"TUTORIAL_SLIDE3_TITLE": "Pierwsze kroki",
+"TUTORIAL_SLIDE3_DESCRIPTION": "Potrzebuję pomocy? Sprawdź Super Starter README dla pełnego samouczka",
+"TUTORIAL_SLIDE4_TITLE": "Gotowy do gry?",
+"WELCOME_INTRO": "Punktem wyjścia dla kolejnej wielkiej aplikacji",
+"SETTINGS_TITLE": "Ustawienia",
+"NO_DISTURB_MODE": "Tryb nie przeszkadzać",
+"PANIC_MODE": "Tryb paniki",
+"BLOCK_DEVICES": "Urządzenia blokowe",
+"SETTINGS_OPTION1": "Opcja 1",
+"SETTINGS_OPTION2": "Opcja 2",
+"SETTINGS_OPTION3": "Opcja 3",
+"SETTINGS_OPTION4": "Wariant 4",
+"SETTINGS_PROFILE_BUTTON": "Edytuj profil",
+"SETTINGS_PAGE_PROFILE": "Edytuj profil",
+"WELCOME_TITLE": "Witamy",
+"LOGIN_TITLE": "Zaloguj się",
+"LOGIN_ERROR": "Nie można się zalogować. Prosimy o sprawdzenie informacji o koncie i spróbuj ponownie.",
+"LOGIN_BUTTON": "Zaloguj się",
+"SIGNUP_TITLE": "Zapisz się",
+"SIGNUP_ERROR": "Nie można utworzyć konto. Prosimy o sprawdzenie informacji o koncie i spróbuj ponownie.",
+"SIGNUP_BUTTON": "Zapisz się",
+"STAY_LOGGED": "Pozostań zalogowany",
+"LIST_MASTER_TITLE": "Przedmiotów",
+"ITEM_CREATE_TITLE": "Nowa pozycja",
+"ITEM_CREATE_CHOOSE_IMAGE": "Dodaj obraz",
+"ITEM_NAME_PLACEHOLDER": "Nazwa",
+"ITEM_ABOUT_PLACEHOLDER": "O",
+"DONE_BUTTON": "Gotowy",
+"ACCEPT_BUTTON": "Zaakceptować",
+"SAVE_BUTTON": "Zapisać",
+"UPDATE_BUTTON": "Aktualizacja",
+"CANCEL_BUTTON": "Anuluj",
+"DELETE_BUTTON": "Kasować",
+"CARDS_TITLE": "Społeczny",
+"SEARCH_TITLE": "Szukaj",
+"SEARCH_PLACEHOLDER": "Przeszukaj listę przedmiotów, na przykład 'Kaczor Donald'",
+"NEWS": "Aktualności",
+"DASHBOARD": "Pulpit",
+"BLINDS": "Żaluzje",
+"AWNINGS": "Okrycia",
+"LIGHTS": "Światła",
+"SENSORS": "Czujnik",
+"TEMP": "Temp",
+"CONNECTED": "Połączony",
+"UNCONNECTED": "Niepodłączony",
+"APARTMENT_TITLE": "Urządzenia mieszkalne",
+"BUILDING_TITLE": "Budynki",
+"SELECT_NODE_TYPE": "Wybierz typ węzła",
+"NO_TYPE": "Żaden",
+"LIGHT_TYPE": "Światło",
+"SENSOR_TYPE": "Czujnik",
+"TEMP_TYPE": "Temp",
+"WEATHER_TYPE": "Stacja pogodowa",
+"BLINDS_TYPE": "Sterownik rolety",
+"OFFLINE_TITLE": "Niestety nie masz połączenia",
+"OFFLINE_SUBTITLE": "Spróbuj ponownie połączyć się zachować przy użyciu aplikacji",
+"UNKNOW_FAILURE_TITLE": "Niestety mamy awarię",
+"UNKNOW_FAILURE_SUBTITLE": "Zwrócić się o pomoc techniczną",
+"ACT_COMPLETE": "Kompletny",
+"ACT_PARTIAL": "Częściowy",
+"ACT_UP": "Góra ",
+"ACT_DOWN": "Dół",
+"ACT_LOCK": "Blok",
+"ACT_STOP": "Zatrzymać",
+"ACT_START_UP": "Rozpocząć",
+"ACT_STOP_UP": "Zatkać",
+"ACT_START_DOWN": "Zacząć od doła",
+"ACT_STOP_DOWN": "Zatrzymaj",
+"ACT_BLADES": "Lamelki",
+"ACT_OPEN": "Otwarty",
+"ACT_CLOSE": "Zamknięty",
+"AIR CONDITIONING": "Klimatyzacja",
+"UPDATE_ENDPOINT_TITLE": "Zaktualizuj nazwę punktu końcowego",
+"UPDATE_NODE_TITLE": "Nazwa węzła aktualizacja",
+"ENTER_LOGOUT_PASSWORD_TITLE": "Wprowadź hasło do wylogowania",
+"LEAVING_HOME": "Wyjście z domu",
+"ARRIVING_AT_HOME": "Powrót do domu",
+"LEAVING_HOME_DEVICES": "Urządzenia dla 'Powrót do domu'",
+"ARRIVING_AT_HOME_DEVICES": "Urządzenie dla 'Wyjścia z domu'",
+"LEAVING_HOME_ACTIONS_BEING_RUN": "„Wyjście z domy” uruchamiane ...",
+"ARRIVING_AT_HOME_ACTIONS_BEING_RUN": "„Powrót do domu” uruchamiane ...",
+"DOORBELL_RINGING": "Dzwonek dzwoni ...",
+"DOORBELL_RINGING_TIME": "Ktoś zadzwonił do drzwi na",
+"PANIC_RINGING": "Panikuje ...",
+"PANIC_RINGING_TIME": "Ktoś zadzwonił na panikę",
+"SMOKE_RINGING": "Alarm przeciwpożarowy ...",
+"SMOKE_RINGING_TIME": "Alarm dymowy w",
+"SET_TEMP": "Ustaw temperaturę",
+"FAN_AUTO": "Automatyczny",
+"FAN_DRY": "Suchy",
+"FAN_COOL": "Chłodzenie",
+"SHOW": "Pokazać",
+"ENTRIES": "wpisy",
+"NOTIFICATIONS_ENABLED": "Powiadomienia włączone",
+"NOTIFICATIONS_DISABLED": "Powiadomienia wyłączone",
+"LIGHT_ON": "Lampa '%s' włączona",
+"LIGHT_OFF": "Lampa '%s' jest wyłączony",
+"DOOR_SENSOR_ON": "Drzwi '%s' zostały otwarte",
+"DOOR_SENSOR_OFF": "Drzwi '%s' zostały zamknięte",
+"MOVEMENT_SENSOR_ON": "Detektor ruchu '%s' aktywowany",
+"BLIND_DOWN": "Roleta '%s' zamknięta",
+"BLIND_UP": "Roleta '%s' otwarta",
+"AWNING_DOWN": "Markiza '%s' zamknięta",
+"AWNING_UP": "Markiza '%s' otwarta",
+"CLIMA_ON": "Testowanie włączenia klimatyzacji",
+"CLIMA_OFF": "Testowanie wyłączenia klimatyzacji",
+"COMFORT": "Komfort",
+"LEAVING_HOME_CONFIG_NOT_FOUND": "(Wyjście z domu) nie jest obecnie skonfigurowane. Czy chcesz je skonfigurować?",
+"AT_HOME_CONFIG_NOT_FOUND": "(Powrót do domu) nie jest obecnie skonfigurowany. Czy chcesz go skonfigurować?",
+"PLEASE_CHOOSE_NODE_NAME": "Proszę, wpisz nową nazwę węzła",
+"PLEASE_CHOOSE_ENDPOINT_NAME": "Proszę, wpisz nową nazwę punktu końcowego",
+"SERVER_NOT_AVAILABLE": "Serwer nie jest dostępny",
+"NODE_TYPE": "Typ węzła",
+"ROOM": "Pokój",
+"TABLET_INFORMATION": "Tabela informacji",
+"MANUFACTURER": "Producent",
+"MODEL": "Model",
+"SCENES": "Sceny",
+"ADD SCENES": "Dodać scenę",
+"SAVE": "Zapisać",
+"UPDATE SCENES": "Aktualizuj sceny",
+"UPDATE": "Aktualizacja",
+"DELETE": "Kasować",
+"SCENE_CONFIG_NOT_FOUND": "Scena nie jest obecnie skonfigurowana. Czy chcesz go skonfigurować?",
+"SCENE_ACTIONS_BEING_RUN": "Uruchamiane są działania $1 dla sceny ....",
+"HEATERS": "Grzejniki",
+"MAILBOXES": "Skrzynki pocztowe",
+"USER": "Użytkownik:",
+"LANGUAGE": "Język",
+"SELECT_LANGUAGE": "Wybierz język",
+"ENGLISH": "Angielski",
+"SPANISH": "Hiszpański",
+"GERMAN": "Niemiecki",
+"ITALIAN": "Włoski",
+"FRENCH": "Francuski",
+"POLISH": "Polskie",
+"LOAD_LANGUAGE": "Ładowanie język ...",
+"RINGTONE": "Ton dzwonka",
+"SELECT_RINGTONE": "Wybierz ton dzwonka",
+"ADVANCED": "Zaawansowane",
+"ENTER_ADVANCED_PASSWORD_TITLE": "Wprowadź hasło do ustawień zaawansowanych",
+"ADVANCED_SETTINGS_MODAL_TITLE": "Wprowadź nowe punkty końcowe",
+"SETTINGS_CONFIRMATION_TITLE": "Modyfikacja powiodła się",
+"SETTINGS_CONFIRMATION_MESSAGE": "Punkty końcowe były modyfikowane z powodzeniem",
+"DOORLOCKS": "Zamki"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

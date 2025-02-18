@@ -1,0 +1,56 @@
+<ion-grid *ngIf="data">
+  <ion-row>
+    <ion-col>
+      <div class="brightness-wrapper">
+        <ion-button (click)="onUpdateName()" color="primary" size="small" fill="clear" >
+          <ion-icon name="create"></ion-icon>
+        </ion-button>
+        <ion-label class="float-left">{{data.display_name || data.name}}</ion-label>
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-grid class="button-group">
+        <ion-row>
+          <ion-col>
+            <ion-button expand="block" fill="outline" (click)="onChangeEndpoint(0)"
+              [color]="data.current === 0 ? 'secondary': 'light'">
+              0%
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button expand="block" fill="outline" (click)="onChangeEndpoint(20)"
+              [color]="data.current > 0 && data.current <= 20 ? 'secondary': 'light'">
+              20%
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button expand="block" fill="outline" (click)="onChangeEndpoint(40)"
+              [color]="data.current > 20 && data.current <= 40 ? 'secondary': 'light'">
+              40%
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button expand="block" fill="outline" (click)="onChangeEndpoint(60)"
+              [color]="data.current > 40 && data.current <= 60 ? 'secondary': 'light'">
+              60%
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button expand="block" fill="outline" (click)="onChangeEndpoint(80)"
+              [color]="data.current > 60 && data.current <= 80  ? 'secondary': 'light'">
+              80%
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button expand="block" fill="outline" (click)="onChangeEndpoint(100)"
+              [color]="data.current > 80 ? 'secondary': 'light'">
+              100%
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-col>
+  </ion-row>
+</ion-grid>

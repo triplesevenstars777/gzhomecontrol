@@ -1,0 +1,43 @@
+ <ion-grid>
+  <ion-row>
+    <ion-col class="buttons" *ngFor="let endpoint of dataEndpoints" col-6>
+      <div [ngSwitch]="true">
+        <div class="switch-wrapper" *ngSwitchCase="
+        endpoint.id == TYPE_ENDPOINTS.REMOTE_0 ||
+        endpoint.id == TYPE_ENDPOINTS.REMOTE_1">
+          <remote-sensor
+            [updatedName]="updatedName"
+            [updatedNotification]="updatedNotification"
+            (endpointUpdateName)="updateName($event)"
+            (endpointUpdateNotification)="updateNotification($event)"
+            [endpoint]="endpoint"
+            [device]="device"></remote-sensor>
+        </div>
+        <div class="switch-wrapper" *ngSwitchCase="
+        endpoint.id == TYPE_ENDPOINTS.DOORSENSOR_0 ||
+        endpoint.id == TYPE_ENDPOINTS.DOORSENSOR_1 ||
+        endpoint.id == TYPE_ENDPOINTS.DOORSENSOR_2 ||
+        endpoint.id == TYPE_ENDPOINTS.DOORSENSOR_3">
+          <door-sensor
+            [updatedName]="updatedName"
+            [updatedNotification]="updatedNotification"
+            (endpointUpdateName)="updateName($event)"
+            (endpointUpdateNotification)="updateNotification($event)"
+            [endpoint]="endpoint"
+            [device]="device"></door-sensor>
+        </div>
+        <div class="switch-wrapper" *ngSwitchCase="
+        endpoint.id == TYPE_ENDPOINTS.MOVEMENT_0 ||
+        endpoint.id == TYPE_ENDPOINTS.MOVEMENT_1">
+          <movement-sensor
+            [updatedName]="updatedName"
+            [updatedNotification]="updatedNotification"
+            (endpointUpdateName)="updateName($event)"
+            (endpointUpdateNotification)="updateNotification($event)"
+            [endpoint]="endpoint"
+            [device]="device"></movement-sensor>
+        </div>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>

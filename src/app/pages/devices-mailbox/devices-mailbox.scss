@@ -1,0 +1,127 @@
+@use "../../../theme/variables.scss" as *;
+  .scroll-content {
+    background-image: url("../../../assets/imgs/background-mailboxes.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  @include size-md-down-portrait {
+    .scroll-content {
+      padding-top: 56px;
+    }
+  }
+
+  .scroll-content > .grid > .row > .col {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .sensor__card {
+    width: 144px;
+    min-height: 230px;
+    padding-bottom: 50px;
+    float: left;
+    margin: 20px 10px;
+    text-align: center;
+    position: relative;
+    background: rgba(236, 240, 241, 0.8);
+    box-shadow: 1.5px 1.5px #707070;
+
+    .item-icon {
+      padding-bottom: 1rem;
+      padding-top: 1rem;
+
+      .icon {
+        font-size: 5.3rem;
+        color: white;
+
+        &.active {
+          color: #ff7f7f;
+        }
+      }
+    }
+
+    .item-text {
+      font-size: 1rem;
+      color: #707070;
+      overflow: hidden;
+      max-height: 40px;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+
+      &.item-bold {
+        font-weight: bold;
+      }
+    }
+
+    .actions {
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+      padding: 6px 0;
+      border-top: 1px solid grey;
+
+      span {
+        cursor: pointer;
+      }
+    }
+
+    .relay-status {
+      width: 100%;
+      display: none;
+
+      & > div {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        box-sizing: border-box;
+        background-color: rgba(0, 0, 0, 0.5);
+        box-shadow: inset 0.3px 0.3px 0.5px 0.3px #ffffff;
+        border-radius: 50%;
+        width: 15px;
+        height: 15px;
+
+        &:after {
+          position: absolute;
+          top: 0.8px;
+          left: -0.9px;
+          transform: rotate(30deg);
+          border-right: 2px solid white;
+          border-radius: 50%;
+          opacity: 0.3;
+          width: 13px;
+          height: 12.8px;
+          content: "";
+        }
+        &:before {
+          position: absolute;
+          top: 3px;
+          left: 3.5px;
+          background: white;
+          transform: rotate(45deg);
+          border-radius: 50%;
+          opacity: 0.3;
+          width: 3px;
+          height: 5px;
+          content: "";
+        }
+        &.relay-1 {
+          left: auto;
+          right: 15px;
+        }
+
+        &.is-active {
+          background-color: rgba(36, 196, 30, 1);
+          border: none;
+          box-shadow: 0 0 6px 5px #bafc58;
+        }
+      }
+
+      &.has-relay {
+        display: block;
+      }
+    }
+  }
+
+.alert-message {
+  color: red !important;
+}

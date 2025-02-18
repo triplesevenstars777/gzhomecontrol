@@ -1,5 +1,8 @@
 {
-  "name": "gzhomecontrol",
-  "integrations": {},
+  "name": "gZ HomeControl",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
   "type": "angular"
 }

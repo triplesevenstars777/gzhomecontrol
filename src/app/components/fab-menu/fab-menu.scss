@@ -1,0 +1,117 @@
+@use "../../../theme/variables.scss" as *;
+
+.fab-menu {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.wheel-btn {
+    width: 90px !important;
+    height: 90px !important;
+    background: #119DA4 !important;
+    border-radius: 99px !important;
+    box-shadow: none !important;
+    position: relative;
+    border: none;
+  
+    &.icon-gz-cta:before {
+      font-size: 50px !important;
+    }
+  
+    &:before {
+      margin: 0 !important;
+      color: white;
+      font-size: 35px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: 0;
+      transform: translate(-50%, -50%);
+    }
+  
+    @media (max-width: $md), (min-aspect-ratio: 16/9) {
+      width: 60px !important;
+      height: 60px !important;
+  
+      &.icon-gz-cta:before {
+        font-size: 40px !important;
+      }
+    }
+  }
+
+.ion-wheel {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+}
+
+#ionic-wheel {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    position: absolute;
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    margin: 0;
+}
+
+#ionic-wheel .circle.active {
+    top: calc(50% - 25px) !important;
+    left: calc(50% - 25px) !important;
+    opacity: 0;
+    transition-property: opacity, left, top;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-out;
+    z-index: 9;
+}
+
+#ionic-wheel .circle {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #B2542D;
+    box-shadow: 0px 2px 0px #69311A;
+    box-sizing: border-box;
+    border-radius: 50%;
+    opacity: 1;
+    transition-property: opacity, left, top;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-out;
+}
+
+#ionic-wheel #activate {
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    margin: 0 auto;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    background-color: #B2542D;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+#ionic-wheel .circle i, #ionic-wheel #activate i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 20px;
+}
+
+.background-peach {
+    background-color: #FF9C73;
+}
+

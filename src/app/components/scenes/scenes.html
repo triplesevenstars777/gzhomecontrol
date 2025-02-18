@@ -1,0 +1,9 @@
+<!-- Generated template for the ScenesComponent component -->
+<div class="button_container" hideWhen="portrait">
+  <ng-container *ngFor="let scene of scenes | slice:0:4; let i=index">
+    <button class="button_left" (click)="configScene(scene._id!)" ion-button *ngIf="scene._id">
+      <span class="icon icon-gz-scene"></span>
+      {{scene?.name}}
+    </button>
+  </ng-container>
+</div>

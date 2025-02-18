@@ -1,0 +1,52 @@
+<main-header
+  [icon]="'water-heater'"
+  [section]="'Heaters' | translate"
+  [homeVisible]="true"
+></main-header>
+<ion-content class="scroll-content">
+  <ion-grid>
+    <ion-row>
+      <ion-col
+        size-lg="2"
+        size-md="3"
+        size-sm="4"
+        *ngFor="let item of currentDevices"
+        class="col-align-center"
+      >
+        <div
+          (click)="item.active && openItem(item)"
+          class="sensor__card card content-item"
+        >
+          <div class="relay-status" [class.has-relay]="item.active">
+            <div
+              class="relay-0"
+              [ngClass]="{'is-active':item.relay0 === 'On'}"
+              *ngIf="item.relay0"
+            ></div>
+            <div
+              class="relay-1"
+              [ngClass]="{'is-active':item.relay1 === 'On'}"
+              *ngIf="item.relay1"
+            ></div>
+          </div>
+          <div class="item-icon center">
+            <span
+              [class.active]="item.active"
+              class="icon icon-gz-water-heater light"
+            ></span>
+          </div>
+          <div class="item-text center item-bold">
+            {{item.display_name || item?.name }}
+          </div>
+          <div class="item-text center small">
+            <small>{{item.room?.name}}</small>
+          </div>
+          <div class="actions" (click)="updateNodeName($event, item)" >
+            <span class="icon-gz-edit"></span>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<main-footer [menuVisible]="true"></main-footer>

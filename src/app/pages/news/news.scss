@@ -1,0 +1,20 @@
+:host {
+  ion-content {
+    --padding-top: 0;
+    --padding-bottom: 0;
+    --padding-start: 0;
+    --padding-end: 0;
+  }
+
+  .scroll-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    iframe {
+      flex: 1;
+      border: none;
+      display: block;
+    }
+  }
+}

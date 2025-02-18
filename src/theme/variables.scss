@@ -1,2 +1,211 @@
-// For information on how to create your own theme, please see:
-// http://ionicframework.com/docs/theming/
+$font-path: "../assets/fonts";
+$text-color: #000;
+$background-color:  transparent;
+$colors: (
+  primary:    #119DA4,
+  secondary:  #32db64,
+  danger:     #f53d3d,
+  light:      #f4f4f4,
+  dark:       #222,
+  medium:     #f4d942,
+  disabled:   #ECF0F1,
+  grey-text:  #707070,
+);
+
+$xs: 0;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+
+.invisible {
+  visibility: hidden !important;
+}
+
+.hidden-xs-up {
+  display: none !important;
+}
+
+@media (max-width: 575px) {
+  .hidden-xs-down {
+    display: none !important;
+  }
+}
+
+@media (min-width: 576px) {
+  .hidden-sm-up {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .hidden-sm-down {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .hidden-md-up {
+    display: none !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .hidden-md-down {
+    display: none !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .hidden-lg-up {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1199px) {
+  .hidden-lg-down {
+    display: none !important;
+  }
+}
+
+.col-space-between {
+  display: flex;
+  justify-content: space-between;
+}
+.col-align-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (orientation: portrait) {
+  .hidden-portrait {
+    display: none !important
+  }
+}
+@media (orientation: landscape) {
+  .hidden-landscape{
+    display: none !important
+  }
+}
+
+@media (min-width: 768px) {
+  .hidden-md-up {
+    display: none !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .hidden-md-down {
+    display: none !important;
+  }
+}
+
+/* Medium screen */
+@mixin size-md-up-portrait {
+  @media only screen and (min-width: 720px) and (orientation:portrait){
+    @content;
+  }
+}
+
+@mixin size-md-down-portrait {
+  @media only screen and (max-width: 959px) and (orientation:portrait){
+    @content;
+  }
+}
+
+@mixin size-md-up-landscape {
+  @media only screen and (min-width: 720px) and (orientation:landscape){
+    @content;
+  }
+}
+
+@mixin size-md-down-landscape {
+  @media only screen and (max-width: 959px) and (orientation:landscape){
+    @content;
+  }
+}
+/* Small screen */
+@mixin size-sm-up-portrait {
+  @media only screen and (min-width: 540px) and (orientation:portrait){
+    @content;
+  }
+}
+
+@mixin size-sm-down-portrait {
+  @media only screen and (max-width: 719px) and (orientation:portrait){
+    @content;
+  }
+}
+
+@mixin size-sm-up-landscape {
+  @media only screen and (min-width: 540px) and (orientation:landscape){
+    @content;
+  }
+}
+
+@mixin size-sm-down-landscape {
+  @media only screen and (max-width: 719px) and (orientation:landscape){
+    @content;
+  }
+}
+
+/* Small + screen*/
+@mixin size-xs-down-portrait {
+  @media only screen and (max-width: 575px) and (orientation:portrait){
+    @content;
+  }
+}
+
+@mixin size-xs-down-landscape {
+  @media only screen and (max-width: 575px) and (orientation:landscape){
+    @content;
+  }
+}
+
+@include size-md-down-portrait {
+  .item-header{
+    font-size: 1rem;
+  }
+  .button-inner{
+    font-size:0.9rem;
+  }
+}
+
+.gZHomeControl {
+  app-login {
+    .login {
+      .app-icon {
+        background: url(../assets/themes/gZHomeControl/logo.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
+    .scroll-content {
+      background-image: url(../assets/themes/gZHomeControl/background-login.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+.emiZmart {
+  app-login {
+    .login {
+      .app-icon {
+        background: url(../assets/themes/emiZmart/logo.png);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-color: rgb(255,255,255);
+        border-radius: 20px;
+        background-position: center;
+      }
+    }
+    .scroll-content {
+      background-image: url(../assets/themes/emiZmart/background-login.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+  }
+}

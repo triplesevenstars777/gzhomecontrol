@@ -1,0 +1,53 @@
+<ion-grid *ngIf="data.current !== undefined">
+  <ion-row>
+    <ion-col col-2>
+      <ion-button
+        size="large"
+        color="secondary"
+        *ngIf="data.current === 'Off'"
+        (click)="onChangeEndpoint('Low')"  
+        class="btn-primary btn btn-sm">
+        <span>ON</span>
+      </ion-button>
+      <ion-button
+        size="large" 
+        color="danger"
+        *ngIf="data.current !== 'Off'"
+        (click)="onChangeEndpoint('Off')"  
+        class="btn-danger btn btn-sm">
+        <span>OFF</span>
+      </ion-button>
+    </ion-col>
+    <ion-col>
+        <ion-button 
+        expand="full"
+        size="large"
+        [color]="(data.current === 'Low')?'primary':'light'" 
+        [disabled]="data.current == 'Off'" 
+        (click)="onChangeEndpoint('Low')" 
+        class="btn btn-sm">Low
+      </ion-button>
+    </ion-col>
+    <ion-col>
+        <ion-button 
+        expand="full"
+        size="large"
+        [color]="(data.current === 'Medium')?'primary':'light'"
+        [disabled]="data.current == 'Off'" 
+        (click)="onChangeEndpoint('Medium')" 
+        class="btn btn-sm">Medium
+      </ion-button>
+    </ion-col>
+    <ion-col>
+        <ion-button 
+        expand="full"
+        size="large"
+        [color]="(data.current === 'High')?'primary':'light'"
+        [disabled]="data.current == 'Off'" 
+        (click)="onChangeEndpoint('High')" 
+        class="btn btn-sm">High
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+

@@ -1,0 +1,48 @@
+<ion-header style="position: absolute;">
+  <ion-toolbar class="main_header" >
+    <ion-grid>
+      <ion-row style="background-color: #119DA4 !important; height: 100px; margin: -4px !important;">
+        <!--SECTION-->
+        <ion-col size="8">
+          <ion-title style="color: white; font-size: 27px; margin-left: 30px;  margin-top: 30px;  text-align: left; font-family: -apple-system, Helvetica Neue, Roboto, Segoe UI, sans-serif;">
+            <span class="icon icon-gz-{{icon}}"></span>
+            {{section | translate}}
+          </ion-title>
+        </ion-col>
+        
+        <!-- ICONS-->
+        <ion-col size="4" class="icons_actions" style="display: flex; justify-content: flex-end; align-items: center;">
+          <div
+            class="icon icon-gz-no-disturb noDisturbBtn"
+            [hidden]="!noDisturb"
+          ></div>
+          <div class="icon icon-gz-panic panicBtn" [hidden]="!panic"></div>
+          <div
+            class="icon icon-gz-home homeBtn"
+            [hidden]="!homeVisible"
+            (click)="goToDashboard()"
+            style="margin-right: 20px;"
+          ></div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+
+  <ion-toolbar class="tool_bar show_small_bar">
+    <ion-grid>
+      <ion-row style="display: flex; justify-content: space-between; margin-top: -23px;">
+        <ion-col style="align-items: center;">{{dateDayName}} {{dateDay}} {{dateMonth}}</ion-col>
+        <ion-col class="hour" style="align-content: center; text-align: center;">{{dateTime}}</ion-col>
+        <ion-col class="temp" style="text-align: right;">
+          {{tempDegrees}}
+          <span class="icon icon-gz-celcius" style="align-items: center;"></span>
+          <span class="icon {{WEATHER_ICONS[tempIcon]}}" style="align-content: center; text-align: center;"></span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<door-bell></door-bell>
+<panic></panic>
+<smoke></smoke>

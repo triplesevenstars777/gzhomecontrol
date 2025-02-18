@@ -1,0 +1,18 @@
+<main-header
+  [icon]="'train-public-transport-white2'"
+  [section]="'TRANSPORTS' | translate"
+  [homeVisible]="true"
+></main-header>
+<ion-content>
+  <div class="scroll-content">
+    <iframe
+      [src]="iframeURL"
+      allowfullscreen="true"
+      webkitallowfullscreen="true"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-downloads"
+    ></iframe>
+  </div>
+</ion-content>
+<fab-menu></fab-menu>
+<main-footer [menuVisible]="false"></main-footer>

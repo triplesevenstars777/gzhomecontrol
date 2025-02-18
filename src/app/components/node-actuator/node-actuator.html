@@ -1,0 +1,67 @@
+<ion-grid [ngSwitch]="true" *ngIf="endpoints && transducers">
+  <actuator-blind
+    *ngSwitchCase="
+            data.scheme?.code === TYPE_NODE.BLIND ||
+            data.scheme?.code === TYPE_NODE.BLIND2 ||
+            data.scheme?.code === TYPE_NODE.BLIND3 ||
+            data.scheme?.code === TYPE_NODE.BLIND4 ||
+            data.scheme?.code === TYPE_NODE.SMART_BLIND"
+    (setAction)="updateEndpoint($event)"
+    (setEndpointNotification)="updateNotification($event)"
+    [endpoints]="endpoints"
+    [device]="device"
+  >
+  </actuator-blind>
+
+  <actuator-smart-climate
+    *ngSwitchCase="data.scheme?.code === TYPE_NODE.SMART_CLIMATE ||
+                    data.scheme?.code === TYPE_NODE.SMART_CLIMATE_3"
+    [updatedName]="updatedName"
+    [updatedNotification]="updatedNotification"
+    (setEndpointNotification)="updateNotification($event)"
+    (setEndpointName)="updateName($event)"
+    (setAction)="updateEndpoint($event)"
+    [endpoints]="endpoints"
+    [device]="device"
+  >
+  </actuator-smart-climate>
+
+  <actuator-smartlight-switch
+    *ngSwitchCase="data.scheme?.code === TYPE_NODE.SMARTLIGHT_SWITCH"
+    (setAction)="updateEndpoint($event)"
+    [endpoints]="endpoints"
+    [device]="device"
+  >
+  </actuator-smartlight-switch>
+
+  <actuator-sensor
+    *ngSwitchCase="data.scheme?.code === TYPE_NODE.SENSOR"
+    [updatedName]="updatedName"
+    [updatedNotification]="updatedNotification"
+    (setEndpointNotification)="updateNotification($event)"
+    (setEndpointName)="updateName($event)"
+    [endpoints]="endpoints"
+    [device]="device"
+  >
+  </actuator-sensor>
+
+  <actuator-smart-4-channel
+    *ngSwitchCase="data.scheme?.code === TYPE_NODE.SMART_4_CHANNEL"
+    (setAction)="updateEndpoint($event)"
+    [endpoints]="endpoints"
+    [device]="device"
+  >
+  </actuator-smart-4-channel>
+
+  <node-actuator-auto
+    *ngSwitchDefault
+    [updatedName]="updatedName"
+    [updatedNotification]="updatedNotification"
+    (setEndpointName)="updateName($event)"
+    (setEndpointNotification)="updateNotification($event)"
+    (setAction)="updateEndpoint($event)"
+    [endpoints]="endpoints"
+    [device]="device"
+  >
+  </node-actuator-auto>
+</ion-grid>

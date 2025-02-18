@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>Ionic App</title>
+  <title>gZ HomeControl</title>
 
   <base href="/" />
 
@@ -14,13 +14,49 @@
 
   <link rel="icon" type="image/png" href="assets/icon/favicon.png" />
 
+  <!-- Add mobile-web-app-capable meta tag -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <link rel="icon" type="image/x-icon" href="./assets/icon/favicon.ico" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#4e8ef7" />
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="./assets/fonts/gz-font/css/fontello.css"
+  />
+  <script src="cordova.js"></script>
+  
   <!-- add to homescreen for ios -->
+  <link
+    rel="apple-touch-icon"
+    sizes="128x128"
+    href="./assets/img/appicon.png"
+  />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <!-- add to homescreen for android -->
+  <link rel="icon" sizes="192x192" href="./assets/img/appicon.png" />
+
+   <!-- cordova.js required for cordova apps (remove if not needed) -->
+   <!-- cordova.js is loaded by the Cordova platform when building for mobile -->
+  
 </head>
 
 <body>
   <app-root></app-root>
+
+   <!-- The polyfills js is generated during the build process -->
+   <script src="./polyfills.js"></script>
+
+   <!-- The vendor js is generated during the build process
+      It contains all of the dependencies in node_modules -->
+   <script src="./vendor.js"></script>
+
+   <!-- The main bundle js is generated during the build process -->
+   <script src="./main.js"></script>
 </body>
 
 </html>

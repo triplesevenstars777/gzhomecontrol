@@ -1,0 +1,34 @@
+actuator-smart-climate {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    .switch-wrapper {
+        overflow: hidden;
+        padding-left: 10px;
+        ion-grid {
+            width: 50%;
+            float: right;
+        }
+    }
+    ul {
+        li {
+            display: inline-block;
+        }
+    }
+    .notifications-adjust {
+        margin: -10px 0 15px 0 ;
+        border-bottom: 1px solid darkgray;
+    }
+    .notifications-switch {
+        position: absolute;
+        left: 0;
+    }
+    .notifications-text {
+        margin-left: 95px !important;
+        font-size: 1.4rem;
+    }
+}

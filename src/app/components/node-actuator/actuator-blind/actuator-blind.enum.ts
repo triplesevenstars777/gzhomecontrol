@@ -1,0 +1,5 @@
+export enum BLIND_ACTIONS {
+    COMPLETE = 'COMPLETE',
+    PARTIAL = 'PARTIAL',
+    BLADES = 'BLADES'
+}

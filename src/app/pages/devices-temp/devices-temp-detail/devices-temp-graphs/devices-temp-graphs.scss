@@ -1,0 +1,68 @@
+page-devices-temp-graphs {
+    //HEADER
+    ion-header {
+      ion-navbar {
+        color: white;
+  
+        .button-inner {
+          color: white;
+        }
+  
+        .toolbar-background {
+          background: #119DA4;
+        }
+  
+        .toolbar-title {
+          color: white;
+          text-align: center;
+        }
+      }
+    }
+  
+    .header-md::after {
+      content: none;
+    }
+  
+    .margin-top-reset {
+      margin-top: 0px !important;
+    }
+    
+    .graph-container {
+      vertical-align: middle;
+      ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        li {
+          margin: 0 0.3rem;
+          display: inline-block;
+        }
+        li.dropdown-intro {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .endpoints-dropdown {
+      
+      margin: 1rem auto;
+      border-radius: 4px;
+      background: #119DA4;
+      color: whitesmoke;
+      font-weight: bold;
+
+      select {
+        margin-left: 0.8rem;
+        text-align-last: center;
+      }
+    }
+
+    #canvas {
+      margin: 0 auto ;
+      width: 100%;
+      padding: 1.5rem 2rem;
+      background: rgb(245, 244, 244);
+    }
+  }
+  

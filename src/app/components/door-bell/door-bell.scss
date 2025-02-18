@@ -1,0 +1,9 @@
+@use "../../../theme/variables.scss" as *;
+
+door-bell {
+    button {
+        top: 80px;
+        position: absolute;
+        z-index: 1000;
+    }
+}

@@ -1,0 +1,47 @@
+.switch-actuator {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 50%;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    width: 50%;
+    max-width: 50%;
+
+    .switch-wrapper {
+      display: flex; // Add this line
+      overflow: hidden;
+      margin-bottom: 20px;
+      margin-top: 30px;
+      padding-left: 20px;
+      width: 180px;
+      ion-label {
+        margin-left: 10px;
+      }
+    }
+    ul {
+      li {
+        display: inline-block;
+      }
+    }
+    .notifications-adjust {
+      margin: -10px 0 15px 0;
+      background-color: transparent;
+    }
+    .notifications-switch {
+      position: absolute;
+      left: 0;
+    }
+    .notifications-text {
+      margin-left: 95px !important;
+      font-size: 1.4rem;
+    }
+}
+
+.edit-button {
+  width: 30px;
+  background-color: #119DA4;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-size: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

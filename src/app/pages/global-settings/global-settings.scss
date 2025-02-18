@@ -1,0 +1,42 @@
+@use '../../../theme/variables.scss' as *;
+  @include size-md-down-portrait {
+    .scroll-content {
+      padding-top: 56px;
+    }
+  }
+
+  .user-info {
+    font-size: 14px;
+  }
+
+  .has-arrow {
+    height: 340px;
+    overflow: scroll;
+  }
+  .item-select {
+    .label-md {
+      color: black !important;
+    }
+    .select-icon {
+      display: none;
+    }
+    .select-placeholder,
+    .select-text {
+      margin-right: 20px;
+      color: black;
+    }
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 0;
+    font-size: 14px;
+    .title {
+      font-weight: bold;
+      font-size: 13px;
+    }
+    .manufacturer,
+    .model {
+      font-size: 12px;
+    }
+  }

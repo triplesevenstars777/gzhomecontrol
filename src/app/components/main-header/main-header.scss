@@ -1,0 +1,262 @@
+@use "../../../theme/variables.scss" as *;
+
+  .main_header {
+    background-color: #909596;
+    height: 100%;
+  }
+  .toolbar-container {
+    background-color: aquamarine !important;
+    .toolbar-content {
+      height: 100%;
+
+      & > .grid {
+        height: 100%;
+      }
+
+      ion-title {
+        padding: 0;
+
+        .toolbar-title ion-icon {
+          padding-right: 5px;
+        }
+      }
+      .toolbar-title-ios,
+      .toolbar-title-md {
+        text-align: left;
+      }
+    }
+  }
+  .toolbar-md ion-title,
+  .toolbar-ios ion-title {
+    left: 10px;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    pointer-events: none;
+  }
+  .header-md::after {
+    content: none;
+  }
+
+  .header-md {
+    -webkit-box-shadow: none;
+    box-shadow: none
+  }
+
+  //HEADER
+  ion-header {
+    ion-navbar {
+      height: 105px;
+      color: white;
+
+      .toolbar-background {
+        background: map-get($colors, primary);
+      }
+
+      .toolbar-title {
+        color: white;
+        text-align: center;
+      }
+
+      .toolbar .toolbar-md {
+        min-height: 75px !important;
+      }
+
+      .p-n {
+        padding: 0;
+      }
+    }
+
+    @media (max-width: $md) {
+      .title {
+        margin-top: -5px;
+      }
+    }
+  }
+
+  .header-modules {
+    ion-col {
+      text-align: center;
+
+      & > div {
+        display: inline-block;
+        width: 100%;
+        line-height: 1;
+      }
+
+      &.clock {
+        .time {
+          font-size: 40px;
+          font-weight: 500;
+        }
+
+        .day {
+          font-size: 24px;
+          font-weight: 500;
+        }
+      }
+
+      &.day-month {
+        .day {
+          font-size: 40px;
+          font-weight: 500;
+        }
+
+        .month {
+          font-size: 24px;
+          font-weight: 500;
+        }
+      }
+
+      &.weather {
+        .degrees {
+          font-size: 40px;
+          font-weight: 500;
+        }
+
+        .icon-gz-celcius:before {
+          margin: -25px;
+          padding: 0;
+          font-size: 56px;
+        }
+      }
+    }
+
+    @media (max-width: $md) {
+      ion-col {
+        &.clock {
+          .time {
+            font-size: 20px;
+            font-weight: 500;
+          }
+
+          .day {
+            font-size: 15px;
+            font-weight: 500;
+          }
+        }
+
+        &.day-month {
+          .day {
+            font-size: 20px;
+            font-weight: 500;
+          }
+
+          .month {
+            font-size: 15px;
+            font-weight: 500;
+          }
+        }
+
+        &.weather {
+          .degrees {
+            font-size: 20px;
+            font-weight: 500;
+          }
+
+          .icon-gz-celcius:before {
+            margin: -11px;
+            padding: 0;
+            font-size: 27px;
+          }
+        }
+      }
+    }
+    @media (max-width: 600px) {
+      display: none;
+    }
+  }
+
+  .homeBtn {
+    font-size: 32px;
+    color: white;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .noDisturbBtn {
+    font-size: 32px;
+    color: white;
+    margin-right: 15px;
+  }
+
+  .panicBtn {
+    font-size: 32px;
+    color: red;
+    margin-right: 15px;
+  }
+
+  ion-grid.item-header.grid {
+    padding: 0px;
+  }
+
+  .tool_bar {
+    background-color: lightgray;
+    padding: 0px 25px;
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+  }
+
+  @include size-md-down-portrait {
+    .hidden_small {
+      display: none !important;
+    }
+    .show_small_bar {
+      display: block !important;
+    }
+    .icons_actions {
+      .icon {
+        &.panicBtn,
+        &.noDisturbBtn {
+          font-size: 3rem;
+        }
+      }
+    }
+  }
+
+  .show_small_bar {
+    display: none;
+    height: 30px;
+    min-height: 30px;
+    font-size: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    .grid {
+      padding: 0;
+    }
+    .col {
+      display: flex;
+      flex-direction: row;
+      text-transform: capitalize;
+      padding: 0;
+      &.hour {
+        align-items: center;
+        justify-content: center;
+      }
+      &.temp {
+        align-items: right;
+        justify-content: flex-end;
+      }
+    }
+  }
+  .icons_actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    
+    .icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      &[hidden] {
+        display: none;
+      }
+    }
+  }

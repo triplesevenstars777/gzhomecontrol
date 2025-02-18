@@ -1,0 +1,72 @@
+<ion-grid *ngIf="data">
+  <ion-row>
+    <ion-col>
+      <div class="brightness-wrapper">
+        <ion-button
+            (click)="updateName()"
+            color="primary"
+            size="small"
+            >
+          <ion-icon name="create"></ion-icon>
+      </ion-button>
+        <ion-label float-left>{{data.display_name || data.name}}</ion-label>
+      </div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+        <ion-grid class="button-group">
+            <ion-row>
+                <ion-col>
+                    <ion-button expand="block" fill="outline"
+                        [disabled]="data.current == 'Off'"
+                        (click)="onChangeEndpoint(0)"
+                        [color]="data.current <= 84  ? 'secondary': 'light'">
+                        Off
+                    </ion-button>
+                </ion-col>
+                <ion-col>
+                    <ion-button expand="block" fill="outline"
+                        [disabled]="data.current == 'Off'"
+                        (click)="onChangeEndpoint(118)"
+                        [color]="data.current > 84 && data.current <= 118 ? 'secondary': 'light'">
+                        20%
+                    </ion-button>
+                </ion-col>
+                <ion-col>
+                    <ion-button expand="block" fill="outline"
+                        [disabled]="data.current == 'Off'"
+                        (click)="onChangeEndpoint(152)"
+                        [color]="data.current > 118 && data.current <= 152? 'secondary': 'light'">
+                        40%
+                    </ion-button>
+                </ion-col>
+                <ion-col>
+                    <ion-button expand="block" fill="outline"
+                        [disabled]="data.current == 'Off'"
+                        (click)="onChangeEndpoint(186)"
+                        [color]="data.current > 152 && data.current <= 186 ? 'secondary': 'light'">
+                        60%
+                    </ion-button>
+                </ion-col>
+                <ion-col>
+                    <ion-button expand="block" fill="outline"
+                        [disabled]="data.current == 'Off'"
+                        (click)="onChangeEndpoint(220)"
+                        [color]="data.current > 186 && data.current <= 220 ? 'secondary': 'light'">
+                        80%
+                    </ion-button>
+                </ion-col>
+                <ion-col>
+                    <ion-button expand="block" fill="outline"
+                        [disabled]="data.current == 'Off'"
+                        (click)="onChangeEndpoint(254)"
+                        [color]="data.current > 220 && data.current <= 254 ? 'secondary': 'light'">
+                        100%
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-col>
+  </ion-row>
+</ion-grid>

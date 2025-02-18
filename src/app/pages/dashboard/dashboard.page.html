@@ -1,0 +1,43 @@
+<div style="position: relative; height: 100%;">
+  <main-header [section]="'DASHBOARD' | translate" [icon]="'clock'" [homeVisible]="false"></main-header>
+  <ion-content style="height: 100%;" >
+    <ion-grid id="dashboard">
+      <ion-row class="weather-forecast" style="    padding-top: 150px; padding-left: 20px;">
+        <ion-col text-center col-3 class="center forecast-block" *ngFor="let item of forecast">
+          <span class="day-week">{{item.day}}</span>
+          <span class="icon {{WEATHER_ICONS[item.icon]}}"></span>
+          <span class="temp">{{item.max}}ºC/{{item.min}}ºC</span>
+        </ion-col>
+      </ion-row>
+      <ion-row style="width: 100%; height: 100%;">
+        <!-- NEWS -->
+        <div class="news_panel">
+          <div class="news">
+            <h3 class="brand-title" style="color: #119DA4; font-size: 30px;">
+              <span class="icon icon-gz-news"></span>
+              {{ 'News' | translate }}
+            </h3>
+            <ion-list style="background-color: black;">
+              <div *ngFor="let news of newsObj">
+                <div class="news-content" ion-item>
+                  <div class="content">
+                    <h4>{{news?.title}}</h4>
+                    <div [innerHTML]="news?.content_brief"></div>
+                  </div>
+                  <button class="button_link" doubletap (ondoubletap)="goNews(news.id)"></button>
+                </div>
+              </div>
+            </ion-list>
+          </div>
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="favorites_panel" style="width: 100%;">
+            <!-- <scenes></scenes> -->
+            <global-toggles></global-toggles> 
+        </div>
+      </ion-row>            
+    </ion-grid>
+  </ion-content>
+  <main-footer [menuVisible]="true"></main-footer>
+</div>

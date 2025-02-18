@@ -1,0 +1,281 @@
+<ion-header>
+  <ion-toolbar  style="--background: #119DA4; color: white;">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/global-settings"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="margin-left: 13%;">
+      <span *ngIf="section === 'in'"
+        >{{ 'ARRIVING_AT_HOME_DEVICES' | translate }}</span
+      >
+      <span *ngIf="section === 'out'"
+        >{{ 'LEAVING_HOME_DEVICES' | translate }}</span
+      >
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header style="margin-left: 10px; font-size: large;" *ngIf="lightNodes?.length">
+      {{ 'LIGHTS' | translate }}
+    </ion-list-header>
+
+    <ion-item-group *ngFor="let node of lightNodes">
+      <ion-item>
+        <ion-label>{{node?.display_name || node?.name}}</ion-label>
+        <ion-toggle
+          color="dark"
+          slot="end"
+          [(ngModel)]="localNodes[node._id].available"
+          (ionChange)="changeAvailability(node._id, localNodes[node._id].available)"
+        >
+        </ion-toggle>
+      </ion-item>
+      <ion-item-group *ngIf="localNodes[node._id].available">
+        <ion-item
+          *ngFor="let endpoint of node?.scheme?.endpoints | nodeEndpointsOutput; let i = index"
+        >
+          <span slot="start" class="icon icon-gz-bulb"></span>
+          <ion-label>{{endpoint.display_name || endpoint.name}}</ion-label>
+          <ion-toggle
+            slot="end"
+            [(ngModel)]="localNodes[node._id].endpoints[i].defaultState"
+            (ionChange)="changeState(node._id, endpoint._id, localNodes[node._id].endpoints[i].defaultState)"
+          >
+          </ion-toggle>
+        </ion-item>
+      </ion-item-group>
+    </ion-item-group>
+
+    <ion-list-header style="margin-left: 10px; font-size: large;" *ngIf="blindNodes?.length">
+      {{ 'BLINDS' | translate }}
+    </ion-list-header>
+
+    <ion-item-group *ngFor="let node of blindNodes">
+      <ion-item >
+        <ion-label>{{node?.display_name || node?.name}}</ion-label>
+          <ion-toggle
+          slot="end"
+          color="dark"
+          [(ngModel)]="localNodes[node._id].available"
+          (ionChange)="changeAvailability(node._id, localNodes[node._id].available)"
+        >
+        </ion-toggle>
+      </ion-item>
+      <ion-item-group *ngIf="localNodes[node._id].available">
+        <ng-container
+          *ngFor="let endpoint of node?.scheme?.endpoints | nodeEndpointsOutput; let j = index;"
+        >
+          <ion-item
+            *ngIf="endpoint.id == 'relay_0' || endpoint.id == 'relay_1'"
+          >
+          <span class="icon icon-gz-window" slot="start"></span>
+            <ion-label>
+              <span *ngIf="endpoint.id == 'relay_1'"
+                >{{'ACT_UP'|translate}}</span
+              >
+              <span *ngIf="endpoint.id == 'relay_0'"
+                >{{'ACT_DOWN'|translate}}</span
+              >
+            </ion-label>
+          <ion-toggle
+            slot="end"
+            [(ngModel)]="localNodes[node._id].endpoints[j].defaultState"
+            (ionChange)="changeState(node._id, endpoint._id, localNodes[node._id].endpoints[j].defaultState, true)"
+            >
+            </ion-toggle>
+          </ion-item>
+        </ng-container>
+      </ion-item-group>
+    </ion-item-group>
+
+    <ion-list-header style="margin-left: 10px; font-size: large;" *ngIf="awningNodes?.length">
+      {{ 'AWNINGS' | translate }}
+    </ion-list-header>
+    <ion-item-group *ngFor="let node of awningNodes">
+      <ion-item >
+        <ion-label>{{node?.display_name || node?.name}}</ion-label>
+        <div>
+          <ion-toggle
+          item-end
+          color="dark"
+          [(ngModel)]="localNodes[node._id].available"
+          (ionChange)="changeAvailability(node._id, localNodes[node._id].available)"
+          >
+          </ion-toggle>
+        </div>
+      </ion-item>
+      <ion-item-group *ngIf="localNodes[node._id].available">
+        <ion-item
+          *ngFor="let endpoint of node?.scheme?.endpoints | nodeEndpointsOutput; let j = index; "
+        >
+          <span class="icon icon-gz-awnings" slot="start"></span>
+          <ion-label>
+            <span *ngIf="endpoint.id === 'relay_1'">{{'ACT_UP'|translate}}</span>
+            <span *ngIf="endpoint.id === 'relay_0'">{{'ACT_DOWN'|translate}}</span>
+            <span *ngIf="endpoint.id === 'relayblock'">{{'ACT_LOCK'|translate}}</span>
+          </ion-label>
+          <div>
+            <ion-toggle
+            item-end
+            [(ngModel)]="localNodes[node._id].endpoints[j].defaultState"
+            (ionChange)="changeState(node._id, endpoint._id, localNodes[node._id].endpoints[j].defaultState, true)"
+          >
+          </ion-toggle>
+          </div>
+
+        </ion-item>
+      </ion-item-group>
+    </ion-item-group>
+
+    <ion-list-header style="margin-left: 10px; font-size: large;" *ngIf="climaNodes?.length">
+      {{ 'AIR CONDITIONING' | translate }}
+    </ion-list-header>
+
+    <ion-item-group *ngFor="let node of climaNodes">
+      <ion-item >
+        <ion-label>{{node?.display_name || node?.name}}</ion-label>
+        <div>
+          <ion-toggle
+          item-end
+          color="dark"
+          [(ngModel)]="localNodes[node._id].available"
+          (ionChange)="changeAvailability(node._id, localNodes[node._id].available)"
+        >
+        </ion-toggle>
+        </div>
+        
+      </ion-item>
+
+      <ion-item-group *ngIf="localNodes[node._id].available">
+        <ion-item
+          *ngFor="let endpoint of node?.scheme?.endpoints | nodeEndpointsOutput; let j = index; "
+        >
+          <span class="icon icon-gz-ac" slot="start"></span>
+          <ion-label>{{endpoint.display_name || endpoint.name}}</ion-label>
+          <div>
+
+            <ion-toggle
+            slot="end"
+            [(ngModel)]="localNodes[node._id].endpoints[j].defaultState"
+            (ionChange)="changeState(node._id, endpoint._id, localNodes[node._id].endpoints[j].defaultState, true)"
+          >
+          </ion-toggle>
+          </div>
+        </ion-item>
+      </ion-item-group>
+    </ion-item-group>
+
+    <ion-list-header style="margin-left: 10px; font-size: large;" *ngIf="tempNodes?.length">
+      {{ 'TEMP' | translate }}
+    </ion-list-header>
+
+    <ion-item-group *ngFor="let node of tempNodes">
+      <ion-item >
+        <ion-label>{{node?.display_name || node?.name}}</ion-label>
+        <div>
+          <ion-toggle
+          item-end
+          color="dark"
+          [(ngModel)]="localNodes[node._id].available"
+          (ionChange)="changeAvailability(node._id, localNodes[node._id].available)"
+        >
+        </ion-toggle>
+        </div>
+      </ion-item>
+
+      <ion-item-group *ngIf="localNodes[node._id].available">
+        <ion-item
+          *ngFor="let endpoint of node?.scheme?.endpoints | nodeEndpointsOutput; let j = index; "
+        >
+          <span class="icon icon-gz-ac" slot="start"></span>
+
+          <ion-label>{{endpoint.display_name || endpoint.name}}</ion-label>
+          <div>
+            <ion-toggle
+            slot="end"
+            [(ngModel)]="localNodes[node._id].endpoints[j].defaultState"
+            (ionChange)="changeState(node._id, endpoint._id, localNodes[node._id].endpoints[j].defaultState, true)"
+          >
+          </ion-toggle>
+          </div>
+        </ion-item>
+      </ion-item-group>
+    </ion-item-group>
+
+    <ion-list-header style="margin-left: 10px; font-size: large;" *ngIf="heatersNodes?.length">
+      {{ 'HEATERS' | translate }}
+    </ion-list-header>
+
+    <ion-item-group *ngFor="let node of heatersNodes">
+      <ion-item >
+        <ion-label>{{node?.display_name || node?.name}}</ion-label>
+        <div>
+          <ion-toggle
+          item-end
+          color="dark"
+          [(ngModel)]="localNodes[node._id].available"
+          (ionChange)="changeAvailability(node._id, localNodes[node._id].available)"
+        >
+        </ion-toggle>
+        </div>
+      </ion-item>
+
+      <ion-item-group *ngIf="localNodes[node._id].available">
+        <ion-item
+          *ngFor="let endpoint of node?.scheme?.endpoints | nodeEndpointsOutput; let j = index; "
+        >
+          <span class="icon icon-gz-ac" item-start></span>
+
+          <ion-label>{{endpoint.display_name || endpoint.name}}</ion-label>
+          <div>
+            <ion-toggle
+            item-end
+            [(ngModel)]="localNodes[node._id].endpoints[j].defaultState"
+            (ionChange)="changeState(node._id, endpoint._id, localNodes[node._id].endpoints[j].defaultState, true)"
+          >
+          </ion-toggle>
+          </div>
+        </ion-item>
+      </ion-item-group>
+    </ion-item-group>
+
+    <ion-list-header style="margin-left: 10px; font-size: large;" *ngIf="mailboxNodes?.length">
+      {{ 'MAILBOXES' | translate }}
+    </ion-list-header>
+
+    <ion-item-group *ngFor="let node of mailboxNodes">
+      <ion-item >
+        <ion-label>{{node?.display_name || node?.name}}</ion-label>
+        <div>
+          <ion-toggle
+          item-end
+          color="dark"
+          [(ngModel)]="localNodes[node._id].available"
+          (ionChange)="changeAvailability(node._id, localNodes[node._id].available)"
+        >
+        </ion-toggle>
+        </div>
+      </ion-item>
+
+      <ion-item-group *ngIf="localNodes[node._id].available">
+        <ion-item
+          *ngFor="let endpoint of node?.scheme?.endpoints | nodeEndpointsOutput; let j = index; "
+        >
+          <span class="icon icon-gz-ac" item-start></span>
+
+          <ion-label>{{endpoint.display_name || endpoint.name}}</ion-label>
+          <div>
+            <ion-toggle
+            item-end
+            [(ngModel)]="localNodes[node._id].endpoints[j].defaultState"
+            (ionChange)="changeState(node._id, endpoint._id, localNodes[node._id].endpoints[j].defaultState, true)"
+          >
+          </ion-toggle>
+          </div>
+        </ion-item>
+      </ion-item-group>
+    </ion-item-group>
+  </ion-list>
+</ion-content>
+<main-footer [menuVisible]="false"></main-footer>

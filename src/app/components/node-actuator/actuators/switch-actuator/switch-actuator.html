@@ -1,0 +1,43 @@
+<div class="switch-actuator">
+  <ion-grid *ngIf="data">
+    <ion-row>
+      <ion-col>
+        <div class="switch-wrapper">
+          <button
+            class="edit-button"
+            (click)="updateName()"
+            ion-button
+            color="primary"
+            icon-only
+            small
+            float-left
+            
+          >
+            <ion-icon name="create"></ion-icon>
+          </button>
+          <ion-label float-left>{{data.display_name || data.name}}</ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <custom-switch
+          *ngIf="device.scheme?.code !== TYPE_NODE.BUTTON && device.scheme?.code !== TYPE_NODE.BUTTON_2"
+          float-right
+          [checked]="active"
+          (ionChange)="onChangeEndpoint($event)"
+          [disabled]="!device.active"
+        >
+        </custom-switch>
+
+        <custom-button
+          *ngIf="device.scheme?.code === TYPE_NODE.BUTTON || device.scheme?.code === TYPE_NODE.BUTTON_2"
+          float-right
+          [checked]="active"
+          (ionChange)="onChangeEndpoint($event)"
+          [disabled]="!device.active"
+        ></custom-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

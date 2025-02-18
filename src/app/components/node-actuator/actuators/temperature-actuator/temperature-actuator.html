@@ -1,0 +1,38 @@
+<ion-grid *ngIf="data.current !== undefined">
+  <ion-row>
+    <ion-col style="margin-top: -25px;">
+      <div class="switch-wrapper">
+        <ion-range
+          (ionChange)="onChangeDimmer($event)"
+          [min]="2*min"
+          [max]="2*max"
+          [(ngModel)]="rangeValue"
+          color="treasury"
+          step="1"
+        >
+        </ion-range>
+        <div class="outer-container">
+          <div
+            class="tempGraph-container"
+            id="tempGraph-container-{{endpoint._id}}"
+          >
+            <div class="tempGraph" id="tempGraph-{{endpoint._id}}" #tempGraph>
+              <input
+                class="temp-input"
+                type="range"
+                [(ngModel)]="data.current"
+              />
+              <label *ngIf="data.current > actualTemperature.current" for="temp"
+                >heating</label
+              >
+              <label *ngIf="data.current < actualTemperature.current" for="temp"
+                >cooling</label
+              >
+              <output for="temp"><p>{{data.current}}</p></output>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>

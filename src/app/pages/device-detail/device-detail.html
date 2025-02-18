@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar class="main_header" style="padding-top: 5%">
+    <ion-buttons slot="start">
+        <ion-button (click)="goBack()" style="color: white; font-size: 22px;">
+            <span class="icon icon-gz-left-1"></span>
+        </ion-button>
+    </ion-buttons>
+    <ion-title style="font-size: 1.7rem; text-align: left; padding-left: 20%;">{{ data?.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="item-header">
+    <ion-row>
+      <ion-col size="5" class="node_type">
+        <b>{{ 'NODE_TYPE' | translate }}:</b> {{data?.scheme?.name}}
+      </ion-col>
+      <ion-col size="2" class="ion-text-center">
+        <ion-badge 
+          *ngIf="data?.active" 
+          style="padding-left: 10px;
+            padding-top: 6px;
+            padding-right: 10px;
+            padding-bottom: 7px;
+            margin-top: 7px;"
+        >
+          {{ 'CONNECTED' | translate }}
+        </ion-badge>
+        <ion-badge 
+          *ngIf="data && !data.active" 
+          color="danger"
+          style="padding-left: 10px;
+            padding-top: 6px;
+            padding-right: 10px;
+            padding-bottom: 7px;
+            margin-top: 7px;"
+        >
+          {{ 'UNCONNECTED' | translate }}
+        </ion-badge>
+      </ion-col>
+      <ion-col size="5" class="room_name">
+        <b>{{ 'ROOM' | translate }}:</b> {{ data?.room?.name }}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div class="item-detail ion-padding">
+    <node-actuator
+      *ngIf="data"
+      [data]="data"
+      [status]="data.active ? 'active' : 'inactive'"
+    ></node-actuator>
+  </div>
+</ion-content>

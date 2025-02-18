@@ -1,0 +1,74 @@
+<ion-grid class="bg-white">
+  <ion-col col-12>
+    <div
+      class="icon icon-gz-cog"
+      (click)="goToPage('global-settings')"
+      float-right
+    ></div>
+  </ion-col>
+</ion-grid>
+
+<div class="ion-wheel" id="ionic-wheel" #wheel>
+  <div class="wheel-btn icon icon-gz-cta" id="activate" (click)="close()"></div>
+  <div
+    class="wheel-btn icon icon-gz-news circle"
+    (click)="goToPage('news')"
+    [ngClass]="{'inactive' : !nodeAvailable['news']}"
+  ></div>
+  <div
+    class="wheel-btn icon icon-gz-statistics circle"
+    (click)="goToPage('meterkit')"
+    [ngClass]="{'inactive' : !nodeAvailable['meterkit']}"
+  ></div>
+  <div
+    class="wheel-btn icon icon-gz-sensors circle"
+    (click)="goToPage('devices-sensor')"
+    [ngClass]="{'inactive' : !nodeAvailable['sensors']}"
+  ></div>
+  <div
+    class="wheel-btn icon icon-gz-bulb circle"
+    (click)="goToPage('devices-light')"
+    [ngClass]="{'inactive' : !nodeAvailable['lights']}"
+  ></div>
+  <div
+    class="wheel-btn icon icon-gz-window circle"
+    (click)="goToPage('devices-blind')"
+    [ngClass]="{'inactive' : !nodeAvailable['blinds']}"
+  ></div>
+  <div
+    class="wheel-btn icon icon-gz-doorbell circle"
+    (click)="openApp()"
+    *ngIf="isWallTablet"
+  ></div>
+  <div
+    class="wheel-btn icon icon-gz-temp circle"
+    (click)="goToPage('devices-temp')"
+    [ngClass]="{'inactive' : !nodeAvailable['temp']}"
+  ></div>
+  <!--<div class="wheel-btn icon icon-gz-webcam circle inactive"></div>-->
+  <div
+    class="wheel-btn icon icon-gz-water-heater circle"
+    (click)="goToPage('devices-heater')"
+    [ngClass]="{'inactive' : !nodeAvailable['heaters']}"
+  ></div>
+  <div
+    class="wheel-btn icon icon-gz-ac circle"
+    (click)="goToPage('devices-clima')"
+    [ngClass]="{'inactive' : !nodeAvailable['clima']}"
+  ></div>
+  <div
+    class="wheel-btn icon icon-gz-door-handle circle"
+    (click)="goToPage('devices-doorlock')"
+    [ngClass]="{'inactive' : !nodeAvailable['doorlocks']}"
+  ></div>
+  <div
+    class="wheel-btn icon icon-gz-mailbox circle"
+    (click)="goToPage('devices-mailbox')"
+    [ngClass]="{'inactive' : !nodeAvailable['mailboxes']}"
+  ></div>
+  <div
+    class="wheel-btn icon icon-gz-train-public-transport-white2 circle"
+    (click)="goToPage('transports')"
+    [ngClass]="{'inactive' : !nodeAvailable['transports']}"
+  ></div>
+</div>

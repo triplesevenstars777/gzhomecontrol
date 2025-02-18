@@ -1,0 +1,82 @@
+<div class="modal__temp">
+
+  <!-- HEADER -->
+  <ion-header>
+    <div class="title title-icon">
+      <span class="icon icon-gz-temp"></span>{{item?.display_name || item?.name}}
+      <small style="font-size:1rem;">{{item?.scheme.name}}</small>
+    </div>
+    <div class="buttons">
+      <!-- <button class="button icon icon-gz-trash"></button> -->
+    </div>
+    <div class="customToggle">
+      <ion-toggle (ionChange)="toggleRule()" [(ngModel)]="enableRule"></ion-toggle>
+    </div>
+  </ion-header>
+
+  <!-- CONTENT -->
+  <ion-content class="scroll-content">
+    <div class="temp-range content-item">
+      <div class="info">
+        {{setTemp}}
+      </div>
+      <div class="current">
+        {{(currentTempRange / 10).toFixed(1)}}ºC
+      </div>
+      <div class="cover">
+        <svg width='100%' height='100%' viewBox="0 0 100 100" preserveAspectRatio="none">
+          <polygon points="0,0 0,100 100,0" />
+        </svg>
+      </div>
+      <ion-item>
+        <ion-range min="160" max="400" [(ngModel)]="currentTempRange" pin="true" (ionBlur)="onSliderReleased($event)">
+          <ion-label range-left>16ºC</ion-label>
+          <ion-label range-right>40ºC</ion-label>
+        </ion-range>
+      </ion-item>
+    </div>
+    <div class="content-item action-buttons" *ngIf="item?.subType === 'temperature'">
+      <ion-grid>
+        <ion-row class="temp-mode">
+          <ion-col col-4>
+            <button class="button button-default button-md active">Dry</button>
+          </ion-col>
+          <ion-col col-4>
+            <button class="button button-default button-md">Cool</button>
+          </ion-col>
+          <ion-col col-4>
+            <button class="button button-default button-md">Auto</button>
+          </ion-col>
+        </ion-row>
+        <ion-row class="temp-speed">
+          <ion-col col-4>
+            <button class="button button-default button-md">
+              <span class="icon-gz-fan"></span>
+            </button>
+          </ion-col>
+          <ion-col col-4>
+            <button class="button button-default button-md active">
+              <span class="icon-gz-fan"></span>
+              <span class="icon-gz-fan"></span>
+            </button>
+          </ion-col>
+          <ion-col col-4>
+            <button class="button button-default button-md">
+              <span class="icon-gz-fan"></span>
+              <span class="icon-gz-fan"></span>
+              <span class="icon-gz-fan"></span>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    <div class="block" [class.active]="enableRule"></div>
+  </ion-content>
+
+  <!-- FOOTER -->
+  <ion-footer>
+    <button ion-button round class="close" (click)="dismiss()">
+      <span class="icon icon-gz-close"></span>
+    </button>
+  </ion-footer>
+</div>

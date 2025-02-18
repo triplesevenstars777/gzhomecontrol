@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <meta charset="UTF-8">
+  <style>
+    html {
+      font-size: 100%;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    a:focus {
+      outline: thin dotted #333;
+      outline: 5px auto -webkit-focus-ring-color;
+      outline-offset: -2px;
+    }
+    a:hover,
+    a:active {
+      outline: 0;
+    }
+    input {
+      margin: 0;
+      font-size: 100%;
+      vertical-align: middle;
+      *overflow: visible;
+      line-height: normal;
+    }
+    input::-moz-focus-inner {
+      padding: 0;
+      border: 0;
+    }
+    body {
+      margin: 0;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 20px;
+      color: #333;
+      background-color: #fff;
+    }
+    a {
+      color: #08c;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #005580;
+      text-decoration: underline;
+    }
+    .row {
+      margin-left: -20px;
+      *zoom: 1;
+    }
+    .row:before,
+    .row:after {
+      display: table;
+      content: "";
+      line-height: 0;
+    }
+    .row:after {
+      clear: both;
+    }
+    .span3 {
+      float: left;
+      min-height: 1px;
+      margin-left: 20px;
+      width: 220px;
+    }
+    .container {
+      width: 940px;
+      margin-right: auto;
+      margin-left: auto;
+      *zoom: 1;
+    }
+    .container:before,
+    .container:after {
+      display: table;
+      content: "";
+      line-height: 0;
+    }
+    .container:after {
+      clear: both;
+    }
+    small {
+      font-size: 85%;
+    }
+    h1 {
+      margin: 10px 0;
+      font-family: inherit;
+      font-weight: bold;
+      line-height: 20px;
+      color: inherit;
+      text-rendering: optimizelegibility;
+      line-height: 40px;
+      font-size: 38.5px;
+    }
+    h1 small {
+      font-weight: normal;
+      line-height: 1;
+      color: #999;
+      font-size: 24.5px;
+    }
+
+    body {
+      margin-top: 90px;
+    }
+    .header {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      margin-left: -480px;
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
+      padding-top: 10px;
+      z-index: 10;
+    }
+    .footer {
+      color: #ddd;
+      font-size: 12px;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .footer a {
+      color: #ccc;
+      text-decoration: underline;
+    }
+    .the-icons {
+      font-size: 14px;
+      line-height: 24px;
+    }
+    .switch {
+      position: absolute;
+      right: 0;
+      bottom: 10px;
+      color: #666;
+    }
+    .switch input {
+      margin-right: 0.3em;
+    }
+    .codesOn .i-name {
+      display: none;
+    }
+    .codesOn .i-code {
+      display: inline;
+    }
+    .i-code {
+      display: none;
+    }
+    @font-face {
+      font-family: 'fontello';
+      src: url('./font/fontello.eot?76961697');
+      src: url('./font/fontello.eot?76961697#iefix') format('embedded-opentype'),
+           url('./font/fontello.woff?76961697') format('woff'),
+           url('./font/fontello.ttf?76961697') format('truetype'),
+           url('./font/fontello.svg?76961697#fontello') format('svg');
+      font-weight: normal;
+      font-style: normal;
+    }
+    .demo-icon {
+      font-family: "fontello";
+      font-style: normal;
+      font-weight: normal;
+      speak: never;
+     
+      display: inline-block;
+      text-decoration: inherit;
+      width: 1em;
+      margin-right: .2em;
+      text-align: center;
+      /* opacity: .8; */
+     
+      /* For safety - reset parent styles, that can break glyph codes*/
+      font-variant: normal;
+      text-transform: none;
+     
+      /* fix buttons height, for twitter bootstrap */
+      line-height: 1em;
+     
+      /* Animation center compensation - margins should be symmetric */
+      /* remove if not needed */
+      margin-left: .2em;
+     
+      /* You can be more comfortable with increased icons size */
+      /* font-size: 120%; */
+     
+      /* Font smoothing. That was taken from TWBS */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+     
+      /* Uncomment for 3D effect */
+      /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+    }
+    </style>
+    <link rel="stylesheet" href="css/animation.css"><!--[if IE 7]><link rel="stylesheet" href="css/" + font.fontname + "-ie7.css"><![endif]-->
+    <script>
+      function toggleCodes(on) {
+        var obj = document.getElementById('icons');
+      
+        if (on) {
+          obj.className += ' codesOn';
+        } else {
+          obj.className = obj.className.replace(' codesOn', '');
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container header">
+      <h1>fontello <small>font demo</small></h1>
+      <label class="switch">
+        <input type="checkbox" onclick="toggleCodes(this.checked)">show codes
+      </label>
+    </div>
+    <div class="container" id="icons">
+      <div class="row">
+        <div class="span3" title="Code: 0xe800">
+          <i class="demo-icon icon-gz-windy-rain-inv">&#xe800;</i> <span class="i-name">icon-gz-windy-rain-inv</span><span class="i-code">0xe800</span>
+        </div>
+        <div class="span3" title="Code: 0xe801">
+          <i class="demo-icon icon-gz-snow-inv">&#xe801;</i> <span class="i-name">icon-gz-snow-inv</span><span class="i-code">0xe801</span>
+        </div>
+        <div class="span3" title="Code: 0xe802">
+          <i class="demo-icon icon-gz-snow-heavy-inv">&#xe802;</i> <span class="i-name">icon-gz-snow-heavy-inv</span><span class="i-code">0xe802</span>
+        </div>
+        <div class="span3" title="Code: 0xe803">
+          <i class="demo-icon icon-gz-hail-inv">&#xe803;</i> <span class="i-name">icon-gz-hail-inv</span><span class="i-code">0xe803</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe804">
+          <i class="demo-icon icon-gz-clouds-inv">&#xe804;</i> <span class="i-name">icon-gz-clouds-inv</span><span class="i-code">0xe804</span>
+        </div>
+        <div class="span3" title="Code: 0xe805">
+          <i class="demo-icon icon-gz-clouds-flash-inv">&#xe805;</i> <span class="i-name">icon-gz-clouds-flash-inv</span><span class="i-code">0xe805</span>
+        </div>
+        <div class="span3" title="Code: 0xe806">
+          <i class="demo-icon icon-gz-comfort">&#xe806;</i> <span class="i-name">icon-gz-comfort</span><span class="i-code">0xe806</span>
+        </div>
+        <div class="span3" title="Code: 0xe807">
+          <i class="demo-icon icon-gz-compass">&#xe807;</i> <span class="i-name">icon-gz-compass</span><span class="i-code">0xe807</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe808">
+          <i class="demo-icon icon-gz-na">&#xe808;</i> <span class="i-name">icon-gz-na</span><span class="i-code">0xe808</span>
+        </div>
+        <div class="span3" title="Code: 0xe809">
+          <i class="demo-icon icon-gz-celcius">&#xe809;</i> <span class="i-name">icon-gz-celcius</span><span class="i-code">0xe809</span>
+        </div>
+        <div class="span3" title="Code: 0xe80a">
+          <i class="demo-icon icon-gz-fog-sun">&#xe80a;</i> <span class="i-name">icon-gz-fog-sun</span><span class="i-code">0xe80a</span>
+        </div>
+        <div class="span3" title="Code: 0xe80b">
+          <i class="demo-icon icon-gz-fog-cloud">&#xe80b;</i> <span class="i-name">icon-gz-fog-cloud</span><span class="i-code">0xe80b</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe80c">
+          <i class="demo-icon icon-gz-fahrenheit">&#xe80c;</i> <span class="i-name">icon-gz-fahrenheit</span><span class="i-code">0xe80c</span>
+        </div>
+        <div class="span3" title="Code: 0xe80d">
+          <i class="demo-icon icon-gz-clouds-flash-alt">&#xe80d;</i> <span class="i-name">icon-gz-clouds-flash-alt</span><span class="i-code">0xe80d</span>
+        </div>
+        <div class="span3" title="Code: 0xe80e">
+          <i class="demo-icon icon-gz-sun-inv">&#xe80e;</i> <span class="i-name">icon-gz-sun-inv</span><span class="i-code">0xe80e</span>
+        </div>
+        <div class="span3" title="Code: 0xe80f">
+          <i class="demo-icon icon-gz-moon-inv">&#xe80f;</i> <span class="i-name">icon-gz-moon-inv</span><span class="i-code">0xe80f</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe810">
+          <i class="demo-icon icon-gz-cloud-inv">&#xe810;</i> <span class="i-name">icon-gz-cloud-inv</span><span class="i-code">0xe810</span>
+        </div>
+        <div class="span3" title="Code: 0xe811">
+          <i class="demo-icon icon-gz-cloud-flash-inv">&#xe811;</i> <span class="i-name">icon-gz-cloud-flash-inv</span><span class="i-code">0xe811</span>
+        </div>
+        <div class="span3" title="Code: 0xe812">
+          <i class="demo-icon icon-gz-drizzle-inv">&#xe812;</i> <span class="i-name">icon-gz-drizzle-inv</span><span class="i-code">0xe812</span>
+        </div>
+        <div class="span3" title="Code: 0xe813">
+          <i class="demo-icon icon-gz-rain-inv">&#xe813;</i> <span class="i-name">icon-gz-rain-inv</span><span class="i-code">0xe813</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe814">
+          <i class="demo-icon icon-gz-windy">&#xe814;</i> <span class="i-name">icon-gz-windy</span><span class="i-code">0xe814</span>
+        </div>
+        <div class="span3" title="Code: 0xe815">
+          <i class="demo-icon icon-gz-rain">&#xe815;</i> <span class="i-name">icon-gz-rain</span><span class="i-code">0xe815</span>
+        </div>
+        <div class="span3" title="Code: 0xe816">
+          <i class="demo-icon icon-gz-cloud-flash-alt">&#xe816;</i> <span class="i-name">icon-gz-cloud-flash-alt</span><span class="i-code">0xe816</span>
+        </div>
+        <div class="span3" title="Code: 0xe817">
+          <i class="demo-icon icon-gz-drizzle">&#xe817;</i> <span class="i-name">icon-gz-drizzle</span><span class="i-code">0xe817</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe818">
+          <i class="demo-icon icon-gz-cloud-sun-inv">&#xe818;</i> <span class="i-name">icon-gz-cloud-sun-inv</span><span class="i-code">0xe818</span>
+        </div>
+        <div class="span3" title="Code: 0xe819">
+          <i class="demo-icon icon-gz-cloud">&#xe819;</i> <span class="i-name">icon-gz-cloud</span><span class="i-code">0xe819</span>
+        </div>
+        <div class="span3" title="Code: 0xe81a">
+          <i class="demo-icon icon-gz-cloud-moon-inv">&#xe81a;</i> <span class="i-name">icon-gz-cloud-moon-inv</span><span class="i-code">0xe81a</span>
+        </div>
+        <div class="span3" title="Code: 0xe81b">
+          <i class="demo-icon icon-gz-cloud-flash">&#xe81b;</i> <span class="i-name">icon-gz-cloud-flash</span><span class="i-code">0xe81b</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe81c">
+          <i class="demo-icon icon-gz-windy-rain">&#xe81c;</i> <span class="i-name">icon-gz-windy-rain</span><span class="i-code">0xe81c</span>
+        </div>
+        <div class="span3" title="Code: 0xe81d">
+          <i class="demo-icon icon-gz-snow">&#xe81d;</i> <span class="i-name">icon-gz-snow</span><span class="i-code">0xe81d</span>
+        </div>
+        <div class="span3" title="Code: 0xe81e">
+          <i class="demo-icon icon-gz-mist">&#xe81e;</i> <span class="i-name">icon-gz-mist</span><span class="i-code">0xe81e</span>
+        </div>
+        <div class="span3" title="Code: 0xe81f">
+          <i class="demo-icon icon-gz-wind">&#xe81f;</i> <span class="i-name">icon-gz-wind</span><span class="i-code">0xe81f</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe820">
+          <i class="demo-icon icon-gz-snowflake">&#xe820;</i> <span class="i-name">icon-gz-snowflake</span><span class="i-code">0xe820</span>
+        </div>
+        <div class="span3" title="Code: 0xe821">
+          <i class="demo-icon icon-gz-cloud-sun">&#xe821;</i> <span class="i-name">icon-gz-cloud-sun</span><span class="i-code">0xe821</span>
+        </div>
+        <div class="span3" title="Code: 0xe822">
+          <i class="demo-icon icon-gz-cloud-moon">&#xe822;</i> <span class="i-name">icon-gz-cloud-moon</span><span class="i-code">0xe822</span>
+        </div>
+        <div class="span3" title="Code: 0xe823">
+          <i class="demo-icon icon-gz-fog">&#xe823;</i> <span class="i-name">icon-gz-fog</span><span class="i-code">0xe823</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe824">
+          <i class="demo-icon icon-gz-clouds">&#xe824;</i> <span class="i-name">icon-gz-clouds</span><span class="i-code">0xe824</span>
+        </div>
+        <div class="span3" title="Code: 0xe825">
+          <i class="demo-icon icon-gz-clouds-flash">&#xe825;</i> <span class="i-name">icon-gz-clouds-flash</span><span class="i-code">0xe825</span>
+        </div>
+        <div class="span3" title="Code: 0xe826">
+          <i class="demo-icon icon-gz-windy-inv">&#xe826;</i> <span class="i-name">icon-gz-windy-inv</span><span class="i-code">0xe826</span>
+        </div>
+        <div class="span3" title="Code: 0xe827">
+          <i class="demo-icon icon-gz-sunrise">&#xe827;</i> <span class="i-name">icon-gz-sunrise</span><span class="i-code">0xe827</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe828">
+          <i class="demo-icon icon-gz-sun">&#xe828;</i> <span class="i-name">icon-gz-sun</span><span class="i-code">0xe828</span>
+        </div>
+        <div class="span3" title="Code: 0xe829">
+          <i class="demo-icon icon-gz-snow-alt">&#xe829;</i> <span class="i-name">icon-gz-snow-alt</span><span class="i-code">0xe829</span>
+        </div>
+        <div class="span3" title="Code: 0xe82a">
+          <i class="demo-icon icon-gz-snow-heavy">&#xe82a;</i> <span class="i-name">icon-gz-snow-heavy</span><span class="i-code">0xe82a</span>
+        </div>
+        <div class="span3" title="Code: 0xe82b">
+          <i class="demo-icon icon-gz-fog-moon">&#xe82b;</i> <span class="i-name">icon-gz-fog-moon</span><span class="i-code">0xe82b</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe82c">
+          <i class="demo-icon icon-gz-eclipse">&#xe82c;</i> <span class="i-name">icon-gz-eclipse</span><span class="i-code">0xe82c</span>
+        </div>
+        <div class="span3" title="Code: 0xe82d">
+          <i class="demo-icon icon-gz-moon">&#xe82d;</i> <span class="i-name">icon-gz-moon</span><span class="i-code">0xe82d</span>
+        </div>
+        <div class="span3" title="Code: 0xe82e">
+          <i class="demo-icon icon-gz-hail">&#xe82e;</i> <span class="i-name">icon-gz-hail</span><span class="i-code">0xe82e</span>
+        </div>
+        <div class="span3" title="Code: 0xe82f">
+          <i class="demo-icon icon-gz-bulb">&#xe82f;</i> <span class="i-name">icon-gz-bulb</span><span class="i-code">0xe82f</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe830">
+          <i class="demo-icon icon-gz-cta">&#xe830;</i> <span class="i-name">icon-gz-cta</span><span class="i-code">0xe830</span>
+        </div>
+        <div class="span3" title="Code: 0xe831">
+          <i class="demo-icon icon-gz-edit">&#xe831;</i> <span class="i-name">icon-gz-edit</span><span class="i-code">0xe831</span>
+        </div>
+        <div class="span3" title="Code: 0xe832">
+          <i class="demo-icon icon-gz-news">&#xe832;</i> <span class="i-name">icon-gz-news</span><span class="i-code">0xe832</span>
+        </div>
+        <div class="span3" title="Code: 0xe833">
+          <i class="demo-icon icon-gz-sensors">&#xe833;</i> <span class="i-name">icon-gz-sensors</span><span class="i-code">0xe833</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe834">
+          <i class="demo-icon icon-gz-statistics">&#xe834;</i> <span class="i-name">icon-gz-statistics</span><span class="i-code">0xe834</span>
+        </div>
+        <div class="span3" title="Code: 0xe835">
+          <i class="demo-icon icon-gz-temp">&#xe835;</i> <span class="i-name">icon-gz-temp</span><span class="i-code">0xe835</span>
+        </div>
+        <div class="span3" title="Code: 0xe836">
+          <i class="demo-icon icon-gz-water">&#xe836;</i> <span class="i-name">icon-gz-water</span><span class="i-code">0xe836</span>
+        </div>
+        <div class="span3" title="Code: 0xe837">
+          <i class="demo-icon icon-gz-webcam">&#xe837;</i> <span class="i-name">icon-gz-webcam</span><span class="i-code">0xe837</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe838">
+          <i class="demo-icon icon-gz-window">&#xe838;</i> <span class="i-name">icon-gz-window</span><span class="i-code">0xe838</span>
+        </div>
+        <div class="span3" title="Code: 0xe839">
+          <i class="demo-icon icon-gz-ac">&#xe839;</i> <span class="i-name">icon-gz-ac</span><span class="i-code">0xe839</span>
+        </div>
+        <div class="span3" title="Code: 0xe83a">
+          <i class="demo-icon icon-gz-clock">&#xe83a;</i> <span class="i-name">icon-gz-clock</span><span class="i-code">0xe83a</span>
+        </div>
+        <div class="span3" title="Code: 0xe83b">
+          <i class="demo-icon icon-gz-heart">&#xe83b;</i> <span class="i-name">icon-gz-heart</span><span class="i-code">0xe83b</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe83c">
+          <i class="demo-icon icon-gz-cog">&#xe83c;</i> <span class="i-name">icon-gz-cog</span><span class="i-code">0xe83c</span>
+        </div>
+        <div class="span3" title="Code: 0xe83d">
+          <i class="demo-icon icon-gz-home">&#xe83d;</i> <span class="i-name">icon-gz-home</span><span class="i-code">0xe83d</span>
+        </div>
+        <div class="span3" title="Code: 0xe83e">
+          <i class="demo-icon icon-gz-cancel-circled">&#xe83e;</i> <span class="i-name">icon-gz-cancel-circled</span><span class="i-code">0xe83e</span>
+        </div>
+        <div class="span3" title="Code: 0xe83f">
+          <i class="demo-icon icon-gz-checkmark">&#xe83f;</i> <span class="i-name">icon-gz-checkmark</span><span class="i-code">0xe83f</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe840">
+          <i class="demo-icon icon-gz-close">&#xe840;</i> <span class="i-name">icon-gz-close</span><span class="i-code">0xe840</span>
+        </div>
+        <div class="span3" title="Code: 0xe841">
+          <i class="demo-icon icon-gz-call">&#xe841;</i> <span class="i-name">icon-gz-call</span><span class="i-code">0xe841</span>
+        </div>
+        <div class="span3" title="Code: 0xe842">
+          <i class="demo-icon icon-gz-awnings">&#xe842;</i> <span class="i-name">icon-gz-awnings</span><span class="i-code">0xe842</span>
+        </div>
+        <div class="span3" title="Code: 0xe843">
+          <i class="demo-icon icon-gz-leaving-home">&#xe843;</i> <span class="i-name">icon-gz-leaving-home</span><span class="i-code">0xe843</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe844">
+          <i class="demo-icon icon-gz-at-home">&#xe844;</i> <span class="i-name">icon-gz-at-home</span><span class="i-code">0xe844</span>
+        </div>
+        <div class="span3" title="Code: 0xe845">
+          <i class="demo-icon icon-gz-doorbell">&#xe845;</i> <span class="i-name">icon-gz-doorbell</span><span class="i-code">0xe845</span>
+        </div>
+        <div class="span3" title="Code: 0xe846">
+          <i class="demo-icon icon-gz-movement-sensor">&#xe846;</i> <span class="i-name">icon-gz-movement-sensor</span><span class="i-code">0xe846</span>
+        </div>
+        <div class="span3" title="Code: 0xe847">
+          <i class="demo-icon icon-gz-panic">&#xe847;</i> <span class="i-name">icon-gz-panic</span><span class="i-code">0xe847</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe848">
+          <i class="demo-icon icon-gz-remote-sensor-locked">&#xe848;</i> <span class="i-name">icon-gz-remote-sensor-locked</span><span class="i-code">0xe848</span>
+        </div>
+        <div class="span3" title="Code: 0xe849">
+          <i class="demo-icon icon-gz-sensor-closed">&#xe849;</i> <span class="i-name">icon-gz-sensor-closed</span><span class="i-code">0xe849</span>
+        </div>
+        <div class="span3" title="Code: 0xe84a">
+          <i class="demo-icon icon-gz-sensor-open">&#xe84a;</i> <span class="i-name">icon-gz-sensor-open</span><span class="i-code">0xe84a</span>
+        </div>
+        <div class="span3" title="Code: 0xe84b">
+          <i class="demo-icon icon-gz-remote-sensor-unlocked">&#xe84b;</i> <span class="i-name">icon-gz-remote-sensor-unlocked</span><span class="i-code">0xe84b</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe84c">
+          <i class="demo-icon icon-gz-scene">&#xe84c;</i> <span class="i-name">icon-gz-scene</span><span class="i-code">0xe84c</span>
+        </div>
+        <div class="span3" title="Code: 0xe84d">
+          <i class="demo-icon icon-gz-blades-close">&#xe84d;</i> <span class="i-name">icon-gz-blades-close</span><span class="i-code">0xe84d</span>
+        </div>
+        <div class="span3" title="Code: 0xe84e">
+          <i class="demo-icon icon-gz-blades-open">&#xe84e;</i> <span class="i-name">icon-gz-blades-open</span><span class="i-code">0xe84e</span>
+        </div>
+        <div class="span3" title="Code: 0xe84f">
+          <i class="demo-icon icon-gz-arrow-down">&#xe84f;</i> <span class="i-name">icon-gz-arrow-down</span><span class="i-code">0xe84f</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe850">
+          <i class="demo-icon icon-gz-arrow-up">&#xe850;</i> <span class="i-name">icon-gz-arrow-up</span><span class="i-code">0xe850</span>
+        </div>
+        <div class="span3" title="Code: 0xe851">
+          <i class="demo-icon icon-gz-stop">&#xe851;</i> <span class="i-name">icon-gz-stop</span><span class="i-code">0xe851</span>
+        </div>
+        <div class="span3" title="Code: 0xe853">
+          <i class="demo-icon icon-gz-fire">&#xe853;</i> <span class="i-name">icon-gz-fire</span><span class="i-code">0xe853</span>
+        </div>
+        <div class="span3" title="Code: 0xe854">
+          <i class="demo-icon icon-gz-no-disturb">&#xe854;</i> <span class="i-name">icon-gz-no-disturb</span><span class="i-code">0xe854</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe855">
+          <i class="demo-icon icon-gz-noconn">&#xe855;</i> <span class="i-name">icon-gz-noconn</span><span class="i-code">0xe855</span>
+        </div>
+        <div class="span3" title="Code: 0xe856">
+          <i class="demo-icon icon-gz-fan">&#xe856;</i> <span class="i-name">icon-gz-fan</span><span class="i-code">0xe856</span>
+        </div>
+        <div class="span3" title="Code: 0xe857">
+          <i class="demo-icon icon-gz-warning">&#xe857;</i> <span class="i-name">icon-gz-warning</span><span class="i-code">0xe857</span>
+        </div>
+        <div class="span3" title="Code: 0xe858">
+          <i class="demo-icon icon-gz-co2-cloud">&#xe858;</i> <span class="i-name">icon-gz-co2-cloud</span><span class="i-code">0xe858</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe859">
+          <i class="demo-icon icon-gz-barometer">&#xe859;</i> <span class="i-name">icon-gz-barometer</span><span class="i-code">0xe859</span>
+        </div>
+        <div class="span3" title="Code: 0xe85a">
+          <i class="demo-icon icon-gz-humidity">&#xe85a;</i> <span class="i-name">icon-gz-humidity</span><span class="i-code">0xe85a</span>
+        </div>
+        <div class="span3" title="Code: 0xe85b">
+          <i class="demo-icon icon-gz-temperature">&#xe85b;</i> <span class="i-name">icon-gz-temperature</span><span class="i-code">0xe85b</span>
+        </div>
+        <div class="span3" title="Code: 0xe85d">
+          <i class="demo-icon icon-gz-left-1">&#xe85d;</i> <span class="i-name">icon-gz-left-1</span><span class="i-code">0xe85d</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xe85e">
+          <i class="demo-icon icon-gz-right-1">&#xe85e;</i> <span class="i-name">icon-gz-right-1</span><span class="i-code">0xe85e</span>
+        </div>
+        <div class="span3" title="Code: 0xe85f">
+          <i class="demo-icon icon-gz-train-public-transport-white2">&#xe85f;</i> <span class="i-name">icon-gz-train-public-transport-white2</span><span class="i-code">0xe85f</span>
+        </div>
+        <div class="span3" title="Code: 0xe860">
+          <i class="demo-icon icon-gz-door-handle">&#xe860;</i> <span class="i-name">icon-gz-door-handle</span><span class="i-code">0xe860</span>
+        </div>
+        <div class="span3" title="Code: 0xe861">
+          <i class="demo-icon icon-gz-half">&#xe861;</i> <span class="i-name">icon-gz-half</span><span class="i-code">0xe861</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span3" title="Code: 0xf0f3">
+          <i class="demo-icon icon-gz-bell-alt">&#xf0f3;</i> <span class="i-name">icon-gz-bell-alt</span><span class="i-code">0xf0f3</span>
+        </div>
+        <div class="span3" title="Code: 0xf1f8">
+          <i class="demo-icon icon-gz-trash">&#xf1f8;</i> <span class="i-name">icon-gz-trash</span><span class="i-code">0xf1f8</span>
+        </div>
+        <div class="span3" title="Code: 0xf1f9">
+          <i class="demo-icon icon-gz-water-heater">&#xf1f9;</i> <span class="i-name">icon-gz-water-heater</span><span class="i-code">0xf1f9</span>
+        </div>
+        <div class="span3" title="Code: 0xf1fa">
+          <i class="demo-icon icon-gz-mailbox">&#xf1fa;</i> <span class="i-name">icon-gz-mailbox</span><span class="i-code">0xf1fa</span>
+        </div>
+      </div>
+    </div>
+    <div class="container footer">Generated by <a href="https://fontello.com">fontello.com</a></div>
+  </body>
+</html>

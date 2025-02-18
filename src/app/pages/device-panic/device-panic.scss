@@ -1,0 +1,97 @@
+@use "../../../theme/variables.scss" as *;
+
+    $fab-size: '100px' !important;
+
+    ion-content {
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        min-height: auto;
+        width: auto;
+        background: #119DA4 !important;
+
+        .content-call {
+            text-align: center;
+            widows: 100vw;
+            height: 100vh;
+        }
+
+        .call-animation {
+            background: whitesmoke;
+            width: 15rem;
+            height: 15rem;
+            border-radius: 100%;
+            border: solid 5px white;
+            animation: play 2s ease infinite;
+            backface-visibility: hidden;
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            z-index:11;
+
+            &:after, &:before {
+                content: "";
+                position: absolute;
+                background-color: rgba(white, .4);
+                border-radius: 500px;
+                font-size: 30px;
+                width: 15rem;
+                height: 15rem;
+                display: block;
+                top: -5px;
+                left: -5px;
+                z-index: -1;
+            }
+
+            &.active {
+                &:after {
+                    animation: animacion 1s infinite;
+                }
+                
+                &:before {
+                    animation: animacion 1s infinite .2s;
+                }
+            }
+        }
+
+        @keyframes animacion {
+            from {
+                transform: scale(1);
+            }
+            
+            to {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .panicIcon {
+            font-size: 6rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #EF1717;
+        }
+    }
+
+    
+    
+
+    ion-footer {
+        
+        ion-fab {
+            left: 50%;
+            transform: translate(-50%);
+            
+            button {
+                width: 150px !important;
+                height: 150px !important;
+                ion-icon {
+                    font-size: 5.4rem !important;
+                }
+            }
+        }
+    }

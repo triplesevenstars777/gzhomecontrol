@@ -1,0 +1,94 @@
+
+<ion-col col-6 offset-3>
+    <ion-grid>
+      <ion-row>
+          <ion-col>
+          <div class="switch-wrapper">
+              <ion-label float-left>FanSpeed</ion-label>
+          </div>
+          </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-col>
+          <ion-grid class="button-group">
+              <ion-row>
+              <ion-col>
+                  <ion-button expand="block" fill="outline"
+                  [disabled]="!isWorkingInRemote"
+                  (click)="isWorkingInRemote && changeFanSpeed('Medium')"
+                  [color]="fanSpeedMedium?.current === 'Low' ? 'secondary': 'light'">
+                  Low
+                  </ion-button>
+              </ion-col>
+              <ion-col>
+                  <ion-button expand="block" fill="outline"
+                  [disabled]="!isWorkingInRemote"
+                  (click)="isWorkingInRemote && changeFanSpeed('Medium')"
+                  [color]="fanSpeedMedium?.current === 'On' ? 'secondary': 'light'">
+                  Medium
+                  </ion-button>
+              </ion-col>
+              <ion-col>
+                  <ion-button expand="block" fill="outline"
+                  [disabled]="!isWorkingInRemote"
+                  (click)="isWorkingInRemote && changeFanSpeed('High')"
+                  [color]="fanSpeedHigh?.current === 'On' ? 'secondary': 'light'">
+                  High
+                  </ion-button>
+              </ion-col>
+              </ion-row>
+          </ion-grid>
+          </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-col>
+
+<ion-col col-6 offset-3>
+    <ion-grid>
+      <ion-row>
+          <ion-col>
+          <div class="switch-wrapper">
+              <ion-label float-left>Cooling</ion-label>
+          </div>
+          </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-col>
+          <ion-grid class="button-group">
+              <ion-row>
+              <ion-col>
+                  <ion-button expand="block" fill="outline"
+                  [disabled]="!isWorkingInRemote"
+                  (click)="isWorkingInRemote && changeCooling('On')"
+                  [color]="coolingOn?.current === 'On' ? 'secondary': 'light'">
+                  On
+                  </ion-button>
+              </ion-col>
+              <ion-col>
+                  <ion-button expand="block" fill="outline"
+                  [disabled]="!isWorkingInRemote"
+                  (click)="isWorkingInRemote && changeCooling('Off')"
+                  [color]="coolingOff?.current === 'On' ? 'secondary': 'light'">
+                  Off
+                  </ion-button>
+              </ion-col>
+              </ion-row>
+          </ion-grid>
+          </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-col col-12 offset-3>
+        <ion-grid>
+          <ion-row>
+              <ion-col>
+                    <ion-item>
+                        <ion-label>Remote mode</ion-label>
+                        <ion-toggle [(ngModel)]="isWorkingInRemote" (ionChange)="notifyRemoteMode()"></ion-toggle>
+                    </ion-item>
+              </ion-col>
+          </ion-row>
+        </ion-grid>
+    </ion-col>
+    
+</ion-col>

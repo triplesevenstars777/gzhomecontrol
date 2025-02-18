@@ -1,0 +1,15 @@
+<div class="switch-wrapper">
+    <ion-label float-left>Switch 0 </ion-label>
+    <custom-switch float-right
+        [checked]="activeSwitch1" 
+        (ionChange)="onChangeEndpoint($event, switch1, 0)">
+    </custom-switch>
+</div>
+
+<div class="switch-wrapper">
+    <ion-label float-left>Switch 1</ion-label>
+    <custom-switch float-right
+        [checked]="activeSwitch2" 
+        (ionChange)="onChangeEndpoint($event, switch2, 0)">
+    </custom-switch>
+</div>

@@ -1,0 +1,78 @@
+brightness-actuator {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 50%;
+  -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+  width: 50%;
+  max-width: 50%;
+  .brightness-wrapper {
+    overflow: hidden;
+    margin-bottom: 20px;
+    padding-left: 10px;
+
+    ion-label {
+      margin-left: 50px;
+    }
+  }
+  ul {
+    li {
+      display: inline-block;
+    }
+  }
+  .notifications-adjust {
+    margin: -10px 0 25px 0;
+    background-color: transparent;
+  }
+  .notifications-brightness {
+    position: absolute;
+    left: 0;
+  }
+  .notifications-text {
+    margin-left: 95px !important;
+    font-size: 1.4rem;
+  }
+
+  .range-md .range-bar {
+    height: 12px;
+    top: 16px;
+    border-radius: 6px;
+  }
+
+  .range-md .range-bar-active {
+    background-color: #119da4;
+  }
+
+  .range-md .range-knob {
+    width: 36px;
+    height: 44px;
+    top: 0;
+    border-radius: 10%;
+    border: 2px solid #0c6368;
+    background-color: #119da4;
+    box-shadow: 0 0 8px #000000;
+  }
+
+  .range-md .range-pin,
+  .range-md .range-knob-pressed .range-pin {
+    background: grey;
+    transform: translate3d(10px, -10px, 0) scale(1);
+    &::before {
+      background: grey;
+    }
+  }
+
+  .range-md [range-right] {
+    margin: 0 0 0 22px;
+  }
+}
+
+@media (max-width: 460px) {
+  brightness-actuator {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 100%;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    width: 100%;
+    max-width: 100%;
+  }
+}

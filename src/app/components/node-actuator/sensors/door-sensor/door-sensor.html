@@ -1,0 +1,30 @@
+<ion-grid *ngIf="data">
+  <ion-row>
+    <ion-col>
+      <div class="switch-wrapper">
+        <button
+          (click)="updateName()"
+          ion-button
+          color="primary"
+          icon-only
+          small
+          float-left
+          >
+          <ion-icon name="create"></ion-icon>
+        </button>
+        <ion-label float-left>{{data.display_name || data.name}}</ion-label>
+        <button class="squishy" float-right>
+          <span class="squishy-button"></span>
+          <span class="squishy-label">
+            <span [ngClass]="data.current == 'Off' ? 'icon-gz-sensor-closed green' : 'icon-gz-sensor-open red'"></span>
+          </span>
+        </button>
+        <!-- <ion-item>
+            <ion-toggle class="notifications-switch" (ionChange)="updateNotification()" [(ngModel)]="notifications" value="1"></ion-toggle>
+            <ion-label class="notifications-text" id="enabled" *ngIf="notifications" >{{'NOTIFICATIONS_ENABLED'|translate}}</ion-label>
+            <ion-label class="notifications-text disabled" id="" *ngIf="!notifications">{{'NOTIFICATIONS_DISABLED'|translate}}</ion-label>
+          </ion-item> -->
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>

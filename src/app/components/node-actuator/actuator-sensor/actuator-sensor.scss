@@ -1,0 +1,42 @@
+@use "../../../../theme/variables.scss" as *;
+
+actuator-sensor {
+    $icon-line-height: 105px;
+    $icon-font-size: 50px;
+
+    @include size-md-down-portrait {
+        $icon-line-height: 65px;
+        $icon-font-size: 32px;
+    }
+    .switch-wrapper {
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+    .green {
+        color: green;
+    }
+    .red {
+        color: red
+    }
+    .squishy-button {
+        box-shadow: none;
+        background: transparent;
+    }
+    .squishy:before 
+    {
+        box-shadow: none;
+        background: transparent;
+    }
+    .squishy:hover .squishy-button {
+        box-shadow: none;
+    }
+    .squishy-label,
+    .squishy:hover .squishy-label {
+        font-size: $icon-font-size;
+        line-height: $icon-line-height;
+    }
+
+    ion-label {
+        margin-left: 50px !important;
+    }
+}

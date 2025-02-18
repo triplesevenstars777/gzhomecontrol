@@ -1,0 +1,92 @@
+@use "../../../theme/variables.scss" as *;
+
+    .scroll-content {
+      background-image: url('../../../assets/imgs/background-clima.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    @include size-md-down-portrait {
+        .scroll-content{
+          padding-top: 56px;
+        }
+      }
+      
+
+    .scroll-content > .grid > .row > .col {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    ion-grid.item-header.grid {
+        padding: 0px;
+    }
+    .item-header ion-row {
+        background-color: lightgray;
+        padding: 5px 25px;
+        border-bottom-left-radius: 35px;
+        border-bottom-right-radius: 35px;
+    }
+    .p-n{
+        padding: 0;
+    }
+    .time {
+        margin: auto;
+    }
+    .degrees {
+        margin-left: auto;
+        margin-right: 0px;
+    }
+     .sensor__card {
+        width: 144px;
+        min-height: 230px;
+        padding-bottom: 50px;
+        float: left;
+        margin: 20px 10px;
+        text-align: center;
+        position: relative;
+        background:  rgba(236, 240, 241, 0.8);
+        box-shadow: 1.5px 1.5px #707070;
+
+        .item-icon {
+            padding-bottom: 1rem;
+            padding-top: 1rem;
+
+            .icon {
+                font-size: 5.3rem;
+                color: white;
+
+                &.active {
+                    color: #119DA4;
+                }
+            }
+        }
+
+        .item-text {
+            font-size: 1rem;
+            color: #707070;
+            overflow: hidden;
+            max-height: 40px;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+
+            &.item-bold {
+                font-weight: bold;
+            }
+        }
+
+        .actions {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            padding: 6px 0;
+            border-top: 1px solid grey;
+
+            span {
+                cursor: pointer;
+            }
+        }
+
+    }
+.alert-message {
+    color: red !important;
+}

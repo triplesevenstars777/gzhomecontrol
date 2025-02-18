@@ -1,0 +1,22 @@
+
+  //HEADER
+  ion-header {
+    ion-navbar {
+      height: 75px;
+      color: white;
+
+      .toolbar-background {
+        background: #119DA4;
+      }
+
+      .toolbar-title {
+        color: white;
+        text-align: center;
+        margin-right: 60px;
+      }
+
+      .p-n {
+        padding: 0;
+      }
+    }
+  }

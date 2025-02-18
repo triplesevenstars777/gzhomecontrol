@@ -1,0 +1,36 @@
+button-group-auto {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 50%;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    width: 50%;
+    max-width: 50%;
+    .switch-wrapper {
+        overflow: hidden;
+        padding-left: 10px;
+        ion-label {
+            margin-left: 50px;
+        }
+        ion-grid {
+            width: 50%;
+            float: right;
+        }
+    }
+    ul {
+        li {
+            display: inline-block;
+        }
+    }
+    .notifications-adjust {
+        margin: -10px 0 15px 0 ;
+        border-bottom: 1px solid darkgray;
+    }
+    .notifications-switch {
+        position: absolute;
+        left: 0;
+    }
+    .notifications-text {
+        margin-left: 95px !important;
+        font-size: 1.4rem;
+    }
+}

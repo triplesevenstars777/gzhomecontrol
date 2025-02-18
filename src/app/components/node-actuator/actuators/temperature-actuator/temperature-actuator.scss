@@ -1,0 +1,251 @@
+temperature-actuator {
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 100%;
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+  width: 100%;
+  max-width: 100%;
+
+  $fsu: 3.75;
+  $ff: open sans, sans-serif;
+  $ext-d: 265px; // 20.5em;
+  $mid-d: 140px; // 11em
+  $int-d: 90px; // 7em
+  $mov-d: 45px; // 3.5em
+  $t: 0.3s;
+  $a: 19deg;
+  $dx: 50% x tan($a); // tan($a) = 0.34432761329
+
+  $track-d: 220px;
+  $track-w: 8px;
+  $track-o: 0.5 * ($ext-d - $track-d);
+  $track-mr: 0.5 * $track-d - $track-w;
+  $track-m: radial-gradient(
+    transparent $track-mr,
+    #000 calc(1px + #{$track-mr})
+  );
+  $track-cp: polygon(
+    50% - $dx 0,
+    50% 50%,
+    50% + $dx 0,
+    100% 0,
+    100% 100%,
+    0 100%,
+    0 0
+  );
+  $btn-d: 1 * ($mid-d - $int-d);
+
+  @mixin sp($dim, $set: -1) {
+    $off: calc(50% - 0.5 *#{$dim});
+
+    @if $set != -1 {
+      --off: $off;
+    }
+    @if $set != 0 {
+      top: $off;
+    }
+    @if $set != 1 {
+      left: $off;
+    }
+    width: $dim;
+    height: $dim;
+  }
+
+  @mixin track($co: 360deg, $wk: 0) {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transform: rotate(0.5turn);
+    background: conic-gradient(#23ccff, #ff4900 $co, transparent 0deg);
+    background-color: #3a3749;
+    @if $wk == 1 {
+      -webkit-clip-path: $track-cp;
+    }
+    clip-path: polygon(
+      50% - 30% 0,
+      50% 50%,
+      50% + 30% 0,
+      100% 0,
+      100% 100%,
+      0 100%,
+      0 0
+    );
+  }
+
+  .switch-wrapper {
+    overflow: hidden;
+    padding-left: 10px;
+    height: 370px;
+    ion-label {
+      margin-left: 50px;
+    }
+    .range-md {
+      width: 350px !important;
+      margin: 0 auto;
+      right: 5px;
+      top: 310px;
+      z-index: 99;
+      .range-bar {
+        height: 12px;
+        top: 16px;
+        border-radius: 6px;
+      }
+      .range-bar-active {
+        background-color: #119da4;
+      }
+      .range-knob {
+        width: 36px;
+        height: 44px;
+        top: 0;
+        border-radius: 10%;
+        border: 2px solid #0c6368;
+        background-color: #119da4;
+        box-shadow: 0 0 8px #000000;
+      }
+    }
+    div.outer-container {
+      height: 275px;
+      width: 50%;
+      float: right;
+      div.tempGraph-container {
+        overflow: hidden;
+        background: #fdfdfd;
+        border-radius: 50%;
+        *,
+        :after,
+        :before {
+          box-sizing: inherit;
+          position: absolute;
+          margin: 0;
+          padding: 0;
+          border-radius: inherit;
+          text-align: center;
+          font: inherit;
+          content: "";
+        }
+      }
+
+      div.tempGraph {
+        --ratio: calc(
+          (var(--val, 0) - var(--min, 0)) / (var(--max, 100) - var(--min, 0))
+        );
+        --co: calc(#{$a} + var(--ratio, 0) * (1turn - 2 *#{$a}));
+        box-sizing: border-box;
+        @include sp($ext-d);
+        border-radius: 50%;
+        background: #6d697f;
+        font: 300 #{$fsu * 1em}/ 1 $ff;
+
+        &:before {
+          @include sp($mid-d);
+          box-shadow: 0 15px 35px 11px rgba(46, 44, 58, 0.6);
+          background: #e3e4ed;
+        }
+      }
+
+      .temp-input {
+        &::-webkit-slider-runnable-track,
+        &::-webkit-slider-thumb,
+        & {
+          -webkit-appearance: none;
+        }
+        clip-path: $track-cp;
+        top: $track-o;
+        left: $track-o;
+        width: $track-d;
+        height: $track-d;
+        background: none; /* fix Chrome white */
+        pointer-events: none;
+
+        /* track styles */
+        &::-webkit-slider-runnable-track {
+          @include track(var(--co, 0), 1);
+          -webkit-mask: $track-m;
+        }
+
+        &::-moz-range-track {
+          @include track();
+          mask: $track-m;
+        }
+
+        &::-moz-range-thumb {
+          opacity: 0;
+        }
+      }
+
+      label[for="temp"] {
+        font-size: 14px !important;
+        font-weight: bold !important;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        font: 700 1rem/4 $ff;
+        color: #c7c7d1;
+        text-transform: uppercase;
+      }
+      span {
+        margin-left: 24px !important;
+        margin-top: -10px !important;
+        font-size: 20px !important;
+      }
+      output[for="temp"] {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        @include sp($int-d);
+        p {
+          font-size: 34px !important;
+        }
+        box-shadow: 0 15px 35px 5px rgba(96, 93, 111, 0.3);
+        background: #f8f9fa;
+        border: 1px solid rgba(96, 93, 111, 0.3);
+        line-height: $int-d;
+      }
+
+      button {
+        overflow: hidden;
+        @include sp($btn-d, 1);
+        left: calc(var(--off, 0) + var(--s, 0) *#{0.5 * ($int-d + $btn-d)});
+        border: none;
+        background: none;
+        color: #b9b6c8;
+        color: #6b677d;
+        border-radius: 0;
+        text-indent: $btn-d;
+        white-space: nowrap;
+        transition: color $t;
+        cursor: pointer;
+        &:focus,
+        &:hover {
+          outline: none;
+          color: coral;
+        }
+
+        &:after {
+          @include sp(0.25 * $btn-d);
+          border: solid 0 currentcolor;
+          border-width: 3px 0 0 3px;
+          transform: rotate(calc(45deg + var(--s, 0) * 90deg));
+        }
+      }
+      button#incr {
+        margin-left: 35px !important;
+      }
+      button#decr {
+        margin-left: -84px !important;
+      }
+    }
+  }
+  .notifications-adjust {
+    margin: -10px 0 15px 0;
+    border-bottom: 1px solid darkgray;
+  }
+  .notifications-switch {
+    position: absolute;
+    left: 0;
+  }
+  .notifications-text {
+    margin-left: 95px !important;
+    font-size: 1.4rem;
+  }
+}

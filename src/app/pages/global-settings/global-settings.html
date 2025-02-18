@@ -1,0 +1,132 @@
+<main-header
+  *ngIf="!isLoading"
+  [icon]="'cog'"
+  [section]="'SETTINGS_TITLE' | translate"
+  [homeVisible]="true"
+  [noDisturb]="noDisturb" 
+  [panic]="panic"        
+></main-header>
+<ion-content *ngIf="!isLoading">
+  <ion-list class="has-arrow" style="margin-top: 120px; height: 55%;">
+    <ion-item>
+      <ion-label>{{ 'NO_DISTURB_MODE' | translate }}</ion-label>
+      <div>
+        <ion-toggle
+          [(ngModel)]="noDisturb"
+          (ionChange)="updateDisturbState(noDisturb)"
+          checked="false"
+          value="1"
+        ></ion-toggle>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{ 'PANIC_MODE' | translate }}</ion-label>
+      <div>
+        <ion-toggle
+          [(ngModel)]="panic"
+          (ionChange)="updatePanicState(panic)"
+          checked="false"
+          value="1"
+        ></ion-toggle>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{ 'BLOCK_DEVICES' | translate }}</ion-label>
+      <div>
+        <ion-toggle
+          [(ngModel)]="blockDevices"
+          (ionChange)="updateBlockDevices(blockDevices)"
+          checked="false"
+          value="1"
+        ></ion-toggle>
+      </div>
+    </ion-item>
+    <ion-item button (click)="push('InTogglesPage', 'out')">
+      <ion-label>
+        <h2>{{ 'LEAVING_HOME' | translate }}</h2>
+      </ion-label>
+    </ion-item>
+    <ion-item button (click)="push('InTogglesPage', 'in')">
+      <ion-label>
+        <h2>{{ 'ARRIVING_AT_HOME' | translate }}</h2>
+      </ion-label>
+    </ion-item>
+    <ion-item button (click)="goToScenes()">
+      <ion-label>
+        <h2>{{ 'SCENES' | translate }}</h2>
+      </ion-label>
+    </ion-item>
+    <ion-item class="select_language">
+      <ion-label>{{ 'LANGUAGE' | translate }}</ion-label>
+      <ion-select
+        [(ngModel)]="currentLanguage"
+        [placeholder]="currentLanguage"
+        (ionChange)="updateLanguage($event)"
+      >
+        <ion-select-option value="en">{{ 'ENGLISH' | translate}}</ion-select-option>
+        <ion-select-option value="es">{{ 'SPANISH' | translate}}</ion-select-option>
+        <ion-select-option value="de">{{ 'GERMAN' | translate}}</ion-select-option>
+        <ion-select-option value="it">{{ 'ITALIAN' | translate}}</ion-select-option>
+        <ion-select-option value="fr">{{ 'FRENCH' | translate}}</ion-select-option>
+        <ion-select-option value="po">{{ 'POLISH' | translate}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item class="select_doorbell">
+      <ion-label>{{ 'RINGTONE' | translate }}</ion-label>
+      <ion-select
+        [(ngModel)]="currentDoorbell"
+        placeholder="{{ 'SELECT_RINGTONE' | translate }}"
+        (ionChange)="updateRingtone($event)"
+      >
+        <ion-select-option value="CARILLON_AUDIO_KEY">Carillon</ion-select-option>
+        <ion-select-option value="DEFAULT_AUDIO_KEY">Default</ion-select-option>
+        <ion-select-option value="DINGDONG_AUDIO_KEY">Ding Dong</ion-select-option>
+        <ion-select-option value="OLD_FASHIONED_AUDIO_KEY">Old Fashion</ion-select-option>
+        <ion-select-option value="STANDARD_AUDIO_KEY">Standard</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item button (click)="accessAdvanced()">
+      <ion-label>
+        <h2>{{ 'ADVANCED' | translate }}</h2>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-grid class="grid" style="width: 90%; margin-left: 5%;" >
+    <ion-row style="margin-bottom: 20px;">
+      <ion-col col-12>
+        <ion-button expand="block" style="--background: #119DA4" (click)="logout()">
+          {{ 'LOGOUT' | translate }}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col text-left class="user-info"
+        ><strong>{{ 'USER' | translate }}</strong> {{ currentUser
+        }}
+      </ion-col>
+      <ion-col style="text-align: right;">
+        <h5>gZ HomeControl</h5>
+        <h5>{{ appVersion }}</h5>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid class="footer" style="width: 90%; margin-left: 5%; margin-bottom: 5%;">
+    <ion-row>
+      <ion-col>
+          <h5>{{ 'TABLET_INFORMATION' | translate }}</h5>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h6>{{ 'MANUFACTURER' | translate }}: {{ tabletManufacturer }}</h6>
+      </ion-col>
+      <ion-col>
+        <h6>{{ 'MODEL' | translate }}: {{ tabletModel }}</h6>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<main-footer [menuVisible]="true"></main-footer>
