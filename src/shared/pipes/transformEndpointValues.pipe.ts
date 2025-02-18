@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'transformEndpointValues'
+  name: 'transformEndpointValues',
+  standalone: true
 })
 // tslint:disable-next-line:class-name
 export class TransformEndpointValues implements PipeTransform {

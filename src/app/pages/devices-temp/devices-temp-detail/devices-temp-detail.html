@@ -1,16 +1,21 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>{{ data?.display_name || data?.name || '' }}</ion-title>
-  </ion-navbar>
+  <ion-toolbar style="padding-top: 20px;">
+    <ion-buttons slot="start">
+      <ion-button (click)="setBackButtonAction()" style="color: white; font-size: 22px;">
+          <span class="icon icon-gz-left-1"></span>
+      </ion-button>
+    </ion-buttons>
+    <ion-title style="margin-left: -40px;"><h4>{{ data ? data.name : 'Unknown Device' }}</h4></ion-title>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="page-devices-temp-detail ">
   <ion-grid class="item-header">
     <ion-row>
       <ion-col col-5 class="node_type">
         <b>{{ 'NODE_TYPE' | translate}}:</b> {{data?.scheme?.name}}
       </ion-col>
-      <ion-col col-2 text-center>
+      <ion-col col-2 text-center style="text-align: center; margin-top: 10px;">
         <ion-badge item-end *ngIf="data?.active"
           >{{ 'CONNECTED' | translate }}</ion-badge
         >
@@ -37,8 +42,7 @@
                 <span class="icon {{endpoint?.iconClass}}"></span>
               </div>
               <div class="item-text center item-bold {{endpoint?.rowClass}}">
-                {{(endpoint?.current|transformEndpointValues:endpoint:'section:value')
-                || '-'}} {{endpoint?.units?.[0]?.name || '-'}}
+                {{(endpoint?.current|transformEndpointValues:endpoint:'section:value') || '-'}} {{endpoint?.units?.[0]?.name || '-'}}
               </div>
               <div class="item-text center small {{endpoint?.rowClass}}">
                 {{endpoint?.display_name || endpoint.name }}

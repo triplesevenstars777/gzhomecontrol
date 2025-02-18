@@ -1,159 +1,163 @@
-<ion-col col-6>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        {{ 'ACT_COMPLETE' | translate }}
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="buttons">
-        <button
-          class="squishy"
-          [disabled]="sendedValue === 'On'|| startUp || startDown"
-          (click)="pushOn('UP', BLIND_ACTIONS.COMPLETE)"
-        >
-          <span class="squishy-button"></span>
-          <span class="squishy-label">
-            <span class="icon-gz-arrow-up"></span>
-          </span>
-        </button>
-        <button
-          class="squishy"
-          [disabled]="sendedValue === 'On' || startUp || startDown"
-          (click)="pushOn('DOWN', BLIND_ACTIONS.COMPLETE)"
-        >
-          <span class="squishy-button"></span>
-          <span class="squishy-label">
-            <span class="icon-gz-arrow-down"></span>
-          </span>
-        </button>
-        <button
-          class="squishy squishy-danger"
-          [disabled]="startUp || startDown"
-          (click)="pushOff( BLIND_ACTIONS.COMPLETE )"
-        >
-          <span class="squishy-button"></span>
-          <span class="squishy-label">
-            <span class="icon-gz-stop"></span>
-          </span>
-        </button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-col>
-<ion-col col-6>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        {{ 'ACT_PARTIAL' | translate }}
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="buttons">
-        <button
-          class="squishy"
-          *ngIf="!startUp"
-          [disabled]="(sendedValue === 'On' && actionRunning !== BLIND_ACTIONS.PARTIAL) || startDown"
-          (click)="pushOn('UP', BLIND_ACTIONS.PARTIAL)"
-        >
-          <span class="squishy-button"></span>
-          <span class="squishy-label">
-            <span class="icon-gz-arrow-up"></span>
-          </span>
-        </button>
-        <button
-          class="squishy squishy-danger active"
-          *ngIf="startUp"
-          [disabled]="sendedValue === 'On' && actionRunning !== BLIND_ACTIONS.PARTIAL"
-          (click)="pushOff( BLIND_ACTIONS.PARTIAL )"
-        >
-          <span class="squishy-button"></span>
-          <span class="squishy-label">
-            <span class="icon-gz-stop"></span>
-          </span>
-        </button>
-        <button
-          class="squishy"
-          *ngIf="!startDown"
-          [disabled]="(sendedValue === 'On' && actionRunning !== BLIND_ACTIONS.PARTIAL) || startUp"
-          (click)="pushOn('DOWN', BLIND_ACTIONS.PARTIAL)"
-        >
-          <span class="squishy-button"></span>
-          <span class="squishy-label">
-            <span class="icon-gz-arrow-down"></span>
-          </span>
-        </button>
-        <button
-          class="squishy squishy-danger active"
-          *ngIf="startDown"
-          [disabled]="sendedValue === 'On' && actionRunning !== BLIND_ACTIONS.PARTIAL"
-          (click)="pushOff( BLIND_ACTIONS.PARTIAL )"
-        >
-          <span class="squishy-button"></span>
-          <span class="squishy-label">
-            <span class="icon-gz-stop"></span>
-          </span>
-        </button>
-        <ion-badge class="counter" color="yellow" item-end *ngIf="device.active"
-          >{{timing}}</ion-badge
-        >
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-col>
-<ion-col col-6 *ngIf="bladeTime">
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        {{ 'ACT_BLADES' | translate }}
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="buttons">
-        <button
-          class="squishy"
-          [disabled]="sendedValue === 'On'"
-          (click)="pushOn('UP', BLIND_ACTIONS.BLADES)"
-        >
-          <span class="squishy-button"></span>
-          <span class="squishy-label">
-            <span class="icon-gz-blades-open"></span>
-          </span>
-        </button>
-        <button
-          class="squishy"
-          [disabled]="sendedValue === 'On'"
-          (click)="pushOn('DOWN', BLIND_ACTIONS.BLADES)"
-        >
-          <span class="squishy-button"></span>
-          <span class="squishy-label">
-            <span class="icon-gz-blades-close"></span>
-          </span>
-        </button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-</ion-col>
+<ion-row class="actuator-blind">
+  <ion-col>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <h4 style="margin-top: 20px; margin-bottom: 20px;">{{ 'ACT_COMPLETE' | translate }}</h4>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="buttons">
+          <button
+            class="squishy"
+            [disabled]="sendedValue === 'On'|| startUp || startDown"
+            (click)="pushOn('UP', BLIND_ACTIONS.COMPLETE)"
+          >
+            <span class="squishy-button"></span>
+            <span class="squishy-label">
+              <span class="icon-gz-arrow-up"></span>
+            </span>
+          </button>
+          <button
+            class="squishy"
+            [disabled]="sendedValue === 'On' || startUp || startDown"
+            (click)="pushOn('DOWN', BLIND_ACTIONS.COMPLETE)"
+          >
+            <span class="squishy-button"></span>
+            <span class="squishy-label">
+              <span class="icon-gz-arrow-down"></span>
+            </span>
+          </button>
+          <button
+            class="squishy squishy-danger"
+            [disabled]="startUp || startDown"
+            (click)="pushOff( BLIND_ACTIONS.COMPLETE )"
+          >
+            <span class="squishy-button"></span>
+            <span class="squishy-label">
+              <span class="icon-gz-stop"></span>
+            </span>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-col>
+  <ion-col >
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <h4 style="margin-top: 20px; margin-bottom: 20px;">{{ 'ACT_PARTIAL' | translate }}</h4>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="buttons">
+          <button
+            class="squishy"
+            *ngIf="!startUp"
+            [disabled]="(sendedValue === 'On' && actionRunning !== BLIND_ACTIONS.PARTIAL) || startDown"
+            (click)="pushOn('UP', BLIND_ACTIONS.PARTIAL)"
+          >
+            <span class="squishy-button"></span>
+            <span class="squishy-label">
+              <span class="icon-gz-arrow-up"></span>
+            </span>
+          </button>
+          <button
+            class="squishy squishy-danger active"
+            *ngIf="startUp"
+            [disabled]="sendedValue === 'On' && actionRunning !== BLIND_ACTIONS.PARTIAL"
+            (click)="pushOff( BLIND_ACTIONS.PARTIAL )"
+          >
+            <span class="squishy-button"></span>
+            <span class="squishy-label">
+              <span class="icon-gz-stop"></span>
+            </span>
+          </button>
+          <button
+            class="squishy"
+            *ngIf="!startDown"
+            [disabled]="(sendedValue === 'On' && actionRunning !== BLIND_ACTIONS.PARTIAL) || startUp"
+            (click)="pushOn('DOWN', BLIND_ACTIONS.PARTIAL)"
+          >
+            <span class="squishy-button"></span>
+            <span class="squishy-label">
+              <span class="icon-gz-arrow-down"></span>
+            </span>
+          </button>
+          <button
+            class="squishy squishy-danger active"
+            *ngIf="startDown"
+            [disabled]="sendedValue === 'On' && actionRunning !== BLIND_ACTIONS.PARTIAL"
+            (click)="pushOff( BLIND_ACTIONS.PARTIAL )"
+          >
+            <span class="squishy-button"></span>
+            <span class="squishy-label">
+              <span class="icon-gz-stop"></span>
+            </span>
+          </button>
+          <ion-badge class="counter" color="yellow" item-end *ngIf="device.active"
+            >{{timing}}</ion-badge
+          >
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-col>
+</ion-row>
+<ion-row class="actuator-blind">
+  <ion-col  *ngIf="bladeTime">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <h4 style="margin-top: 20px; margin-bottom: 20px;">{{ 'ACT_BLADES' | translate }}</h4>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="buttons">
+          <button
+            class="squishy"
+            [disabled]="sendedValue === 'On'"
+            (click)="pushOn('UP', BLIND_ACTIONS.BLADES)"
+          >
+            <span class="squishy-button"></span>
+            <span class="squishy-label">
+              <span class="icon-gz-blades-open"></span>
+            </span>
+          </button>
+          <button
+            class="squishy"
+            [disabled]="sendedValue === 'On'"
+            (click)="pushOn('DOWN', BLIND_ACTIONS.BLADES)"
+          >
+            <span class="squishy-button"></span>
+            <span class="squishy-label">
+              <span class="icon-gz-blades-close"></span>
+            </span>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-col>
+</ion-row>
 <!-- <ion-row class="notifications-container">
-      <ion-col>
-          <h3>On UP event</h3>
-        <ion-item>
-          <ion-toggle class="notifications-switch" (ionChange)="updateNotification(endpointUp, 'up')" [(ngModel)]="notificationsUp"
-            value="1"></ion-toggle>
-
-          <ion-label class="notifications-text" id="enabled" *ngIf="notificationsUp" color="primary">{{'NOTIFICATIONS_ENABLED'|translate}}</ion-label>
-          <ion-label class="notifications-text" id="disabled" *ngIf="!notificationsUp">{{'NOTIFICATIONS_DISABLED'|translate}}</ion-label>
-        </ion-item>
-      </ion-col>
-    
-      <ion-col>
-          <h3>On DOWN event</h3>
-        <ion-item>
-          <ion-toggle class="notifications-switch" (ionChange)="updateNotification(endpointDown, 'down')" [(ngModel)]="notificationsDown"
-            value="1"></ion-toggle>
-        
-          <ion-label class="notifications-text" id="enabled" *ngIf="notificationsDown" color="primary">{{'NOTIFICATIONS_ENABLED'|translate}}</ion-label>
-          <ion-label class="notifications-text" id="disabled" *ngIf="!notificationsDown">{{'NOTIFICATIONS_DISABLED'|translate}}</ion-label>
-        </ion-item>
-      </ion-col>
-    </ion-row> -->
+        <ion-col>
+            <h3>On UP event</h3>
+          <ion-item>
+            <ion-toggle class="notifications-switch" (ionChange)="updateNotification(endpointUp, 'up')" [(ngModel)]="notificationsUp"
+              value="1"></ion-toggle>
+  
+            <ion-label class="notifications-text" id="enabled" *ngIf="notificationsUp" color="primary">{{'NOTIFICATIONS_ENABLED'|translate}}</ion-label>
+            <ion-label class="notifications-text" id="disabled" *ngIf="!notificationsUp">{{'NOTIFICATIONS_DISABLED'|translate}}</ion-label>
+          </ion-item>
+        </ion-col>
+      
+        <ion-col>
+            <h3>On DOWN event</h3>
+          <ion-item>
+            <ion-toggle class="notifications-switch" (ionChange)="updateNotification(endpointDown, 'down')" [(ngModel)]="notificationsDown"
+              value="1"></ion-toggle>
+          
+            <ion-label class="notifications-text" id="enabled" *ngIf="notificationsDown" color="primary">{{'NOTIFICATIONS_ENABLED'|translate}}</ion-label>
+            <ion-label class="notifications-text" id="disabled" *ngIf="!notificationsDown">{{'NOTIFICATIONS_DISABLED'|translate}}</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-row> -->  

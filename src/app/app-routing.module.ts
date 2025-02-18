@@ -34,10 +34,10 @@ const routes: Routes = [
     path: 'devices-temp',
     loadChildren: () => import('./pages/devices-temp/devices-temp.module').then(m => m.DevicesTempPageModule)
   },  
-  // {
-  //   path: '/device-temp/device-temp-detail',
-  //   loadChildren: () => import('./pages/devices-temp/devices-temp-detail/devices-temp-detail.module').then(m => m.DeviceTempDetailPageModule)
-  // },
+  {
+    path: 'device-temp/device-temp-detail',
+    loadChildren: () => import('./pages/devices-temp/devices-temp-detail/devices-temp-detail.module').then(m => m.DeviceTempDetailPageModule)
+  },
   {
     path: 'devices-blind',
     loadChildren: () => import('./pages/devices-blind/devices-blind.module').then(m => m.DevicesBlindPageModule)

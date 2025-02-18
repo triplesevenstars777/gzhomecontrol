@@ -17,6 +17,7 @@ export interface Node {
     status?:string;
     uid?: Uid;
     scheme?: Scheme;
+    display_name?: string; // Add display_name property
     created_at?: Date;
 }
 
@@ -44,6 +45,7 @@ export interface Endpoint {
     value: Value;
     current?: any;
     states: State[];
+    units?: { name: string; factor?: number; offset?: number; }[];
 }
 
 interface Value {

@@ -1,71 +1,84 @@
-import { Component } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { TranslateService } from "@ngx-translate/core";
-import { ActivatedRoute, Router } from '@angular/router';
+import { NavController } from "@ionic/angular";
+import { Router } from "@angular/router";
 import moment from "moment";
+
 import { AlertController } from "@ionic/angular";
-import { Node } from "../../../models/node.model";
+import { Node, Endpoint } from "../../../models/node.model";
 import { Constants, SocketService } from "../../../providers";
 import { NodeService } from "../../../providers/api/node.service";
 import { Subscription } from "rxjs";
 
-
-interface ExtendedEndpoint {
-  id: string;
-  _id: string;
+interface DisplayEndpoint extends Endpoint {
+  iconClass: string;
+  rowClass: string;
   show_in_mobile: boolean;
-  iconClass?: string;
-  rowClass?: string;
-  current?: any;
-  display_name?: string;
+  units?: { name: string; factor?: number; offset?: number; }[];
+}
+
+function isMobileEndpoint(endpoint: Endpoint): endpoint is DisplayEndpoint {
+  return 'show_in_mobile' in endpoint && endpoint.show_in_mobile === true;
+}
+
+interface NavigationState {
+  device: Node;
+}
+
+interface Measure {
+  device: string;
+  endpoint: string;
+  value: number;
+  created_at: string;
+}
+
+interface UpdateData {
+  currentName: string;
+  endpoint: string;
 }
 
 @Component({
   selector: "page-devices-temp-detail",
   templateUrl: "devices-temp-detail.html",
-  styleUrl: "./devices-temp-detail.scss",
+  styleUrl : "./devices-temp-detail.scss",
   standalone: false
 })
-export class DeviceTempDetailPage {
-  public data: Node | null = null; // Initialize as null
-  public nodeUpdated: Node | null = null; // Initialize as null
-  public device: string | null = null; // Initialize as null
-  public status: any;
-  public interval: any;
-  public endpointName: any = null;
-  public updatedNotification: any = null;
+export class DeviceTempDetailPage implements OnInit, OnDestroy {
+  public data: Node | null = null;
+  public nodeUpdated: Node | null = null;
+  public device: string | null = null;
+  public status: string | null = null;
+  public interval: number | null = null;
+  public endpointName: UpdateData | null = null;
+  public updatedNotification: string | null = null;
   public TYPE_ENDPOINTS = Constants.TYPE_ENDPOINTS;
   public TYPE_NODE = Constants.TYPE_NODE;
-  public displayEndpoints: any[] = [];
+  public displayEndpoints: DisplayEndpoint[] = [];
   public lastUpdate: string = moment(new Date()).format("hh:mm:ss DD-MM-Y");
 
-  private ioMeasure: Subscription | null = null; // Initialize as null
+  private ioMeasure: Subscription = new Subscription();
 
-  public cancelButtonString: string;
-  public updateButtonString: string;
-  public updateEndpointTitleString: string;
-  public endpointNameEdit: string;
+  public cancelButtonString: string = '';
+  public updateButtonString: string = '';
+  public updateEndpointTitleString: string = '';
+  public endpointNameEdit: string = '';
 
-  public comfortLabel: string;
-  public comfortValue: number | null = null; // Initialize as null
-  public comfortLabelColor: string;
+  public comfortLabel: string = '';
+  public comfortValue: number = 0;
+  public comfortLabelColor: string = '';
 
   constructor(
     private alertCtrl: AlertController,
     private nodeService: NodeService,
     private socketService: SocketService,
+    public navCtrl: NavController,
     private router: Router,
-    public route: ActivatedRoute,
     public translateService: TranslateService
   ) {
-    const deviceParam = this.route.snapshot.paramMap.get("device");
-    if (deviceParam) {
-      try {
-        this.data = JSON.parse(deviceParam) as Node;
-      } catch {
-        this.data = null;
-      }
-    }
-  
+    const navigation = this.router.getCurrentNavigation();
+    const state = navigation?.extras?.state as NavigationState | undefined;
+    this.data = state?.device ?? null;
+
     this.translateService.get([
       'CANCEL_BUTTON',
       'PLEASE_CHOOSE_ENDPOINT_NAME',
@@ -79,99 +92,119 @@ export class DeviceTempDetailPage {
     });
   }
 
-  ionViewCanEnter() {
+  canActivate(): boolean {
     return this.data !== null;
   }
 
-  ionViewDidLoad() {
+  ngOnInit() {
     this.initSocketIO();
     this.setDisplayEndpoints();
   }
 
-  setDisplayEndpoints() {
+  ngOnDestroy() {
+    this.unsubscribers();
+  }
+
+  /*
+   * Method to override the default back button action
+   */
+  setBackButtonAction(): void {
+    this.unsubscribers();
+    this.navCtrl.back();
+  }
+
+  setDisplayEndpoints(): void {
     if (!this.data?.scheme?.endpoints) {
-      return; // Ensure data is valid
+      return;
     }
-  
-    for (const endpoint of this.data.scheme.endpoints) {
-      const extendedEndpoint = endpoint as unknown as ExtendedEndpoint;
-      if (extendedEndpoint.show_in_mobile) {
-        console.log(`Icon class: ${extendedEndpoint.id.toLowerCase()}`);
-        extendedEndpoint.iconClass = extendedEndpoint.id.toLowerCase();
-        extendedEndpoint.rowClass = '';
-  
-        switch (true) {
-          case extendedEndpoint.iconClass == this.TYPE_ENDPOINTS.HUMIDITY:
-            extendedEndpoint.iconClass = 'icon-gz-' + extendedEndpoint.iconClass;
-            extendedEndpoint.rowClass = 'text-blue';
-            break;
-          case extendedEndpoint.iconClass.indexOf(this.TYPE_ENDPOINTS.TEMPERATURE + '_') == 0:
-          case extendedEndpoint.iconClass == this.TYPE_ENDPOINTS.TEMPERATURE:
-            extendedEndpoint.iconClass = "icon-gz-temperature";
-            extendedEndpoint.rowClass = "text-orange";
-            break;
-          case extendedEndpoint.iconClass.indexOf(this.TYPE_ENDPOINTS.TARGET_TEMPERATURE + '_') == 0:
-          case extendedEndpoint.iconClass == this.TYPE_ENDPOINTS.TARGET_TEMPERATURE:
-            extendedEndpoint.iconClass = "icon-gz-temperature";
-            break;
-          case extendedEndpoint.iconClass == this.TYPE_ENDPOINTS.CO2:
-            extendedEndpoint.iconClass = "icon-gz-co2-cloud";
-            break;
-          case extendedEndpoint.iconClass == this.TYPE_ENDPOINTS.PRESSURE:
-            extendedEndpoint.iconClass = "icon-gz-barometer";
-            break;
-          case extendedEndpoint.iconClass == 'battery':
-            extendedEndpoint.iconClass = 'icon-gz-half';
-            break;
-          default:
-            extendedEndpoint.iconClass = "icon-gz-" + extendedEndpoint.iconClass;
-        }
-  
-        this.displayEndpoints.push(extendedEndpoint);
-        this.lastUpdate = moment(new Date()).format("hh:mm:ss DD-MM-Y");
+    
+    const endpoints = this.data.scheme.endpoints
+      .filter((endpoint): endpoint is DisplayEndpoint => isMobileEndpoint(endpoint))
+      .map(endpoint => {
+      const { id } = endpoint;
+      const baseIconClass = id.toLowerCase();
+      let finalIconClass = baseIconClass;
+      let rowClass = '';
+
+      switch (true) {
+        case id === this.TYPE_ENDPOINTS.HUMIDITY:
+          finalIconClass = `icon-gz-${baseIconClass}`;
+          rowClass = 'text-blue';
+          break;
+        case id.indexOf(this.TYPE_ENDPOINTS.TEMPERATURE+'_') === 0:
+        case id === this.TYPE_ENDPOINTS.TEMPERATURE:
+          finalIconClass = "icon-gz-temperature";
+          rowClass = "text-orange";
+          break;
+        case id.indexOf(this.TYPE_ENDPOINTS.TARGET_TEMPERATURE+'_') === 0:
+        case id === this.TYPE_ENDPOINTS.TARGET_TEMPERATURE:
+          finalIconClass = "icon-gz-temperature";
+          break;
+        case id === this.TYPE_ENDPOINTS.CO2:
+          finalIconClass = "icon-gz-co2-cloud";
+          break;
+        case id === this.TYPE_ENDPOINTS.PRESSURE:
+          finalIconClass = "icon-gz-barometer";
+          break;
+        case id === 'battery':
+          finalIconClass = 'icon-gz-half';
+          break;
+        default:
+          finalIconClass = `icon-gz-${baseIconClass}`;
       }
-    }
-  
+
+      return {
+        ...endpoint,
+        iconClass: finalIconClass,
+        rowClass,
+        units: endpoint.units || []
+      } as DisplayEndpoint;
+    });
+
+    this.displayEndpoints = endpoints;
+    this.lastUpdate = moment(new Date()).format("hh:mm:ss DD-MM-Y");
     this.findComfortOperators();
   }
 
-  initSocketIO() {
-    this.ioMeasure = this.socketService.onMeasureCreated().subscribe((measure: any) => {
+  initSocketIO(): void {
+    this.ioMeasure = this.socketService.onMeasureCreated().subscribe((measure: Measure) => {
       this.updateMeasure(measure);
     });
   }
 
-  updateMeasure(measure: any) {
-    if (!this.data || measure.device !== this.data._id) {
+  updateMeasure(measure: Measure): void {
+    if (!this.data || measure.device !== this.data._id || !this.data.scheme?.endpoints) {
       return;
     }
 
-    const updatedData = { ...this.data } as Node;
-    if (updatedData.scheme?.endpoints) {
-      updatedData.last_update = measure.created_at;
-      for (let i = 0; i < updatedData.scheme.endpoints.length; i++) {
-        const endpointId = updatedData.scheme.endpoints[i]._id;
+    const data = { ...this.data };
+    data.last_update = measure.created_at;
+    
+    if (data.scheme?.endpoints) {
+      for (let i = 0; i < data.scheme.endpoints.length; i++) {
+        let endpointId = data.scheme.endpoints[i]._id;
         if (endpointId === measure.endpoint) {
-          updatedData.scheme.endpoints[i].current = measure.value;
+          data.scheme.endpoints[i].current = measure.value;
         }
       }
     }
 
     this.findComfortOperators();
-    this.data = updatedData;
+    this.data = data;
   }
 
-  findComfortOperators() {
-    const tempEndpoint = this.displayEndpoints.find((item: any) => {
-      return item.id == this.TYPE_ENDPOINTS.TEMPERATURE && item.show_in_mobile;
-    });
+  findComfortOperators(): void {
+  const tempEndpoint = this.displayEndpoints.find(item => 
+      item.id === this.TYPE_ENDPOINTS.TEMPERATURE
+    );
 
-    const humEndpoint = this.displayEndpoints.find((item: any) => {
-      return item.id == this.TYPE_ENDPOINTS.HUMIDITY && item.show_in_mobile;
-    });
+  const humEndpoint = this.displayEndpoints.find(item => 
+      item.id === this.TYPE_ENDPOINTS.HUMIDITY
+    );
 
     if (tempEndpoint && humEndpoint) {
-      this.comfortValue = this.getComfort(tempEndpoint.current, humEndpoint.current);
+
+      this.comfortValue = this.getComfort( tempEndpoint.current, humEndpoint.current);
 
       if (this.comfortValue < 26) {
         this.comfortLabel = 'Bad';
@@ -183,39 +216,47 @@ export class DeviceTempDetailPage {
         this.comfortLabel = 'Good';
         this.comfortLabelColor = 'blue';
       } else {
-        this.comfortLabel = 'Excellent';
+        this.comfortLabel = 'Excelent';
         this.comfortLabelColor = 'green';
       }
     }
   }
 
-  getComfort(temp: number, hum: number) {
-    let tempMean = 22.5;
-    let humidityMean = 40;
-    let tempTH = 2.5;
-    let humTH = 15;
+  /**
+   * Returns percent value of confort index, based on internal temperature & humidity
+   *
+   * @param temp
+   * @param hum
+   */
+  getComfort(temp: number, hum: number): number {
+  const tempMean = 22.5;
+  const humidityMean = 40;
+  // Temperature threshold, minimum temperature at home
+  const tempTH = 2.5;
+  // Humidity threshold, minimum humidity at home
+  const humTH = 15;
 
-    let tempG = this.getGaussian(temp, tempMean, tempTH);
-    let humG = this.getGaussian(hum, humidityMean, humTH);
+  const tempG = this.getGaussian(temp, tempMean, tempTH);
+  const humG = this.getGaussian(hum, humidityMean, humTH);
+  const real = Math.sqrt(tempG * humG);
 
-    let real = Math.sqrt(tempG * humG);
     return Math.ceil(real / 10) * 10;
   }
 
-  getGaussian(x: number, u: number, t: number) {
+  getGaussian(x: number, u: number, t: number): number {
     return 100 * Math.exp(-((x - u) * (x - u)) / (2 * t * t));
   }
 
-  openItem(endpoint: any) {
-    this.router.navigate(["DeviceTempGraphsPage"], {
-      queryParams: {
+  async openItem(endpoint: DisplayEndpoint): Promise<void> {
+    await this.navCtrl.navigateForward("device-temp-graphs", {
+      state: {
         device: this.data,
         endpoint: endpoint
       }
     });
   }
 
-  async updateName(dataUpdate: any) {
+  async updateName(dataUpdate: UpdateData): Promise<void> {
     const alert = await this.alertCtrl.create({
       header: this.updateEndpointTitleString,
       inputs: [
@@ -228,43 +269,55 @@ export class DeviceTempDetailPage {
         { text: this.cancelButtonString },
         {
           text: this.updateButtonString,
-          handler: (promptData: { endpointName: string }) => {
-            if (promptData.endpointName !== "") {
-              if (this.data?.scheme?.endpoints) {
-                const index = this.data.scheme.endpoints.findIndex(
-                  item => item._id == dataUpdate.endpoint
-                );
-                if (index !== -1 && this.data._id) {
-                  this.data.scheme.endpoints[index].display_name = promptData.endpointName;
-                  this.nodeService.update(this.data._id, this.data).subscribe(
-                    data => {
-                      dataUpdate.currentName = promptData.endpointName;
-                      this.endpointName = dataUpdate;
-                    },
-                    err => {
-                      console.warn("endpoint not updated!!");
-                    }
-                  );
-                }
-              }
-              return true;
+          handler: async (promptData): Promise<boolean> => {
+            if (!promptData.endpointName) {
+              const alert = await this.alertCtrl.create({
+                message: this.endpointNameEdit,
+                buttons: ['OK']
+              });
+              await alert.present();
+              return false;
             }
-            return false;
+
+            if (!this.data?.scheme?.endpoints || !this.data._id) {
+              return false;
+            }
+
+            const index = this.data.scheme.endpoints.findIndex(
+              item => item._id === dataUpdate.endpoint
+            );
+            
+            if (index === -1) {
+              return false;
+            }
+
+            this.data.scheme.endpoints[index].display_name = promptData.endpointName;
+
+            return new Promise<boolean>(resolve => {
+              this.nodeService.update(this.data!._id!, this.data!).subscribe({
+                next: () => {
+                  dataUpdate.currentName = promptData.endpointName;
+                  this.endpointName = dataUpdate;
+                  resolve(true);
+                },
+                error: err => {
+                  console.warn("endpoint not updated!!", err);
+                  resolve(false);
+                }
+              });
+            });
           }
         }
       ]
     });
-  
+
     await alert.present();
   }
 
-  unsubscribers() {
+  unsubscribers(): void {
     if (this.ioMeasure) {
       this.ioMeasure.unsubscribe();
     }
   }
 
-  ionViewWillLeave() {
-    this.unsubscribers();
-  }
 }

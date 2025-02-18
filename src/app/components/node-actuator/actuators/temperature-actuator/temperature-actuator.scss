@@ -1,4 +1,4 @@
-temperature-actuator {
+.temperature-actuator {
   -webkit-box-flex: 0;
   -webkit-flex: 0 0 100%;
   -ms-flex: 0 0 100%;
@@ -70,6 +70,25 @@ temperature-actuator {
       0 100%,
       0 0
     );
+  }
+  ion-range{
+    width: 350px !important;
+    margin: 0 auto;
+    right: 5px;
+    top: 310px;
+    z-index: 99;
+    padding: 8px;
+    height: 42px;
+    position: relative;
+    -webkit-box-flex: 1;
+    --bar-background: #6ce1e7;
+    --bar-background-active: #119DA6;
+    --bar-height: 8px;
+    --bar-border-radius: 8px;
+    --knob-background: #ffc8dd;
+    --knob-size: 40px;
+    --pin-background: #ffafcc;
+    --pin-color: #fff;
   }
 
   .switch-wrapper {
@@ -154,8 +173,10 @@ temperature-actuator {
         left: $track-o;
         width: $track-d;
         height: $track-d;
-        background: none; /* fix Chrome white */
+        background: none;
         pointer-events: none;
+        cursor: default;
+        opacity: 0.9;
 
         /* track styles */
         &::-webkit-slider-runnable-track {
@@ -168,8 +189,13 @@ temperature-actuator {
           mask: $track-m;
         }
 
-        &::-moz-range-thumb {
+        &::-moz-range-thumb,
+        &::-webkit-slider-thumb {
           opacity: 0;
+        }
+
+        &:disabled {
+          opacity: 0.9;
         }
       }
 
@@ -208,7 +234,6 @@ temperature-actuator {
         left: calc(var(--off, 0) + var(--s, 0) *#{0.5 * ($int-d + $btn-d)});
         border: none;
         background: none;
-        color: #b9b6c8;
         color: #6b677d;
         border-radius: 0;
         text-indent: $btn-d;

@@ -1,11 +1,14 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { TranslateModule } from '@ngx-translate/core';
-import { DeviceTempDetailPage } from './devices-temp-detail';
 import { RouterModule, Routes } from '@angular/router';
-import { SharedModule } from '../../../shared/shared.module';
+import { DeviceTempDetailPage } from './devices-temp-detail';
+import { TranslateModule } from '@ngx-translate/core';
 import { ComponentsModule } from '../../../components/components.module';
+import { TransformEndpointValues } from '../../../../shared/pipes/transformEndpointValues.pipe';
+import { NodeService } from '../../../providers/api/node.service';
+import { SocketService } from '../../../providers';
 
 const routes: Routes = [
   {
@@ -20,12 +23,20 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ComponentsModule,
     IonicModule,
-    TranslateModule,
     RouterModule.forChild(routes),
-    SharedModule,
-    ComponentsModule
+    TranslateModule.forChild(),
+    TransformEndpointValues // Import the standalone pipe
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  exports: [
+    DeviceTempDetailPage
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [
+    NodeService,
+    SocketService
+  ]
 })
 export class DeviceTempDetailPageModule {}

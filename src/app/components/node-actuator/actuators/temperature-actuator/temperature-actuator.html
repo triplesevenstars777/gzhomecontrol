@@ -1,14 +1,14 @@
-<ion-grid *ngIf="data.current !== undefined">
+<ion-grid *ngIf="data.current !== undefined" class="temperature-actuator">
   <ion-row>
     <ion-col style="margin-top: -25px;">
       <div class="switch-wrapper">
         <ion-range
-          (ionChange)="onChangeDimmer($event)"
-          [min]="2*min"
+          (ionChange)="onChangeDimmer($event)" 
+          [min]="2*min" 
           [max]="2*max"
-          [(ngModel)]="rangeValue"
-          color="treasury"
-          step="1"
+          [(ngModel)]="rangeValue" 
+          step="1" 
+          aria-label="Custom range" 
         >
         </ion-range>
         <div class="outer-container">
@@ -20,9 +20,10 @@
               <input
                 class="temp-input"
                 type="range"
-                [(ngModel)]="data.current"
+                [value]="data.current"
+                disabled
               />
-              <label *ngIf="data.current > actualTemperature.current" for="temp"
+              <label style="margin-top: -10px;" *ngIf="data.current > actualTemperature.current" for="temp"
                 >heating</label
               >
               <label *ngIf="data.current < actualTemperature.current" for="temp"

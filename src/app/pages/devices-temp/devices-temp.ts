@@ -455,7 +455,7 @@ export class DevicesTempPage {
   }
 
   openItem(device: any) {
-    this.router.navigate(['/device-temp/device-temp-detail'], {
+    this.router.navigate(['device-temp/device-temp-detail'], {
       state: { device: device },
       replaceUrl: true
     });

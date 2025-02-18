@@ -1,7 +1,7 @@
 @use "../../../../theme/variables.scss" as *;
 
-actuator-blind {
-    $size: 100px;
+.actuator-blind {
+    $size: 65px;
     $icon-font-size: 50px;
 
     @include size-md-down-portrait {
@@ -15,6 +15,190 @@ actuator-blind {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
+
+    .squishy {
+        $icon-font-size: 32px;
+      
+        box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.25),
+        inset 0 2px 1px 1px rgba(255, 255, 255, 0.9),
+        inset 0 -2px 1px 0 rgba(0, 0, 0, 0.25);
+        border-radius: 8px;
+        background: #ccd0d4;
+        position: relative;
+        height: $size;
+        width: $size;
+        cursor: pointer;
+        margin: 0 5px;
+        
+        @include size-md-down-portrait {
+          $size: 65px;
+          $icon-font-size: 22px;
+        }
+        &:before {
+          $radius: $size * 0.845;
+          $glow: $size * 0.125;
+      
+          box-shadow: 0 0 $glow $glow / 2 #fff;
+          border-radius: $radius;
+          background: #fff;
+          position: absolute;
+          margin-left: ($radius - $glow) * -0.5;
+          margin-top: ($radius - $glow) * -0.5;
+          opacity: 0.2;
+          content: "";
+          height: $radius - $glow;
+          width: $radius - $glow;
+          left: 50%;
+          top: 50%;
+        }
+      
+        &-button {
+          $radius: $size * 0.688;
+      
+          filter: blur(1px);
+          transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+          box-shadow: 0 15px 25px -4px rgba(0, 0, 0, 0.5),
+            inset 0 -3px 4px -1px rgba(0, 0, 0, 0.2),
+            0 -10px 15px -1px rgba(255, 255, 255, 0.6),
+            inset 0 3px 4px -1px rgba(255, 255, 255, 0.2),
+            inset 0 0 5px 1px rgba(255, 255, 255, 0.8),
+            inset 0 20px 30px 0 rgba(255, 255, 255, 0.2);
+          border-radius: $radius;
+          position: absolute;
+          background: #ccd0d4;
+          margin-left: $radius * -0.5;
+          margin-top: $radius * -0.5;
+          display: block;
+          height: $radius;
+          width: $radius;
+          left: 50%;
+          top: 50%;
+        }
+      
+        &-label {
+          transition: color 300ms ease-out;
+          text-shadow: 1px 1px 3px #ccd0d4, 0 0 0 rgba(0, 0, 0, 0.8), 1px 1px 4px #fff;
+          line-height: $size;
+          text-align: center;
+          position: absolute;
+          font-weight: 700;
+          font-size: $icon-font-size;
+          display: block;
+          opacity: 0.9;
+          height: 100%;
+          width: 100%;
+          color: rgba(0, 0, 0, 0.4);
+          top: 0;
+          left: 0;
+        }
+      
+        &:active,
+        &.active {
+          .squishy-button {
+            box-shadow: 0 15px 25px -4px rgba(0, 0, 0, 0.4),
+              inset 0 -8px 30px 1px rgba(255, 255, 255, 0.9),
+              0 -10px 15px -1px rgba(255, 255, 255, 0.6),
+              inset 0 8px 25px 0 rgba(0, 0, 0, 0.4),
+              inset 0 0 10px 1px rgba(255, 255, 255, 0.6);
+          }
+      
+          .squishy-label {
+            font-size: 30px;
+            color: rgba(0, 0, 0, 0.45);
+          }
+        }
+      
+        &:hover {
+          .squishy-button {
+            box-shadow: 0 15px 25px -4px rgba(0, 0, 0, 0.4),
+              inset 0 -8px 25px -1px rgba(255, 255, 255, 0.9),
+              0 -10px 15px -1px rgba(255, 255, 255, 0.6),
+              inset 0 8px 20px 0 rgba(0, 0, 0, 0.2),
+              inset 0 0 5px 1px rgba(255, 255, 255, 0.6);
+          }
+      
+          .squishy-label {
+            font-size: 30px;
+            color: rgba(0, 0, 0, 0.4);
+          }
+        }
+      
+        &-danger {
+          background: #ed5565;
+          box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.25),
+            inset 0 2px 1px 1px rgba(229, 151, 159, 0.9),
+            inset 0 -2px 1px 0 rgba(0, 0, 0, 0.25);
+      
+          .squishy-button {
+            background: #ed5565;
+            box-shadow: 0 15px 25px -4px rgba(0, 0, 0, 0.5),
+              inset 0 -3px 4px -1px rgba(0, 0, 0, 0.2),
+              0 -10px 15px -1px rgba(229, 151, 159, 0.6),
+              inset 0 3px 4px -1px rgba(229, 151, 159, 0.2),
+              inset 0 0 5px 1px rgba(229, 151, 159, 0.8),
+              inset 0 20px 30px 0 rgba(229, 151, 159, 0.2);
+          }
+      
+          .squishy-label {
+            color: #5b1119 !important;
+          }
+      
+          &:hover .squishy-button {
+            box-shadow: 0 15px 25px -4px rgba(0, 0, 0, 0.4),
+              inset 0 -8px 25px -1px rgba(229, 151, 159, 0.9),
+              0 -10px 15px -1px rgba(229, 151, 159, 0.6),
+              inset 0 8px 20px 0 rgba(0, 0, 0, 0.2),
+              inset 0 0 5px 1px rgba(229, 151, 159, 0.6);
+          }
+      
+          &:active .squishy-button,
+          &.active .squishy-button {
+            box-shadow: 0 15px 25px -4px rgba(0, 0, 0, 0.4),
+              inset 0 -8px 30px 1px rgba(229, 151, 159, 0.9),
+              0 -10px 15px -1px rgba(229, 151, 159, 0.6),
+              inset 0 8px 25px 0 rgba(0, 0, 0, 0.4),
+              inset 0 0 10px 1px rgba(229, 151, 159, 0.6);
+          }
+        }
+      
+        &-primary {
+          background: #1ab394;
+          box-shadow: inset 0 0 35px 5px rgba(0, 0, 0, 0.25),
+            inset 0 2px 1px 1px rgba(177, 237, 225, 0.9),
+            inset 0 -2px 1px 0 rgba(0, 0, 0, 0.25);
+      
+          .squishy-button {
+            background: #1ab394;
+            box-shadow: 0 15px 25px -4px rgba(0, 0, 0, 0.5),
+              inset 0 -3px 4px -1px rgba(0, 0, 0, 0.2),
+              0 -10px 15px -1px rgba(177, 237, 225, 0.6),
+              inset 0 3px 4px -1px rgba(177, 237, 225, 0.2),
+              inset 0 0 5px 1px rgba(177, 237, 225, 0.8),
+              inset 0 20px 30px 0 rgba(177, 237, 225, 0.2);
+          }
+      
+          .squishy-label {
+            color: #165b4d !important;
+          }
+      
+          &:hover .squishy-button {
+            box-shadow: 0 15px 25px -4px rgba(0, 0, 0, 0.4),
+              inset 0 -8px 25px -1px rgba(177, 237, 225, 0.9),
+              0 -10px 15px -1px rgba(177, 237, 225, 0.6),
+              inset 0 8px 20px 0 rgba(0, 0, 0, 0.2),
+              inset 0 0 5px 1px rgba(177, 237, 225, 0.6);
+          }
+      
+          &:active .squishy-button,
+          &.active .squishy-button {
+            box-shadow: 0 15px 25px -4px rgba(0, 0, 0, 0.4),
+              inset 0 -8px 30px 1px rgba(177, 237, 225, 0.9),
+              0 -10px 15px -1px rgba(177, 237, 225, 0.6),
+              inset 0 8px 25px 0 rgba(0, 0, 0, 0.4),
+              inset 0 0 10px 1px rgba(177, 237, 225, 0.6);
+          }
+        }
+      }
 
     .text-right {
         text-align: right;
@@ -33,7 +217,7 @@ actuator-blind {
     }
 
     .buttons {
-        max-width: 360px;
+        // max-width: 360px;
     }
    .notifications-container {
     margin-top: 25px;

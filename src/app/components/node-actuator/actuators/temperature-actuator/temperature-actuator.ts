@@ -112,7 +112,10 @@ export class TemperatureActuatorComponent implements OnInit, OnDestroy {
 
     this.data.current = measure.value;
     this.tempGraphEl.setAttribute("style", this.minMaxVal());
-    this.rangeValue = this.data.current * 2;
+    // Only update rangeValue if it's not being actively changed by the user
+    if (!this.currentClick || Date.now() - this.currentClick > 1000) {
+      this.rangeValue = this.data.current * 2;
+    }
   }
 
   updateActualTemperature(measure: any) {
@@ -151,16 +154,19 @@ export class TemperatureActuatorComponent implements OnInit, OnDestroy {
   }
 
   onChangeDimmer(event) {
-    const value = Math.round((event._value / 2) * 10) / 10;
-    if (this.data.current + value < this.min) {
+    const value = Math.round((event.detail.value / 2) * 10) / 10;
+    console.log('Range value:', event.detail.value, 'Calculated value:', value);
+    
+    // Directly set the value within bounds
+    if (value < this.min) {
       this.data.current = this.min;
-    } else if (this.data.current + value > this.max) {
+    } else if (value > this.max) {
       this.data.current = this.max;
     } else {
-      this.data.current += value;
+      this.data.current = value;
     }
-    this.data.current = value;
-    this.rangeValue = event._value;
+    
+    this.rangeValue = event.detail.value;
     this.tempGraphEl.setAttribute("style", this.minMaxVal());
 
     this.currentClick = Date.now();

@@ -1,32 +1,40 @@
 @use "../../../../theme/variables.scss" as *;
 
-page-devices-temp-detail {
   //HEADER
-  ion-header {
-    ion-navbar {
+ion-header {
+  ion-toolbar {
+    --background: #119DA4;
+    color: white;
+    text-align: center;
+    height: 100px;
+
+    .button-inner {
       color: white;
+    }
 
-      .button-inner {
-        color: white;
-      }
+    .toolbar-title {
+      color: white;
+      text-align: center;
+    }
 
-      .toolbar-background {
-        background: #119DA4;
-      }
-
-      .toolbar-title {
-        color: white;
-        text-align: center;
-      }
-
-      .toolbar-content {
-        margin-right: 68px;
-      }
+    .toolbar-content {
+      margin-right: 68px;
     }
   }
+}
+
+.page-devices-temp-detail {
 
   .header-md::after {
     content: none;
+  }
+
+  ion-badge{
+    background-color: #119DA4;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   .item-detail {
