@@ -338,7 +338,7 @@ export class GlobalSettingsPage {
 
   logoutAction() {
     this.auth.logout();
-    this.router.navigate(['/login']); 
+    this.router.navigate(['/login'], {replaceUrl: true}); 
   }
 
   push(page: string, section: string) {
@@ -346,6 +346,7 @@ export class GlobalSettingsPage {
   }
 
   goToScenes() {
-    this.router.navigate(['/global-settings/scenes']);
+    console.log("sfaff");
+    this.router.navigate(['/global-settings/scenes'], {replaceUrl: true});
   }
 }

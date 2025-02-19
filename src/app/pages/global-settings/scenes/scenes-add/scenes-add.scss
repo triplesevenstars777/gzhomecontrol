@@ -1,22 +1,70 @@
+ion-header {
+  ion-toolbar {
+    --min-height: 75px;
+    --color: var(--ion-color-light);
+    --background: var(--ion-color-primary, #119DA4);
 
-    //HEADER 
-    ion-header {
-
-        ion-navbar {
-            height: 75px;
-            color: white;
-
-            .toolbar-background {
-                background: #119DA4;
-            }
-
-            .toolbar-title{ 
-                color: white;
-                text-align: center;
-            }
-
-            .p-n{
-                padding: 0;
-            }
-        }
+    ion-title {
+      color: var(--ion-color-light);
+      text-align: center;
     }
+
+    .p-n {
+      padding: 0;
+    }
+  }
+}
+
+// Additional styles for list items
+ion-list {
+  ion-item-group {
+    ion-item {
+      --padding-start: 16px;
+      
+      &[color="light"] {
+        --background: var(--ion-color-light);
+        --background-hover: var(--ion-color-light-shade);
+      }
+
+      ion-icon {
+        color: var(--ion-color-primary);
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+ion-content {
+  --padding-bottom: 70px; // Add space for footer
+}
+
+ion-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 999;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-out;
+  
+  &.visible {
+    transform: translateY(0);
+  }
+  
+  ion-toolbar {
+    padding: 8px;
+    --background: transparent;
+    --border-width: 0;
+    
+    ion-button {
+      --background: #119DA4;
+      --color: white;
+      margin: 0;
+      height: 44px;
+      
+      &[disabled] {
+        --background: #ace7e9;
+        opacity: 1;
+      }
+    }
+  }
+}

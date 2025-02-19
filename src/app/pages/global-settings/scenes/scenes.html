@@ -1,35 +1,36 @@
-<!--
-  Generated template for the ScenesPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-  <ion-navbar>
+  <ion-toolbar style="--background: #119DA4; color: white; height: 90px; display: flex;">
     <ion-row>
-        <ion-col col-11>
-            <ion-title class="title-scene">{{ 'SCENES' | translate }}</ion-title>
-        </ion-col>
-        <ion-col col-1>
-            <ion-icon name="add-circle" class="add-scene" (click)="addScene()"></ion-icon>
-          </ion-col>
-       </ion-row> 
-  </ion-navbar>
+      <ion-col size="2">
+        <ion-buttons>
+          <ion-button (click)="goBack()" style="--color: white; font-size: 15px;">
+              <span class="icon icon-gz-left-1"></span>
+          </ion-button>
+        </ion-buttons>
+      </ion-col>
+      <ion-col size="8" style="text-align: center;">
+        <ion-title class="title-scene"><h3>{{ 'SCENES' | translate }}</h3></ion-title>
+      </ion-col>
+      <ion-col size="2" style="font-size: 30px; text-align: right; padding-right: 10px;">
+        <ion-icon name="add-circle" class="add-scene" (click)="addScene()"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
 </ion-header>
-<ion-content padding>
-      <ion-list *ngFor="let scene of scenes">
-        <ion-item-sliding> 
-            <ion-item color="light" (click)="editScene(scene._id)">
-            <ion-label >{{scene?.name}}</ion-label>
-            <ion-toggle color="dark" item-end [(ngModel)]="scene.active" (ionChange)="changeActive(scene._id, scene.active)"></ion-toggle>
-            </ion-item>
-            <ion-item-options side="left">
-            <button ion-button color="danger" (click)="deleteScene(scene._id)">
-              <ion-icon name="trash"></ion-icon>
-                {{ 'DELETE' | translate }}
-            </button>
-          </ion-item-options>
-        </ion-item-sliding>
-      </ion-list>
-  </ion-content>
 
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item-sliding *ngFor="let scene of scenes">
+      <ion-item (click)="editScene(scene._id)">
+        <ion-label>{{scene?.name}}</ion-label>
+        <ion-toggle slot="end" [(ngModel)]="scene.active" (click)="$event.stopPropagation()"  (ionChange)="changeActive(scene._id, scene.active)"></ion-toggle>
+      </ion-item>
+      <ion-item-options side="start">
+        <ion-item-option color="danger" (click)="deleteScene(scene._id)">
+          <ion-icon name="trash" slot="icon-only"></ion-icon>
+          <ion-label>{{ 'DELETE' | translate }}</ion-label>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

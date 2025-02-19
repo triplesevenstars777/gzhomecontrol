@@ -5,6 +5,7 @@ import { AlertController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { InTogglesPage } from '../../pages/global-settings/in-toggles/in-toggles.component';
 import { NavController } from '@ionic/angular';
+import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'global-toggles',
@@ -29,6 +30,8 @@ export class GlobalTogglesComponent {
     private actuatorService: ActuatorService,
     public translateService: TranslateService,
     public navCtrl:NavController,
+    private router: Router,
+    private route: ActivatedRoute,
     // public navParams: NavParams
   ) {
     this.translateService.get('LEAVING_HOME_ACTIONS_BEING_RUN').subscribe((value) => {
@@ -127,9 +130,7 @@ export class GlobalTogglesComponent {
         {
           text: this.acceptButtonString,
           handler: () => {
-            this.navCtrl.navigateForward('/in-toggles', {
-              state: { section }
-            });
+            this.router.navigate(['/global-settings/in-toggles', section], { relativeTo: this.route, replaceUrl: true });
             return true;
           }
         }

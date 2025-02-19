@@ -1,13 +1,24 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+interface EndpointItem {
+  id: string;
+  name: string;
+  display_name?: string;
+  dir: string;
+  type?: string;
+  _id: string;
+}
+
 @Pipe({
   name: 'nodeEndpointsOutput',
-  pure: false
+  pure: false,
+  standalone: false
 })
 export class NodeEndpointsOutputPipe implements PipeTransform {
-  constructor() { }
-  transform(items: any): any[] {
-    const itemRes = items.filter(item => item.dir !== 'input');
-    return itemRes;
+  transform(items: EndpointItem[]): EndpointItem[] {
+    if (!Array.isArray(items)) {
+      return [];
+    }
+    return items.filter(item => item.dir !== 'input');
   }
 }

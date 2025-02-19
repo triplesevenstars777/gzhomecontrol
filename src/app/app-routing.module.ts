@@ -75,8 +75,16 @@ const routes: Routes = [
     loadChildren: () => import('./pages/global-settings/global-settings.module').then(m => m.GlobalSettingsPageModule)
   },
   {
+    path: 'global-settings/scenes',
+    loadChildren: () => import('./pages/global-settings/scenes/scenes.module').then(m => m.ScenesPageModule)
+  },
+  {
     path: 'global-settings/scenes/edit',
-    loadComponent: () => import('./pages/global-settings/scenes/scenes-edit/scenes-edit').then(m => m.ScenesEditPage)
+    loadChildren: () => import('./pages/global-settings/scenes/scenes-edit/scenes-edit').then(m => m.ScenesEditPage)
+  },
+  {
+    path: 'global-settings/scenes/add',
+    loadChildren: () => import('./pages/global-settings/scenes/scenes-add/scenes-add.module').then(m => m.ScenesAddPageModule)
   },
   {
     path: 'global-settings/in-toggles',
