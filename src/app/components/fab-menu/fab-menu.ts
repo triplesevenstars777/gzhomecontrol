@@ -66,8 +66,6 @@ export class FabMenuComponent {
       });
       if (data?.go) {
         await this.router.navigateByUrl(data.go, {
-          onSameUrlNavigation: 'reload',
-          skipLocationChange: false,
           replaceUrl: true
         });
 

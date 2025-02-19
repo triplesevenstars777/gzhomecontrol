@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
+import { Settings } from "../../providers";
 
 @Component({
   selector: 'main-header',
@@ -32,12 +33,17 @@ export class MainHeaderComponent implements OnInit {
 
   constructor(
     private navCtrl: NavController,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private settings: Settings
   ) {}
 
   ngOnInit() {
     this.updateDateTime();
     setInterval(() => this.updateDateTime(), 1000);
+    this.updateState({
+      noDisturb: this.settings.getDisturbMode(),
+      panic: this.settings.getPanicMode()
+    });
   }
 
   private updateDateTime() {

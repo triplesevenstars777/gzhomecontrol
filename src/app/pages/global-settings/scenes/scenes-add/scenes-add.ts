@@ -118,25 +118,28 @@ export class ScenesAddPage implements OnInit {
   }
 
   loadCurrentNodes(nodes: any[]): DevicesMap {
-    const actualNodes: DevicesMap = {};
+    const actualNodes:any = [];
 
     for (let i = 0; i < nodes.length; i++) {
       let nodeId = nodes[i]._id;
       actualNodes[nodeId] = {
         id: nodeId,
+        availability: false,
         active: false,
-        available: false,
         endpoints: []
       };
       const endpoints = nodes[i].scheme.endpoints.filter(item => item.dir !== 'input');
 
-      actualNodes[nodeId].endpoints = endpoints.map(endpoint => ({
-        id: endpoint._id,
-        stateOn: "On",
-        stateOff: "Off",
-        defaultState: "Off",
-        value: "Off"
-      }));
+      for (let j = 0; j < endpoints.length; j++) {
+        actualNodes[nodeId].endpoints[j] = {
+          id: endpoints[j]._id,
+          name: endpoints[j].name,
+          stateOn: "On",
+          stateOff: "Off",
+          defaultState: false,
+          value: "Off"
+        };
+      }
     }
 
     return actualNodes;
@@ -178,9 +181,13 @@ export class ScenesAddPage implements OnInit {
     const name = this.form.get('name')?.value || 'New Scene'; // Provide default name if empty
     this.scene.name = name;
     
+    const temp = {
+      ...this.scene,
+
+    }
+
     this.scenesService.create(this.scene).subscribe(async (res) => {
-      await this.navCtrl.navigateRoot('/global-settings');
-      await this.navCtrl.navigateForward('/scenes');
+      this.router.navigate(["global-settings/scenes"], {replaceUrl: true});
     }, (err) => {
       console.error('Created error:::', err);
     });
@@ -188,11 +195,6 @@ export class ScenesAddPage implements OnInit {
 
   private _mapToArray(devicesMap: DevicesMap): Device[] {
     return Object.values(devicesMap);
-  }
-
-
-  goBack() {
-    this.router.navigate(['/global-settings/scenes'], {replaceUrl: true});
   }
 
   onScroll(event) {
