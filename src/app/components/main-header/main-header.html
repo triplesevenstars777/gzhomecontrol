@@ -31,7 +31,11 @@
   <ion-toolbar class="tool_bar show_small_bar" style="text-align: center; align-items: center; height: 28px; box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);">
     <ion-grid >
       <ion-row style="display: flex; justify-content: space-between; margin-top: -23px;">
-        <ion-col style="align-items: center;">{{dateDayName}} {{dateDay}} {{dateMonth}}</ion-col>
+        <ion-col style="align-items: center; " class="date-container">
+          <div class="date">
+            {{dateDayName}} {{dateDay}} {{dateMonth}}
+          </div>
+        </ion-col>
         <ion-col class="hour" style="align-content: center; text-align: center;">{{dateTime}}</ion-col>
         <ion-col class="temp" style="text-align: right;">
           {{tempDegrees}}

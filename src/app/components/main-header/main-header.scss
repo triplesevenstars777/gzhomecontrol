@@ -1,5 +1,34 @@
 @use "../../../theme/variables.scss" as *;
 
+@media screen and (max-width: 400px) {
+  .date-container {
+    height: 30px; 
+    overflow: hidden; 
+    white-space: nowrap; 
+    position: relative;
+    .date{
+      display: inline-block; 
+      white-space: nowrap;
+      position: absolute; 
+      animation: scroll 5s linear infinite; 
+    }
+  }
+  
+}
+
+.date-container {
+
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(100%); /* Start outside the right edge */
+  }
+  100% {
+    transform: translateX(-200%); /* End outside the left edge */
+  }
+}
+
 .main_header {
   background-color: #119DA4;
   height: 100%;
@@ -10,7 +39,6 @@
     align-items: center;
     padding: 0;
   }
-
   
   .header-title {
     color: white;
