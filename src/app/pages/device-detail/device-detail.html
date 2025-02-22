@@ -9,20 +9,22 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content style="background-color: white;">
   <ion-grid class="item-header">
     <ion-row style="-webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);">
-      <ion-col size="5" class="node_type">
-        <b>{{ 'NODE_TYPE' | translate }}:</b> {{data?.scheme?.name}}
+      <ion-col size="5" class="node_type node-type-container">
+        <div class="node-type"><b>{{ 'NODE_TYPE' | translate }}:</b> {{data?.scheme?.name}}</div>
       </ion-col>
       <ion-col size="2" class="ion-text-center">
         <ion-badge 
           *ngIf="data?.active" 
-          style="padding-left: 10px;
-            padding-top: 6px;
-            padding-right: 10px;
-            padding-bottom: 7px;
-            margin-top: 7px;"
+          style="padding-left: 3px;
+          padding-top: 6px;
+          padding-right: 3px;
+          padding-bottom: 7px;
+          margin-top: 2px;
+          font-size: 10px;
+          "
         >
           {{ 'CONNECTED' | translate }}
         </ion-badge>
@@ -38,8 +40,8 @@
           {{ 'UNCONNECTED' | translate }}
         </ion-badge>
       </ion-col>
-      <ion-col size="5" class="room_name">
-        <b>{{ 'ROOM' | translate }}:</b> {{ data?.room?.name }}
+      <ion-col size="5" class="room_name room-container">
+        <div class="room"><b>{{ 'ROOM' | translate }}:</b> {{ data?.room?.name }}  </div> 
       </ion-col>
     </ion-row>
   </ion-grid>

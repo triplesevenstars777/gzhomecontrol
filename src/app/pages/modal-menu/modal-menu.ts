@@ -49,14 +49,15 @@ export class ModalMenuPage {
 
   ngAfterViewInit() {
     // Subscribe to node availability updates
-    this.nodeAvailability$ = this.availability.availabilityListener().subscribe(
-      res => {
-        this.ngZone.run(() => {
-          this.nodeAvailable = res;
-          this.cdr.detectChanges();
-        });
-      },
-      err => {}
+    this.nodeAvailability$ = this.availability.availabilityListener().subscribe({
+        next: res => {
+          this.ngZone.run(() => {
+            this.nodeAvailable = res;
+            this.cdr.detectChanges();
+          });
+        },
+        error: err => {}
+      }
     );
 
     // Run DOM manipulations outside Angular

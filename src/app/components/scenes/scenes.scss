@@ -18,13 +18,7 @@ scenes {
             padding-right: 10px;
         }
     }
-    .button_container{
-        position: relative;
-        margin-top: auto;
-        margin-bottom: 10px;
-        border-bottom: 3px solid #DCDCDC;
-        padding-bottom: 7px;
-    }
+
 
     @include size-md-down-portrait {
         .button_container {

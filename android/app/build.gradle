@@ -3,8 +3,8 @@ apply plugin: 'kotlin-android'
 
 android {
   namespace "io.ionic.starter"
-  compileSdkVersion 35
-  defaultConfig {
+    compileSdkVersion targetSdkVersion
+    defaultConfig {
     applicationId "io.ionic.starter"
     minSdkVersion rootProject.ext.minSdkVersion
     targetSdkVersion rootProject.ext.targetSdkVersion
