@@ -6,6 +6,7 @@ import {
   LoadingController,
   IonicModule
 } from "@ionic/angular";
+import { ActivatedRoute } from "@angular/router";
 import { TranslateModule } from "@ngx-translate/core";
 import { Observable, BehaviorSubject, zip } from "rxjs";
 import { PipesModule } from "../../../../shared/pipes/pipes.module";
@@ -45,8 +46,6 @@ export class ScenesEditPage implements OnInit {
   public validation_messages: any;
   public form: FormGroup;
   private ID: string = '';
-  private editId = Constants.APP_KEY + ":edit-scene";
-  private storageId: string = '';
   private isSceneLoaded: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(
@@ -55,7 +54,8 @@ export class ScenesEditPage implements OnInit {
     public navCtrl: NavController,
     private auth: AuthService,
     public formBuilder: FormBuilder,
-    private scenesService: ScenesService
+    private scenesService: ScenesService,
+    private route: ActivatedRoute
   ) {
     this.form = this.formBuilder.group({
       name: ["", Validators.required],
@@ -63,7 +63,12 @@ export class ScenesEditPage implements OnInit {
   }
 
   ngOnInit() {
-    this.initializeScene();
+    this.route.params.subscribe(params => {
+      if (params['id']) {
+        this.ID = params['id'];
+        this.getScene();
+      }
+    });
   }
 
   async initializeScene() {
@@ -118,24 +123,15 @@ export class ScenesEditPage implements OnInit {
     });
   }
 
-  ionViewWillEnter() {
-    const storedId = localStorage.getItem(this.editId);
-    if (storedId && storedId !== "undefined") {
-      this.storageId = storedId;
-      this.getScene();
-    }
-  }
-
   getScene() {
-    if (this.storageId) {
-      const sID = JSON.parse(this.storageId);
-      this.ID = sID.id;
+    if (this.ID) {
       this.scenesService.show(this.ID).subscribe(
         (res) => {
           this.scene = res;
           delete this.scene._id;
           delete this.scene.created_at;
           this.isSceneLoaded.next(true);
+          this.initializeScene();
         },
         (err) => {
           console.error("Edit error:", err);

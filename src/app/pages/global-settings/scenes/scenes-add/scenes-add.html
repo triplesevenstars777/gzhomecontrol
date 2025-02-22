@@ -32,7 +32,7 @@
       <ion-item-group *ngFor="let node of lightNodes">
         <ion-item >
           <ion-label>{{node?.display_name || node?.name}}</ion-label>
-          <ion-toggle color="dark" slot="end" 
+          <ion-toggle  slot="end" 
             [(ngModel)]="localNodes[node._id].available" 
             (ionChange)="changeAvailability(node._id, localNodes[node._id].available)">
           </ion-toggle>
@@ -56,7 +56,7 @@
       <ion-item-group *ngFor="let node of blindNodes">
         <ion-item >
           <ion-label>{{node?.display_name || node?.name}}</ion-label>
-          <ion-toggle slot="end" color="dark" 
+          <ion-toggle slot="end"  
             [(ngModel)]="localNodes[node._id].available" 
             (ionChange)="changeAvailability(node._id, localNodes[node._id].available)">
           </ion-toggle>
@@ -85,7 +85,7 @@
       <ion-item-group *ngFor="let node of awningNodes">
         <ion-item >
           <ion-label>{{node?.display_name || node?.name}}</ion-label>
-          <ion-toggle slot="end" color="dark" 
+          <ion-toggle slot="end"  
             [(ngModel)]="localNodes[node._id].available" 
             (ionChange)="changeAvailability(node._id, localNodes[node._id].available)">
           </ion-toggle>
@@ -113,7 +113,7 @@
       <ion-item-group *ngFor="let node of climaNodes">
         <ion-item >
           <ion-label>{{node?.display_name || node?.name}}</ion-label>
-          <ion-toggle slot="end" color="dark" 
+          <ion-toggle slot="end"  
             [(ngModel)]="localNodes[node._id].available" 
             (ionChange)="changeAvailability(node._id, localNodes[node._id].available)">
           </ion-toggle>

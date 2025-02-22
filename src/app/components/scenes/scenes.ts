@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Scene } from '../../../models/scene.model';
 import { ActuatorService } from '../../providers/api/actuator.service';
 import { ScenesService } from '../../providers/api/scenes.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { ScenesEditPage } from '../../pages/global-settings/scenes/scenes-edit/scenes-edit';
-import { NavController } from '@ionic/angular';
 
 interface ApiResponse {
   docs: Scene[];
@@ -32,6 +31,7 @@ export class ScenesComponent implements OnInit {
   public cancelButtonString: string = '';
   public SceneConfigMissingRedirectingToItString: string = '';
   public SceneActionsBeingRunString: string = '';
+  public loadingSceneId: string | null = null;
 
   constructor(
     private alertCtrl: AlertController,
@@ -61,51 +61,137 @@ export class ScenesComponent implements OnInit {
     });
   }
 
-  async configScene(id: string) {
+  configScene(id: string) {
     if (!id) return;
     
+    // console.log('Starting scene configuration for ID:', id);
+    
+    // Get scene details using subscribe instead of toPromise
+    this.scenesService.show(id).subscribe({
+      next: (sceneData: any) => {
+        // console.log('Scene data received:', sceneData);
+        this.scene = sceneData as Scene;
+        
+        if (!this.scene) {
+          console.error('Scene not found');
+          return;
+        }
+
+        // Show confirmation dialog
+        this.showConfirmDialog(id);
+      },
+      error: (err) => {
+        // console.error('Failed to load scene:', err);
+        // this.showErrorAlert('Failed to load scene. Please try again.');
+      }
+    });
+  }
+
+  private async showConfirmDialog(id: string) {
+    const confirmAlert = await this.alertCtrl.create({
+      header: 'Confirm Scene',
+      message: `Do you want to activate scene "${this.scene.name}"?`,
+      buttons: [
+        {
+          text: this.cancelButtonString,
+          role: 'cancel'
+        },
+        {
+          text: this.acceptButtonString,
+          handler: () => {
+            this.executeSceneConfig(id);
+          }
+        }
+      ],
+      cssClass: 'alertCustom'
+    });
+    await confirmAlert.present();
+  }
+
+  private async showErrorAlert(message: string) {
+    const alert = await this.alertCtrl.create({
+      header: 'Error',
+      message: message,
+      buttons: [this.acceptButtonString],
+      cssClass: 'alertCustom'
+    });
+    await alert.present();
+  }
+
+  private async executeSceneConfig(id: string) {
+    this.loadingSceneId = id;
     let availability = 0;
     let nodes: { [key: string]: NodeType } = {};
     
-    try {
-      const res = await this.scenesService.show(id).toPromise();
-      this.scene = res as Scene;
-
-      if(this.scene) {
-        nodes = this.loadCurrentNodes(this.scene.devices);
-      }
+    // try {
+    //   // Load and process nodes
+    //   nodes = this.loadCurrentNodes(this.scene.devices);
       
-      for(const key in nodes) {
-        if (nodes[key].available === true) {
-          availability++;
-        }
-        if(nodes[key].available) {
-          for(const endpoint of nodes[key].endpoints) {
-            if(endpoint.value === null) continue;
+    //   // Process each node
+    //   for (const key in nodes) {
+    //     const node = nodes[key];
+    //     if (node.available) {
+    //       availability++;
+          
+    //       // Process each endpoint for available nodes
+    //       for (const endpoint of node.endpoints) {
+    //         if (endpoint.value === null) continue;
             
-            const data = {
-              device: nodes[key].id,
-              endpoint: endpoint.id,
-              value: endpoint.value
-            };
+    //         const data = {
+    //           device: node.id,
+    //           endpoint: endpoint.id,
+    //           value: endpoint.value
+    //         };
             
-            try {
-              const updateRes = await this.actuatorService.create(data).toPromise();
-            } catch (err) {
-              console.error('Update error:::', err);
-            }
-          }
-        }
-      }
+    //         try {
+    //           console.log(`Executing scene '${this.scene.name}': Configuring device ${node.id}, endpoint ${endpoint.id} with value ${endpoint.value}`);
+    //           await new Promise((resolve, reject) => {
+    //             this.actuatorService.create(data).subscribe({
+    //               next: (result) => {
+    //                 console.log(`Successfully configured endpoint ${endpoint.id}`);
+    //                 resolve(result);
+    //               },
+    //               error: (err) => {
+    //                 console.error(`Error updating endpoint ${endpoint.id} for device ${node.id}:`, err);
+    //                 reject(err);
+    //               }
+    //             });
+    //           });
+    //         } catch (err) {
+    //           console.error(`Error updating endpoint ${endpoint.id} for device ${node.id}:`, err);
+    //           const alert = await this.alertCtrl.create({
+    //             header: 'Error',
+    //             message: `Failed to configure endpoint ${endpoint.id}. Please try again.`,
+    //             buttons: [this.acceptButtonString],
+    //             cssClass: 'alertCustom'
+    //           });
+    //           await alert.present();
+    //           throw err; // Propagate error to main error handler
+    //         }
+    //       }
+    //     }
+    //   }
       
-      if (availability === 0) {
-        await this.preRedirect(this.scene.name, this.SceneConfigMissingRedirectingToItString);
-      } else {
-        await this.actionDone(this.scene.name, this.SceneActionsBeingRunString);
-      }
-    } catch (err) {
-      console.error('Config error:', err);
-    }
+    //   // Show appropriate alert based on availability
+    //   if (availability === 0) {
+    //     await this.preRedirect(this.scene.name, this.SceneConfigMissingRedirectingToItString);
+    //   } else {
+    //     await this.actionDone(this.scene.name, this.SceneActionsBeingRunString);
+    //   }
+    // } catch (err) {
+    //   console.error('Scene configuration error:', err);
+    //   // Show error alert to user
+    //   const alert = await this.alertCtrl.create({
+    //     header: 'Error',
+    //     message: 'Failed to configure scene. Please try again.',
+    //     buttons: [this.acceptButtonString],
+    //     cssClass: 'alertCustom'
+    //   });
+    //   await alert.present();
+    // } finally {
+    //   // Clear loading state
+    //   this.loadingSceneId = null;
+    // }
   }
 
   loadCurrentNodes(nodes: Scene['devices']) {    

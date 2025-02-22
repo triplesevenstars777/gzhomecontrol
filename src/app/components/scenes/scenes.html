@@ -1,7 +1,7 @@
 <!-- Generated template for the ScenesComponent component -->
 <div class="button_container" hideWhen="portrait" style="display: flex; justify-content: space-around; margin-top: -10px;">
   <ng-container *ngFor="let scene of scenes | slice:0:4; let i=index" >
-    <button class="button_left" (click)="configScene(scene._id!)" ion-button *ngIf="scene._id" style="
+    <button class="button_left" (click)="configScene(scene._id!)" ion-button *ngIf="scene._id" [disabled]="loadingSceneId === scene._id" style="
         width: 70px;
         height: 40px;
         background-color: #119DA4;

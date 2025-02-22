@@ -79,8 +79,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/global-settings/scenes/scenes.module').then(m => m.ScenesPageModule)
   },
   {
-    path: 'global-settings/scenes/edit',
-    loadChildren: () => import('./pages/global-settings/scenes/scenes-edit/scenes-edit').then(m => m.ScenesEditPage)
+    path: 'global-settings/scenes/edit/:id',
+    loadComponent: () => import('./pages/global-settings/scenes/scenes-edit/scenes-edit').then(m => m.ScenesEditPage)
   },
   {
     path: 'global-settings/scenes/add',

@@ -1,13 +1,16 @@
-<!--
-  Generated template for the ScenesAddPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-  <ion-navbar>
-    <ion-title>{{'UPDATE SCENES' | translate}}</ion-title>
-  </ion-navbar>
+  <ion-toolbar style="--background: #119DA4; color: white; height: 90px; display: flex;">
+    <ion-row>
+      <ion-col size="2">
+        <ion-buttons>
+          <ion-back-button defaultHref="/global-settings/scenes" style="--color: white; font-size: 15px;"></ion-back-button>
+        </ion-buttons>
+      </ion-col>
+      <ion-col size="8">
+        <ion-title><h3>{{'UPDATE SCENES' | translate}}</h3></ion-title>        
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
@@ -27,11 +30,11 @@
     </ion-list-header>
 
     <ion-item-group *ngFor="let node of lightNodes">
-      <ion-item *ngIf="localNodes[node._id]" color="light">
+      <ion-item *ngIf="localNodes[node._id]" >
         <ion-label>{{node?.display_name || node?.name}}</ion-label>
         <ion-toggle
-          color="dark"
-          item-end
+          
+          slot="end"
           [(ngModel)]="localNodes[node._id].available"
           (ionChange)="changeAvailability(node._id, localNodes[node._id].available)"
         >
@@ -46,7 +49,7 @@
           <span item-start class="icon icon-gz-bulb"></span>
           <ion-label>{{endpoint.display_name || endpoint.name}}</ion-label>
           <ion-toggle
-            item-end
+            slot="end"
             [(ngModel)]="localNodes[node._id].endpoints[i].defaultState"
             (ionChange)="changeState(node._id, endpoint._id, localNodes[node._id].endpoints[i].defaultState)"
           >
@@ -60,11 +63,11 @@
     </ion-list-header>
 
     <ion-item-group *ngFor="let node of blindNodes">
-      <ion-item *ngIf="localNodes[node._id]" color="light">
+      <ion-item *ngIf="localNodes[node._id]" >
         <ion-label>{{node?.display_name || node?.name}}</ion-label>
         <ion-toggle
-          item-end
-          color="dark"
+          slot="end"
+          
           [(ngModel)]="localNodes[node._id].available"
           (ionChange)="changeAvailability(node._id, localNodes[node._id].available)"
         >
@@ -89,7 +92,7 @@
               >
             </ion-label>
             <ion-toggle
-              item-end
+              slot="end"
               [(ngModel)]="localNodes[node._id].endpoints[j].defaultState"
               (ionChange)="changeState(node._id, endpoint._id, localNodes[node._id].endpoints[j].defaultState, true)"
             >
@@ -103,11 +106,11 @@
       {{ 'AWNINGS' | translate }}
     </ion-list-header>
     <ion-item-group *ngFor="let node of awningNodes">
-      <ion-item *ngIf="localNodes[node._id]" color="light">
+      <ion-item *ngIf="localNodes[node._id]" >
         <ion-label>{{node?.display_name || node?.name}}</ion-label>
         <ion-toggle
-          item-end
-          color="dark"
+          slot="end"
+          
           [(ngModel)]="localNodes[node._id].available"
           (ionChange)="changeAvailability(node._id, localNodes[node._id].available)"
         >
@@ -126,7 +129,7 @@
             <span *ngIf="endpoint.id === 'relayblock'">{{'ACT_LOCK'|translate}}</span>
           </ion-label>
           <ion-toggle
-            item-end
+            slot="end"
             [(ngModel)]="localNodes[node._id].endpoints[j].defaultState"
             (ionChange)="changeState(node._id, endpoint._id, localNodes[node._id].endpoints[j].defaultState, true)"
           >
@@ -140,11 +143,11 @@
     </ion-list-header>
 
     <ion-item-group *ngFor="let node of climaNodes">
-      <ion-item *ngIf="localNodes[node._id]" color="light">
+      <ion-item *ngIf="localNodes[node._id]" >
         <ion-label>{{node?.display_name || node?.name}}</ion-label>
         <ion-toggle
-          item-end
-          color="dark"
+          slot="end"
+          
           [(ngModel)]="localNodes[node._id].available"
           (ionChange)="changeAvailability(node._id, localNodes[node._id].available)"
         >
@@ -161,7 +164,7 @@
 
           <ion-label>{{endpoint.display_name || endpoint.name}}</ion-label>
           <ion-toggle
-            item-end
+            slot="end"
             [(ngModel)]="localNodes[node._id].endpoints[j].defaultState"
             (ionChange)="changeState(node._id, endpoint._id, localNodes[node._id].endpoints[j].defaultState, true)"
           >
